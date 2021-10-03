@@ -370,6 +370,10 @@ gmt_update 修改时间
       <categories>
         <category>工作学习</category>
       </categories>
+      <tags>
+        <tag>MySql</tag>
+        <tag>数据库</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
