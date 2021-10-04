@@ -4,6 +4,7 @@
     <title>Jasmin</title>
     <url>/2021/10/03/Jasmin/</url>
     <content><![CDATA[<h1 id="Jasmin"><a href="#Jasmin" class="headerlink" title="Jasmin"></a>Jasmin</h1><p>这篇文章主要教你jasmin的环境的搭建,基本编译语法,以及如何从java快速编写jasmin程序,以应付课程任务,鉴于网上相关资源太少,也没什么人研究这个,写自己的第一篇Blog,回忆一下jasmin的学习过程吧0.0</p>
+<span id="more"></span>
 <h2 id="jasmin环境搭建与基本编译操作"><a href="#jasmin环境搭建与基本编译操作" class="headerlink" title="jasmin环境搭建与基本编译操作:"></a><strong>jasmin环境搭建与基本编译操作:</strong></h2><p>首先您只需要支付5积分便可从我分享的资源下载jasmin并获得本人编写的部分jasmin例程供你学习.链接附文章末尾</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载jdk并配置好环境变量,命令行输入java –version检查是否成功</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://img-blog.csdnimg.cn/20210605001508591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jdk安装验证"></h2><p>jasmin内部文件+examples例程:<br><img src="https://img-blog.csdnimg.cn/20210604233032443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jasmin软件"><img src="https://img-blog.csdnimg.cn/20210604235242822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="examples例程"></p>
@@ -49,7 +50,9 @@
     <content><![CDATA[<h1 id="MySql"><a href="#MySql" class="headerlink" title="MySql"></a>MySql</h1><p><strong>MySQL是一个关系型数据库管理系统</strong></p>
 <p>5.7 -&gt; 稳定   </p>
 <p><strong>8.0</strong></p>
+<span id="more"></span>
 <h2 id="1、my-ini"><a href="#1、my-ini" class="headerlink" title="1、my.ini"></a>1、my.ini</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">port=3306</span><br><span class="line"></span><br><span class="line">basedir=D:\Program Files\mysql</span><br><span class="line"></span><br><span class="line">datadir=D:\Program Files\mysql\data</span><br><span class="line"></span><br><span class="line">max_connections=200</span><br><span class="line"></span><br><span class="line">max_connect_errors=10</span><br><span class="line"></span><br><span class="line">character-set-server=utf8</span><br><span class="line"></span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line"></span><br><span class="line">default_authentication_plugin=mysql_native_password</span><br><span class="line">[mysql]</span><br><span class="line"></span><br><span class="line">default-character-set=utf8</span><br><span class="line">[client]</span><br><span class="line">port=3306</span><br><span class="line"></span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
+
 <h2 id="2、创建数据库"><a href="#2、创建数据库" class="headerlink" title="2、创建数据库"></a>2、创建数据库</h2><p>基字符集：<em>utf-8</em><br>数据库排序规则：<em>utf8—general-ci</em>   </p>
 <h3 id="2-0连接数据库"><a href="#2-0连接数据库" class="headerlink" title="2.0连接数据库"></a>2.0连接数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p123456 -- 连接数据库</span><br><span class="line"></span><br><span class="line">update mysql.user</span><br><span class="line">set authentication_string=password(&#x27;123456&#x27;)</span><br><span class="line">where user = &#x27;root&#x27;</span><br><span class="line">  and Host = &#x27;localhost&#x27;;  -- 修改用户密码</span><br><span class="line"></span><br><span class="line">flush privileges ;  -- 刷新权限</span><br><span class="line">-- -----------------------------------------</span><br><span class="line">-- 所有的语句都用;结尾</span><br><span class="line">show databases ; -- 查看所有数据库</span><br><span class="line"></span><br><span class="line">mysql&gt;use school -- 切换数据库 use</span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line">show tables ; -- 查看数据库中所有的表</span><br><span class="line">describe student; -- 显示数据库中所有表的信息</span><br><span class="line"></span><br><span class="line">create database whlll; -- 创建一个数据库</span><br><span class="line"></span><br><span class="line">exit;</span><br><span class="line">-- 单行注释</span><br><span class="line">/*(多行注释)</span><br><span class="line">你好</span><br><span class="line">whlll</span><br><span class="line">Bye!</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
 <p>数据库xxx语言(CRUD 增删改查!)<br>DDL 定义<br>DML 操作<br>DQL 查询<br>DCL 控制<br>###2.操作数据库</p>
@@ -422,7 +425,8 @@ gmt_update 修改时间
     <title>Hello World</title>
     <url>/2021/10/01/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h1 id="一级目录"><a href="#一级目录" class="headerlink" title="一级目录"></a>一级目录</h1><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
@@ -442,8 +446,10 @@ gmt_update 修改时间
     <content><![CDATA[<h1 id="whlll-建站指南"><a href="#whlll-建站指南" class="headerlink" title="whlll-建站指南"></a>whlll-建站指南</h1><blockquote>
 <p>说是指南也谈不上，因为作为一个菜鸟，也都是在网络上搜罗搜罗，东拼西凑，搭好了这个小破站，看到那些维护了5、6年的个人博客网站，顿时心生敬佩</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><ul>
-<li>网站框架：Hexo<ul>
+<li><p>网站框架：Hexo</p>
+<ul>
 <li>选择理由：<ul>
 <li>机缘巧合，一眼就被它简明大气的风格吸引了(Next)，难怪拥戴的人这么多</li>
 <li>对我这种初出茅庐的小菜鸡比较友好</li>
@@ -452,7 +458,8 @@ gmt_update 修改时间
 </li>
 </ul>
 </li>
-<li>部署：GitHub Pages<ul>
+<li><p>部署：GitHub Pages</p>
+<ul>
 <li>选择理由：<ul>
 <li>免费方便，可能之后如果要让更多的人看到，要迁移，好像是跟搜索优先级和服务器访问速度有关(不知道是不是给自己挖了一个坑)</li>
 <li>上新一下Github,让自己的仓库充实一下 ，就当成一个开端吧</li>
@@ -460,14 +467,16 @@ gmt_update 修改时间
 </li>
 </ul>
 </li>
-<li>图床：PicGo + gitHub图床<ul>
+<li><p>图床：PicGo + gitHub图床</p>
+<ul>
 <li>选择理由：<ul>
 <li>免费！！！操作相对简单，虽然我也没有怎么体验过其他图床</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>环境版本：<ul>
+<li><p>环境版本：</p>
+<ul>
 <li>Node.js:14.18.0 -&gt; npm:6.14.15(他俩现在是一起的绑定在一起的，就是防止出现版本不适配的问题)</li>
 <li>git：2.31.1</li>
 </ul>
@@ -642,11 +651,31 @@ gmt_update 修改时间
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install live2d-widget-model-tororo</span><br></pre></td></tr></table></figure>
 
-<p>在博客根目录下的_config.yml下配置一下，配置一下 开猫即用 配置见上</p>
+<p>在博客根目录下的_config.yml下配置一下，配置一下 开猫即用</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment">## Live2D小白猫</span></span><br><span class="line"><span class="attr">live2d:</span> <span class="comment"># live2d第三方插件 博客右下方小tororo的配置(live2d-widget-model-tororo)</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">scriptFrom:</span> <span class="string">local</span></span><br><span class="line">  <span class="attr">pluginRootPath:</span> <span class="string">live2dw/</span></span><br><span class="line">  <span class="attr">pluginJsPath:</span> <span class="string">lib/</span></span><br><span class="line">  <span class="attr">pluginModelPath:</span> <span class="string">assets/</span></span><br><span class="line">  <span class="attr">model:</span></span><br><span class="line">    <span class="comment">#模板目录，在node_modules里</span></span><br><span class="line">    <span class="attr">use:</span> <span class="string">live2d-widget-model-tororo</span></span><br><span class="line">  <span class="attr">display:</span></span><br><span class="line">    <span class="attr">position:</span> <span class="string">right</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">150</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">300</span></span><br><span class="line">  <span class="attr">mobile:</span></span><br><span class="line">    <span class="comment"># 在手机端显示</span></span><br><span class="line">    <span class="attr">show:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">rect:</span></span><br><span class="line">    <span class="string">opacity:0.7</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="3-3、hexo-word-counter"><a href="#3-3、hexo-word-counter" class="headerlink" title="3.3、hexo-word-counter"></a>3.3、hexo-word-counter</h3><blockquote>
 <p>字数统计 阅读时长统计</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm i --save hexo-word-counter</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4、hexo-tag-cloud"><a href="#3-4、hexo-tag-cloud" class="headerlink" title="3.4、hexo-tag-cloud"></a>3.4、hexo-tag-cloud</h3><blockquote>
+<p>标签云</p>
+</blockquote>
+<ul>
+<li>使用</li>
+</ul>
+<blockquote>
+<p>eg:D:\whlll\Blog\node_modules\hexo-theme-next\layout_macro</p>
+</blockquote>
+<ul>
+<li>修改</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/tags-cloud.png" alt="avatar"></p>
+<ul>
+<li>自定义：根目录下添加</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># hexo-tag-cloud</span></span><br><span class="line"><span class="attr">tag_cloud:</span></span><br><span class="line">  <span class="attr">textFont:</span> <span class="string">Trebuchet</span> <span class="string">MS,</span> <span class="string">Helvetica</span></span><br><span class="line">  <span class="attr">textColor:</span> <span class="string">&#x27;#333&#x27;</span></span><br><span class="line">  <span class="attr">textHeight:</span> <span class="number">25</span></span><br><span class="line">  <span class="attr">outlineColor:</span> <span class="string">&#x27;#E2E1D1&#x27;</span></span><br><span class="line">  <span class="attr">maxSpeed:</span> <span class="number">0.5</span></span><br><span class="line">  <span class="attr">pauseOnSelected:</span> <span class="literal">false</span> <span class="comment"># true 意味着当选中对应 tag 时,停止转动</span></span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
