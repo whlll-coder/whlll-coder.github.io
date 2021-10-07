@@ -448,19 +448,17 @@ gmt_update 修改时间
 <span id="more"></span>
 
 <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><ul>
-<li><p>特点：</p>
-<ul>
+<li>特点<ul>
 <li>高可用</li>
 <li>可靠性</li>
 </ul>
 </li>
-<li><p>分布式消息中间件：</p>
-<ul>
+<li>分布式消息中间件<ul>
 <li>ActiveMQ：老派</li>
 <li>RabbitMQ：spring同源 支持度高</li>
 <li>Kafka：开源 性能最高 最接近底层</li>
 <li>RocketMQ：慎选</li>
-<li>场景：<ul>
+<li>场景<ul>
 <li>消息中间件监控数据</li>
 <li>异步数据传输场景</li>
 <li>削峰填谷场景</li>
@@ -471,7 +469,7 @@ gmt_update 修改时间
 <li>大数据分析场景</li>
 </ul>
 </li>
-<li>考量：<ul>
+<li>考量<ul>
 <li>AMQP</li>
 <li>MQTT</li>
 <li>持久化设计</li>
@@ -484,28 +482,24 @@ gmt_update 修改时间
 </li>
 </ul>
 </li>
-<li><p>负载均衡中间件：</p>
-<ul>
+<li>负载均衡中间件<ul>
 <li>Nginx</li>
 <li>LVS负载均衡软件</li>
 <li>KeepAlive -&gt; 高可用</li>
 <li>CDN -&gt; 加速</li>
 </ul>
 </li>
-<li><p>缓存中间件：</p>
-<ul>
+<li>缓存中间件<ul>
 <li>MemCache</li>
 <li>Redis</li>
 </ul>
 </li>
-<li><p>数据库中间件：</p>
-<ul>
+<li>数据库中间件<ul>
 <li>Mycat</li>
 <li>Shardingjdbc</li>
 </ul>
 </li>
-<li><p>案例分析：</p>
-<ul>
+<li>案例分析<ul>
 <li>异步数据保存</li>
 <li>订单数据的消息分发</li>
 <li>分布式事务</li>
@@ -517,7 +511,7 @@ gmt_update 修改时间
 </li>
 </ul>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ul>
-<li>单体架构：<ul>
+<li>单体架构<ul>
 <li>耦合度太高</li>
 <li>运维成本过高</li>
 <li>不易维护</li>
@@ -525,7 +519,7 @@ gmt_update 修改时间
 <li>升级架构的复杂度变高</li>
 </ul>
 </li>
-<li>分布式架构：一个请求由多个系统来处理<ul>
+<li>分布式架构:一个请求由多个系统来处理<ul>
 <li>学习成本高 技术栈过多</li>
 <li>运维成本 服务器成本高</li>
 <li>人员成本</li>
@@ -540,7 +534,7 @@ gmt_update 修改时间
 <p>MQ消息队列：负责消息的接受、存储和传递，它的性能要高于普通的服务和技术</p>
 </blockquote>
 <h2 id="消息队列协议"><a href="#消息队列协议" class="headerlink" title="消息队列协议"></a>消息队列协议</h2><ul>
-<li><p>AMQP：Erlang(底层C) 开发</p>
+<li><p>AMQP:Erlang(底层C) 开发</p>
 <ul>
 <li>1.分布式事务支持</li>
 <li>2.消息的持久化支持</li>
@@ -549,7 +543,7 @@ gmt_update 修改时间
 </li>
 <li><p>MQTT:</p>
 <ul>
-<li>特点：<ul>
+<li>特点:<ul>
 <li>轻量</li>
 <li>结构简单</li>
 <li>传输块、不支持事务</li>
@@ -566,7 +560,7 @@ gmt_update 修改时间
 <li>支持事务和持久化设计</li>
 </ul>
 </li>
-<li><p>KafKa：</p>
+<li><p>KafKa:</p>
 <ul>
 <li>结构简单</li>
 <li>解析速度快</li>
@@ -576,7 +570,7 @@ gmt_update 修改时间
 </li>
 </ul>
 <h2 id="消息队列的持久化"><a href="#消息队列的持久化" class="headerlink" title="消息队列的持久化"></a>消息队列的持久化</h2><p>数据不存在内存中 -&gt; 写入磁盘中 持久化保存</p>
-<h2 id="消息的分发策略"><a href="#消息的分发策略" class="headerlink" title="消息的分发策略"></a>消息的分发策略</h2><p>角色：</p>
+<h2 id="消息的分发策略"><a href="#消息的分发策略" class="headerlink" title="消息的分发策略"></a>消息的分发策略</h2><p>角色:</p>
 <ul>
 <li>1.生产者</li>
 <li>2.存储消息</li>
