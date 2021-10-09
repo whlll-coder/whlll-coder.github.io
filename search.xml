@@ -422,23 +422,196 @@ gmt_update 修改时间
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/10/01/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><span id="more"></span>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>Netty</title>
+    <url>/2021/10/09/Netty/</url>
+    <content><![CDATA[<h1 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
+<li>Java开源框架</li>
+<li>异步、基于事件驱动的网络应用框架，用以快速开发高性能、高可靠性的网络IO程序</li>
+<li>主要针对TCP协议下，面向Client端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输应用</li>
+<li>Netty本质是一个NIO框架,适用于服务器通讯相关的多种应用 场景</li>
+</ul>
+<span id="more"></span>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>体系结构</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Netty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NIO(io、网络)</td>
+</tr>
+<tr>
+<td>原生的JDK io/网络 -&gt; java的io编程 和 网络编程</td>
+</tr>
+<tr>
+<td>TCP/IP</td>
+</tr>
+</tbody></table>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>互联网行业<ul>
+<li>高性能RPC(远程过程调用)框架</li>
+</ul>
+</li>
+<li>游戏行业<ul>
+<li>定制和开发私有协议栈</li>
+</ul>
+</li>
+<li>大数据领域<ul>
+<li>(AVRO数据文件共享)RPC框架，默认采用Netty进行跨界点通信</li>
+</ul>
+</li>
+</ul>
+<h2 id="I-O模型"><a href="#I-O模型" class="headerlink" title="I/O模型"></a>I/O模型</h2><ul>
+<li>Java支持三种网络编程模型<ul>
+<li>BIO<ul>
+<li>同步阻塞：一个连接一个线程 如果连接不做任何事情会造成不必要的线程开销</li>
+</ul>
+</li>
+<li>NIO<ul>
+<li>同步非阻塞：客户端的连接请求会注册到多路复用器(Selector) -&gt; 轮询 一个线程维护多个连接</li>
+</ul>
+</li>
+<li>AIO<ul>
+<li>异步非阻塞：异步通道 对于有效的请求才启动线程，先由操作系统完成后才通知服务端启动线程处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实用场景<ul>
+<li>BIO<ul>
+<li>连接数目较小且固定</li>
+</ul>
+</li>
+<li>NIO<ul>
+<li>连接数目多且连接比较短(轻操作)的架构</li>
+</ul>
+</li>
+<li>AIO<ul>
+<li>连接数目多且连接较长(重操作)的架构</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h2><ul>
+<li><p>BIO变成简单流程</p>
+<ul>
+<li>服务器启动一个ServerSocket</li>
+<li>客户端启动Socket对服务器进行通信，默认情况下服务端需要对每个客户建立一个线程与之通信</li>
+<li>客户端发出请求后，先咨询服务器是否有线程响应，如果没有则会等待，或者被拒绝</li>
+<li>如果有响应，客户端线程会等待请求结束后，再继续执行</li>
+</ul>
+</li>
+<li><p>eg.</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BIOServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//线程池机制</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//思路</span></span><br><span class="line">        <span class="comment">//1.创建一个线程池</span></span><br><span class="line">        <span class="comment">//2.如果有客户端连接，就创建一个线程与之通信</span></span><br><span class="line"></span><br><span class="line">        ExecutorService newCachedThreadPool = Executors.newCachedThreadPool();</span><br><span class="line"></span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">6666</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;服务器启动了&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;线程信息 id=&quot;</span>+ Thread.currentThread().getId()+<span class="string">&quot;名字=&quot;</span>+Thread.currentThread().getName());</span><br><span class="line">            <span class="comment">//监听 等待客户端连接</span></span><br><span class="line">            System.out.println(<span class="string">&quot;等待连接...&quot;</span>);</span><br><span class="line">            <span class="keyword">final</span> Socket socket = serverSocket.accept();</span><br><span class="line">            System.out.println(<span class="string">&quot;连接到一个客户端&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//创建一个线程与之通信</span></span><br><span class="line">            newCachedThreadPool.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    <span class="comment">//可以和客户端通信</span></span><br><span class="line">                    handler(socket);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//编写一个Handler方法 和客户端通信</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">handler</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;线程信息 id=&quot;</span>+ Thread.currentThread().getId()+<span class="string">&quot;名字=&quot;</span>+Thread.currentThread().getName());</span><br><span class="line">            <span class="keyword">byte</span>[] bytes = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="comment">//通过socket 获取输入流</span></span><br><span class="line">            InputStream inputStream = socket.getInputStream();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//循环的读取客户端发送的数据</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">                System.out.println(<span class="string">&quot;线程信息 id=&quot;</span>+ Thread.currentThread().getId()+<span class="string">&quot;名字=&quot;</span>+Thread.currentThread().getName());</span><br><span class="line">                System.out.println(<span class="string">&quot;read...&quot;</span>);</span><br><span class="line">                <span class="keyword">int</span> read = inputStream.read(bytes);</span><br><span class="line">                <span class="keyword">if</span> (read != -<span class="number">1</span>) &#123;</span><br><span class="line">                    System.out.println(<span class="keyword">new</span> String(bytes, <span class="number">0</span>, read));<span class="comment">//输出客户发送的数据</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;关闭和client的连接&quot;</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                socket.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><ul>
+<li><p>同步非阻塞</p>
+</li>
+<li><p>三大核心组件</p>
+<ul>
+<li>Channel</li>
+<li>Buffer</li>
+<li>Selector<ul>
+<li>Buffer -&gt; Channel -&gt; Selector</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NIO使一个线程从某通道发送请求或者读取数据，但是它仅能得到目前可用的数据，如果目前没有数据可用时，就什么都不会获取，而不是保持线程阻塞，所以直至数据变得可以读取之前，该线程可以继续做其他事情，非阻塞写也是如此，一个线程请求写入一些数据到某些通道，但不需要等待它完全写入，这个线程同时可以去做别的事情。</p>
+</li>
+</ul>
+<h2 id="NIO和BIO比较"><a href="#NIO和BIO比较" class="headerlink" title="NIO和BIO比较"></a>NIO和BIO比较</h2><ul>
+<li>BIO以流的方式处理数据，而NIO以块的方式处理数据</li>
+<li>BIO基于字符流进行操作，而NIO基于Channel和Buffer进行操作,数据总是从通道读取到缓冲区，或是从缓冲区写入到通道中。</li>
+</ul>
+<h2 id="NIO三大核心组件关系"><a href="#NIO三大核心组件关系" class="headerlink" title="NIO三大核心组件关系"></a>NIO三大核心组件关系</h2><p>Selector、Channel、BUffer的关系</p>
+<ul>
+<li>每一个channel都对应一个Buffer</li>
+<li>Selector对应一个线程，一个线程对应多个channel(连接)</li>
+<li>channel 注册到 selector</li>
+<li>程序切换到哪个channel是由事件决定的 -&gt; Event</li>
+<li>Selector会根据不同的事件，在各个通道上切换</li>
+<li>Buffer就是一个内存块，底层有一个数组</li>
+<li>数据的读取写入是通过Buffer，双向，需要flip方法切换</li>
+<li>channel是双向的，可以返回底层操作系统的情况</li>
+</ul>
+<h3 id="缓冲区-Buffer"><a href="#缓冲区-Buffer" class="headerlink" title="缓冲区(Buffer)"></a>缓冲区(Buffer)</h3><ul>
+<li><p>本质就是一个可以读写数据的内存块 -&gt; 容器对象(含数组)</p>
+</li>
+<li><p>Buffer及其子类</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110082258388.png" alt="Buffer子类"></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>capacity</td>
+<td>容量，即可容纳的最大数量，在缓冲区创建时被设定并且不能改变</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>表示缓冲区的当前终点，不能对缓冲区超过极限的位置进行读写操作。且极限是可以修改的</td>
+</tr>
+<tr>
+<td>position</td>
+<td>位置，下一个要被读或写的元素索引，每次读写缓冲区数据时都会改变改值，为下次读写作准备</td>
+</tr>
+<tr>
+<td>mark</td>
+<td>标记</td>
+</tr>
+</tbody></table>
+<ul>
+<li>ByteBuffer</li>
+</ul>
+<h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><ul>
+<li>NIO的通道类似于流<ul>
+<li>通道可以同时读写</li>
+<li>可以异步读取数据</li>
+<li>可以缓冲读数据，也可以写数据到缓冲</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110082336254.png" alt="channel子类"></p>
+<h3 id="Channel写文件"><a href="#Channel写文件" class="headerlink" title="Channel写文件"></a>Channel写文件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        String str = <span class="string">&quot;Hello whlll&quot;</span>;</span><br><span class="line">        <span class="comment">//创建一个输出流</span></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;d:\\file01.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过输出流获取对应的 FileChannel</span></span><br><span class="line">        FileChannel channel = fileOutputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个缓冲区</span></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">1024</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将 str 放入到byteBuffer</span></span><br><span class="line">        byteBuffer.put(str.getBytes(StandardCharsets.UTF_8));</span><br><span class="line"></span><br><span class="line">        byteBuffer.flip();</span><br><span class="line"></span><br><span class="line">        channel.write(byteBuffer);</span><br><span class="line"></span><br><span class="line">        fileOutputStream.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Channel读文件"><a href="#Channel读文件" class="headerlink" title="Channel读文件"></a>Channel读文件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFIleChannel02</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">&quot;d:\\file01.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = fileInputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate((<span class="keyword">int</span>) file.length());</span><br><span class="line"></span><br><span class="line">        channel.read(byteBuffer);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将字节转成字符串</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(byteBuffer.array()));</span><br><span class="line"></span><br><span class="line">        fileInputStream.close();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="Channel读写文件-复制"><a href="#Channel读写文件-复制" class="headerlink" title="Channel读写文件(复制)"></a>Channel读写文件(复制)</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel03</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;1.txt&quot;</span>);</span><br><span class="line">        FileChannel channel = fileInputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;2.txt&quot;</span>);</span><br><span class="line">        FileChannel channel1 = fileOutputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">512</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//这里有一个重要的操作</span></span><br><span class="line">            byteBuffer.clear();</span><br><span class="line">            <span class="keyword">int</span> read = channel.read(byteBuffer);</span><br><span class="line">            System.out.println(<span class="string">&quot;read=&quot;</span>+read);</span><br><span class="line">            <span class="keyword">if</span> (read == -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            byteBuffer.flip();</span><br><span class="line">            channel1.write(byteBuffer);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        fileInputStream.close();</span><br><span class="line">        fileOutputStream.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Channel-零复制-慎用"><a href="#Channel-零复制-慎用" class="headerlink" title="Channel 零复制(慎用)"></a>Channel 零复制(慎用)</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOFileChannel04</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建相关的流</span></span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;d:\\a.gif&quot;</span>);</span><br><span class="line">        FileOutputStream fileOutputStream = <span class="keyword">new</span> FileOutputStream(<span class="string">&quot;d:\\a2.gif&quot;</span>);</span><br><span class="line"></span><br><span class="line">        FileChannel sourceCh = fileInputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        FileChannel destCh = fileOutputStream.getChannel();</span><br><span class="line"></span><br><span class="line">        destCh.transferFrom(sourceCh, <span class="number">0</span>, sourceCh.size());</span><br><span class="line"></span><br><span class="line">        fileInputStream.close();</span><br><span class="line">        fileOutputStream.close();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ByteBuffer"><a href="#ByteBuffer" class="headerlink" title="ByteBuffer"></a>ByteBuffer</h2><h3 id="设为仅可读"><a href="#设为仅可读" class="headerlink" title="设为仅可读"></a>设为仅可读</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadOnlyBuffer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ByteBuffer buffer = ByteBuffer.allocate(<span class="number">64</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">64</span>; i++) &#123;</span><br><span class="line">            buffer.put((<span class="keyword">byte</span>) i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        buffer.flip();</span><br><span class="line"></span><br><span class="line">        ByteBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();</span><br><span class="line"></span><br><span class="line">        System.out.println(readOnlyBuffer.getClass());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (readOnlyBuffer.hasRemaining()) &#123;</span><br><span class="line">            System.out.println(readOnlyBuffer.get());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        readOnlyBuffer.put((byte) 100);</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Put-amp-Get"><a href="#Put-amp-Get" class="headerlink" title="Put &amp; Get"></a>Put &amp; Get</h3><ul>
+<li>改变读取顺序 -&gt; 如果没有越界 只会得到非预期的结果</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NIOByteBufferPutGet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ByteBuffer byteBuffer = ByteBuffer.allocate(<span class="number">64</span>);</span><br><span class="line"></span><br><span class="line">        byteBuffer.putInt(<span class="number">100</span>);</span><br><span class="line">        byteBuffer.putLong(<span class="number">9L</span>);</span><br><span class="line">        byteBuffer.putChar(<span class="string">&#x27;威&#x27;</span>);</span><br><span class="line">        byteBuffer.putShort((<span class="keyword">short</span>) <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">        byteBuffer.flip();</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        System.out.println(byteBuffer.getInt());</span><br><span class="line">        System.out.println(byteBuffer.getLong());</span><br><span class="line">        System.out.println(byteBuffer.getChar());</span><br><span class="line">        System.out.println(byteBuffer.getShort());</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆外内存修改"><a href="#堆外内存修改" class="headerlink" title="堆外内存修改"></a>堆外内存修改</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MappedByteBufferTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        RandomAccessFile randomAccessFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">&quot;1.txt&quot;</span>,<span class="string">&quot;rw&quot;</span>);</span><br><span class="line"></span><br><span class="line">        FileChannel channel = randomAccessFile.getChannel();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 参数2：可以修改的起始位置</span></span><br><span class="line"><span class="comment">         * 参数3：映射到内存的大小，即将1，txt的多少个字节映射到内存</span></span><br><span class="line"><span class="comment">         * 可以直接修改的范围就是0-5</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        MappedByteBuffer mappedByteBuffer = channel.map(FileChannel.MapMode.READ_WRITE, <span class="number">0</span>, <span class="number">5</span>);</span><br><span class="line">        mappedByteBuffer.put(<span class="number">0</span>, (<span class="keyword">byte</span>) <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line">        mappedByteBuffer.put(<span class="number">3</span>, (<span class="keyword">byte</span>) <span class="string">&#x27;9&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        randomAccessFile.close();</span><br><span class="line">        System.out.println(<span class="string">&quot;修改成功~&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分散和聚合-流操作"><a href="#分散和聚合-流操作" class="headerlink" title="分散和聚合(流操作)"></a>分散和聚合(流操作)</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScatteringAndGatheringTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//使用 ServerSocketChannel 和 ScoketChannel</span></span><br><span class="line">        ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line">        InetSocketAddress inetSocketAddress = <span class="keyword">new</span> InetSocketAddress(<span class="number">7000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//绑定端口到socket，并启动</span></span><br><span class="line">        serverSocketChannel.socket().bind(inetSocketAddress);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建buffer数组</span></span><br><span class="line">        ByteBuffer[] byteBuffers = <span class="keyword">new</span> ByteBuffer[<span class="number">2</span>];</span><br><span class="line">        byteBuffers[<span class="number">0</span>] = ByteBuffer.allocate(<span class="number">5</span>);</span><br><span class="line">        byteBuffers[<span class="number">1</span>] = ByteBuffer.allocate(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//等待客户端连接</span></span><br><span class="line">        SocketChannel socketChannel = serverSocketChannel.accept();</span><br><span class="line">        <span class="keyword">int</span> messageLength = <span class="number">8</span>;</span><br><span class="line">        <span class="comment">//循环的读取</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> byteRead = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (byteRead &lt; messageLength) &#123;</span><br><span class="line">                <span class="keyword">long</span> l = socketChannel.read(byteBuffers);</span><br><span class="line">                byteRead += l;</span><br><span class="line">                System.out.println(<span class="string">&quot;byteRead=&quot;</span>+byteRead);</span><br><span class="line">                <span class="comment">//使用流打印 当前的Buffer的position 和 limit</span></span><br><span class="line">                Arrays.asList(byteBuffers).stream().map(buffer -&gt; <span class="string">&quot;position=&quot;</span>+</span><br><span class="line">                        buffer.position()+<span class="string">&quot;,limit=&quot;</span>+ buffer.limit()).forEach(System.out::println);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Arrays.asList(byteBuffers).forEach(buffer -&gt; buffer.flip());</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将数据读出显示到客户端</span></span><br><span class="line">            <span class="keyword">long</span> byteWrite = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (byteWrite &lt; messageLength) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">long</span> l = socketChannel.write(byteBuffers);</span><br><span class="line">                byteWrite += l;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//将所有的buffer复位</span></span><br><span class="line">            Arrays.asList(byteBuffers).forEach(buffer -&gt; &#123;</span><br><span class="line">                buffer.clear();</span><br><span class="line">            &#125;);</span><br><span class="line">            System.out.println(<span class="string">&quot;byteRead=&quot;</span>+byteRead+<span class="string">&quot;  byteWrite=&quot;</span>+byteWrite+<span class="string">&quot;  messageLength=&quot;</span>+</span><br><span class="line">                    messageLength);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
+      <categories>
+        <category>工作学习</category>
+        <category>网络应用框架</category>
+      </categories>
+      <tags>
+        <tag>Netty</tag>
+      </tags>
   </entry>
   <entry>
     <title>RabbitMq笔记</title>
@@ -916,6 +1089,25 @@ gmt_update 修改时间
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/10/01/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><span id="more"></span>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>建站指南</title>
     <url>/2021/10/03/%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<h1 id="whlll-建站指南"><a href="#whlll-建站指南" class="headerlink" title="whlll-建站指南"></a>whlll-建站指南</h1><blockquote>
@@ -1158,6 +1350,27 @@ gmt_update 修改时间
       </categories>
       <tags>
         <tag>建站指南</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>模拟集成电路基础</title>
+    <url>/2021/10/08/%E6%A8%A1%E6%8B%9F%E9%9B%86%E6%88%90%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<h2 id="Class-1"><a href="#Class-1" class="headerlink" title="Class 1"></a>Class 1</h2><h3 id="数字信号处理的优点"><a href="#数字信号处理的优点" class="headerlink" title="数字信号处理的优点"></a>数字信号处理的优点</h3><ul>
+<li>稳健性 -&gt; 对工艺、电源电压、温度变化和干扰等不敏感</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li>可编程性</li>
+<li>灵活性</li>
+</ul>
+]]></content>
+      <categories>
+        <category>集成电路</category>
+      </categories>
+      <tags>
+        <tag>模集</tag>
+        <tag>CMOS</tag>
       </tags>
   </entry>
 </search>
