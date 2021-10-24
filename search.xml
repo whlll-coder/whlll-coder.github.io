@@ -3,9 +3,9 @@
   <entry>
     <title>Docker命令回顾</title>
     <url>/2021/10/24/Docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="设置docker自启动"><a href="#设置docker自启动" class="headerlink" title="设置docker自启动"></a>设置docker自启动</h2><span id="more"></span>
 
-<h2 id="设置docker自启动"><a href="#设置docker自启动" class="headerlink" title="设置docker自启动"></a>设置docker自启动</h2><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
 
 <h2 id="docker的启动、停止、重启"><a href="#docker的启动、停止、重启" class="headerlink" title="docker的启动、停止、重启"></a>docker的启动、停止、重启</h2><figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">service docker restart</span><br><span class="line"></span><br><span class="line">service docker stop</span><br><span class="line"></span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
 
@@ -91,9 +91,9 @@
   <entry>
     <title>JVM笔记</title>
     <url>/2021/10/24/JVM%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h1 id="JVM-探究"><a href="#JVM-探究" class="headerlink" title="JVM 探究"></a>JVM 探究</h1><span id="more"></span>
 
-<h1 id="JVM-探究"><a href="#JVM-探究" class="headerlink" title="JVM 探究"></a>JVM 探究</h1><ul>
+<ul>
 <li>对 JVM 的理解 java8虚拟机和之前的变化更新?</li>
 <li>什么是OOM，什么是栈溢出 StackOverflowError? 怎么分析？</li>
 <li>JVM的常用调优参数有哪些？</li>
@@ -192,9 +192,11 @@
   <entry>
     <title>Jasmin</title>
     <url>/2021/10/03/Jasmin/</url>
-    <content><![CDATA[<span id="more"></span>
-
+    <content><![CDATA[<blockquote>
 <p>这篇文章主要教你jasmin的环境的搭建,基本编译语法,以及如何从java快速编写jasmin程序,以应付课程任务,鉴于网上相关资源太少,也没什么人研究这个,写自己的第一篇Blog,回忆一下jasmin的学习过程吧0.0</p>
+</blockquote>
+<span id="more"></span>
+
 <h2 id="jasmin环境搭建与基本编译操作"><a href="#jasmin环境搭建与基本编译操作" class="headerlink" title="jasmin环境搭建与基本编译操作:"></a><strong>jasmin环境搭建与基本编译操作:</strong></h2><p>首先您只需要支付5积分便可从我分享的资源下载jasmin并获得本人编写的部分jasmin例程供你学习.链接附文章末尾</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>下载jdk并配置好环境变量,命令行输入java –version检查是否成功</p>
 <h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://img-blog.csdnimg.cn/20210605001508591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jdk安装验证"></h2><p>jasmin内部文件+examples例程:<br><img src="https://img-blog.csdnimg.cn/20210604233032443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jasmin软件"><img src="https://img-blog.csdnimg.cn/20210604235242822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="examples例程"></p>
@@ -237,9 +239,9 @@
   <entry>
     <title>MySql笔记</title>
     <url>/2021/10/02/MySql%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p><strong>MySQL是一个关系型数据库管理系统</strong></p>
+<span id="more"></span>
 
-<p><strong>MySQL是一个关系型数据库管理系统</strong></p>
 <p>5.7 -&gt; 稳定   </p>
 <p><strong>8.0</strong></p>
 <h2 id="1、my-ini"><a href="#1、my-ini" class="headerlink" title="1、my.ini"></a>1、my.ini</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line">port=3306</span><br><span class="line"></span><br><span class="line">basedir=D:\Program Files\mysql</span><br><span class="line"></span><br><span class="line">datadir=D:\Program Files\mysql\data</span><br><span class="line"></span><br><span class="line">max_connections=200</span><br><span class="line"></span><br><span class="line">max_connect_errors=10</span><br><span class="line"></span><br><span class="line">character-set-server=utf8</span><br><span class="line"></span><br><span class="line">default-storage-engine=INNODB</span><br><span class="line"></span><br><span class="line">default_authentication_plugin=mysql_native_password</span><br><span class="line">[mysql]</span><br><span class="line"></span><br><span class="line">default-character-set=utf8</span><br><span class="line">[client]</span><br><span class="line">port=3306</span><br><span class="line"></span><br><span class="line">default-character-set=utf8</span><br></pre></td></tr></table></figure>
@@ -615,10 +617,9 @@ gmt_update 修改时间
   <entry>
     <title>Spring &amp; Mybatis</title>
     <url>/2021/10/10/Spring-Mybatis/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="常用依赖"><a href="#常用依赖" class="headerlink" title="常用依赖"></a>常用依赖</h2><span id="more"></span>
 
-<hr>
-<h2 id="常用依赖"><a href="#常用依赖" class="headerlink" title="常用依赖"></a>常用依赖</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="常用Bean配置-注解支持"><a href="#常用Bean配置-注解支持" class="headerlink" title="常用Bean配置(注解支持)"></a>常用Bean配置(注解支持)</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    注解扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.whlll.pojo&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -869,19 +870,14 @@ gmt_update 修改时间
   <entry>
     <title>Netty</title>
     <url>/2021/10/09/Netty/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><span id="more"></span>
 
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li><p>Java开源框架</p>
-</li>
-<li><p>异步、基于事件驱动的网络应用框架，用以快速开发高性能、高可靠性的网络IO程序</p>
-</li>
-<li><p>主要针对TCP协议下，面向Client端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输应用</p>
-</li>
-<li><p>Netty本质是一个NIO框架,适用于服务器通讯相关的多种应用 场景</p>
-</li>
-<li><p>体系结构</p>
-</li>
+<ul>
+<li>Java开源框架</li>
+<li>异步、基于事件驱动的网络应用框架，用以快速开发高性能、高可靠性的网络IO程序</li>
+<li>主要针对TCP协议下，面向Client端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输应用</li>
+<li>Netty本质是一个NIO框架,适用于服务器通讯相关的多种应用 场景</li>
+<li>体系结构</li>
 </ul>
 <table>
 <thead>
@@ -1345,9 +1341,9 @@ gmt_update 修改时间
   <entry>
     <title>RabbitMq笔记</title>
     <url>/2021/10/07/RabbitMq%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><span id="more"></span>
 
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>原始操作系统的TCP/IP协议满足不了项目需求</p>
+<p>原始操作系统的TCP/IP协议满足不了项目需求</p>
 <p>添加中间件 添加头 -&gt; 满足要求</p>
 <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><ul>
 <li>特点<ul>
@@ -1827,27 +1823,20 @@ gmt_update 修改时间
 <li>后端<br>tags:</li>
 <li>SpringBoot</li>
 <li>中间件</li>
-<li>导入静态资源,…<span id="more"></span></li>
+<li>导入静态资源,…<h2 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h2></li>
 </ul>
-<h2 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h2><ul>
-<li><p>是什么</p>
-</li>
-<li><p>配置如何编写 yaml</p>
-</li>
-<li><p>自动配置原理：重要 -&gt; 谈资</p>
-</li>
-<li><p>集成web开发：业务的核心</p>
-</li>
-<li><p>集成数据源：Druid</p>
-</li>
-<li><p>分布式开发：Dubbo + zookeeper</p>
-</li>
-<li><p>swagger：接口文档</p>
-</li>
-<li><p>任务调度</p>
-</li>
-<li><p>SpringSecurity：Shiro</p>
-</li>
+<span id="more"></span>
+
+<ul>
+<li>是什么</li>
+<li>配置如何编写 yaml</li>
+<li>自动配置原理：重要 -&gt; 谈资</li>
+<li>集成web开发：业务的核心</li>
+<li>集成数据源：Druid</li>
+<li>分布式开发：Dubbo + zookeeper</li>
+<li>swagger：接口文档</li>
+<li>任务调度</li>
+<li>SpringSecurity：Shiro</li>
 </ul>
 <h2 id="SpringCloud"><a href="#SpringCloud" class="headerlink" title="SpringCloud"></a>SpringCloud</h2><ul>
 <li>微服务</li>
@@ -2013,11 +2002,11 @@ gmt_update 修改时间
   <entry>
     <title>建站指南</title>
     <url>/2021/10/03/%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<blockquote>
+    <content><![CDATA[<blockquote>
 <p>说是指南也谈不上，因为作为一个菜鸟，也都是在网络上搜罗搜罗，东拼西凑，搭好了这个小破站，看到那些维护了5、6年的个人博客网站，顿时心生敬佩</p>
 </blockquote>
+<span id="more"></span>
+
 <h2 id="概述："><a href="#概述：" class="headerlink" title="概述："></a>概述：</h2><ul>
 <li><p>网站框架：Hexo</p>
 <ul>
@@ -2295,9 +2284,9 @@ gmt_update 修改时间
   <entry>
     <title>计算机网络笔记</title>
     <url>/2021/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><span id="more"></span>
 
-<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>__计算机网络__：</p>
+<p>__计算机网络__：</p>
 <ul>
 <li><p>概念：<strong>计算机网络是<font color=red>互联的、自治的</font>计算机集合</strong></p>
 </li>
