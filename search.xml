@@ -1,89 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Docker命令回顾</title>
-    <url>/2021/10/24/Docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE/</url>
-    <content><![CDATA[<p>Docker 命令备忘录 (初阶)</p>
-<span id="more"></span>
-<h2 id="设置docker自启动">设置docker自启动</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
-<h2 id="docker的启动停止重启">docker的启动、停止、重启</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">service docker restart</span><br><span class="line"></span><br><span class="line">service docker stop</span><br><span class="line"></span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
-<h2 id="指定-docker-镜像源">指定 Docker 镜像源</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
-<h2 id="阿里云镜像加速">阿里云镜像加速</h2>
-<ol type="1">
-<li>登录阿里云服务器，找到<code>容器镜像服务</code></li>
-<li>设置Registry登录密码</li>
-<li>找到镜像加速器</li>
-<li>配置使用</li>
-</ol>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: <span class="section">[&quot;https://pi9dpp60.mirror.aliyuncs.com&quot;]</span></span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-<h2 id="docker-镜像">docker 镜像</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker search redis</span><br><span class="line"></span><br><span class="line">docker rmi -f xxxxxx</span><br></pre></td></tr></table></figure>
-<h2 id="docker-拉取服务镜像">docker 拉取服务镜像</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker pull redis</span><br><span class="line"></span><br><span class="line">docker push</span><br></pre></td></tr></table></figure>
-<h2 id="docker-创建一个容器">docker 创建一个容器</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Usage: docker run <span class="section">[OPTIONS]</span> IMAGE <span class="section">[COMMAND]</span> <span class="section">[ARG...]</span>  </span><br><span class="line"> </span><br><span class="line">  -d, <span class="attr">--detach</span>=<span class="literal">false</span>         指定容器运行于前台还是后台，默认为<span class="literal">false</span>   </span><br><span class="line">  -i, <span class="attr">--interactive</span>=<span class="literal">false</span>   打开STDIN，用于控制台交互  </span><br><span class="line">  -t, <span class="attr">--tty</span>=<span class="literal">false</span>            分配tty设备，该可以支持终端登录，默认为<span class="literal">false</span>  </span><br><span class="line">  -u, <span class="attr">--user</span>=<span class="string">&quot;&quot;</span>              指定容器的用户  </span><br><span class="line">  -a, <span class="attr">--attach</span>=[]            标准输入输出流和错误信息（必须是以非docker run -d启动的容器）</span><br><span class="line">  -w, <span class="attr">--workdir</span>=<span class="string">&quot;&quot;</span>           指定容器的工作目录 </span><br><span class="line">  -c, <span class="attr">--cpu-shares</span>=<span class="number">0</span>        设置容器CPU权重，在CPU共享场景使用  </span><br><span class="line">  -e, <span class="attr">--env</span>=[]               指定环境变量，容器中可以使用该环境变量  </span><br><span class="line">  -m, <span class="attr">--memory</span>=<span class="string">&quot;&quot;</span>            指定容器的内存上限  </span><br><span class="line">  -P, <span class="attr">--publish-all</span>=<span class="literal">false</span>    指定容器暴露的端口  </span><br><span class="line">  -p, <span class="attr">--publish</span>=[]           指定容器暴露的端口 </span><br><span class="line">  -h, <span class="attr">--hostname</span>=<span class="string">&quot;&quot;</span>          指定容器的主机名  </span><br><span class="line">  -v, <span class="attr">--volume</span>=[]            给容器挂载存储卷，挂载到容器的某个目录  </span><br><span class="line">  <span class="attr">--volumes-from</span>=[]          给容器挂载其他容器上的卷，挂载到容器的某个目录</span><br><span class="line">  <span class="attr">--cap-add</span>=[]               添加权限，权限清单详见：http://linux.die.net/man/<span class="number">7</span>/capabilities  </span><br><span class="line">  <span class="attr">--cap-drop</span>=[]              删除权限，权限清单详见：http://linux.die.net/man/<span class="number">7</span>/capabilities  </span><br><span class="line">  <span class="attr">--cidfile</span>=<span class="string">&quot;&quot;</span>               运行容器后，在指定文件中写入容器PID值，一种典型的监控系统用法  </span><br><span class="line">  <span class="attr">--cpuset</span>=<span class="string">&quot;&quot;</span>                设置容器可以使用哪些CPU，此参数可以用来容器独占CPU  </span><br><span class="line">  <span class="attr">--device</span>=[]                添加主机设备给容器，相当于设备直通  </span><br><span class="line">  <span class="attr">--dns</span>=[]                   指定容器的dns服务器  </span><br><span class="line">  <span class="attr">--dns-search</span>=[]            指定容器的dns搜索域名，写入到容器的/etc/resolv.conf文件  </span><br><span class="line">  <span class="attr">--entrypoint</span>=<span class="string">&quot;&quot;</span>            覆盖image的入口点  </span><br><span class="line">  <span class="attr">--env-file</span>=[]              指定环境变量文件，文件格式为每行一个环境变量  </span><br><span class="line">  <span class="attr">--expose</span>=[]                指定容器暴露的端口，即修改镜像的暴露端口  </span><br><span class="line">  <span class="attr">--link</span>=[]                  指定容器间的关联，使用其他容器的IP、env等信息  </span><br><span class="line">  <span class="attr">--lxc-conf</span>=[]              指定容器的配置文件，只有在指定--exec-driver=lxc时使用  </span><br><span class="line">  <span class="attr">--name</span>=<span class="string">&quot;&quot;</span>                  指定容器名字，后续可以通过名字进行容器管理，links特性需要使用名字  </span><br><span class="line">  <span class="attr">--net</span>=<span class="string">&quot;bridge&quot;</span>             容器网络设置:</span><br><span class="line">                                bridge 使用docker daemon指定的网桥     </span><br><span class="line">                                host     //容器使用主机的网络  </span><br><span class="line">                                container:NAME_or_ID  &gt;//使用其他容器的网路，共享IP和PORT等网络资源  </span><br><span class="line">                                none 容器使用自己的网络（类似<span class="attr">--net</span>=bridge），但是不进行配置 </span><br><span class="line">  <span class="attr">--privileged</span>=<span class="literal">false</span>         指定容器是否为特权容器，特权容器拥有所有的capabilities  </span><br><span class="line">  <span class="attr">--restart</span>=<span class="string">&quot;no&quot;</span>             指定容器停止后的重启策略:</span><br><span class="line">                                no：容器退出时不重启  </span><br><span class="line">                                on-failure：容器故障退出（返回值非零）时重启 </span><br><span class="line">                                always：容器退出时总是重启  </span><br><span class="line">  <span class="attr">--rm</span>=<span class="literal">false</span>                 指定容器停止后自动删除容器(不支持以docker run -d启动的容器)  </span><br><span class="line">  <span class="attr">--sig-proxy</span>=<span class="literal">true</span>           设置由代理接受并处理信号，但是SIGCHLD、SIGSTOP和SIGKILL不能被代理 </span><br></pre></td></tr></table></figure>
-<p><strong>eg.</strong></p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[root@CentOS ~]</span><span class="comment"># docker run -p 8090:8080 -p 50000:50000 --restart always --link Redis:redis --name jenkins -v /home/jenkins:/home/jenkins_home --privileged=true dokcer.io/jenkins/jenkins</span></span><br></pre></td></tr></table></figure>
-<h2 id="查看-docker-容器">查看 docker 容器</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-<h2 id="启动停止重启删除docker容器">启动、停止、重启、删除docker容器</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker start xxxxxx</span><br><span class="line"></span><br><span class="line">docker stop xxxxxx</span><br><span class="line"></span><br><span class="line">docker restart xxxxxx</span><br><span class="line"></span><br><span class="line">docker rm xxxxxx</span><br><span class="line"></span><br><span class="line">docker rm $(docker ps -a- q)</span><br><span class="line">-a 查看全部的容器，包括没有运行的</span><br><span class="line">-q 之查看容器的标识</span><br></pre></td></tr></table></figure>
-<h2 id="查看镜像-元数据">查看镜像 元数据</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker inspect 容器id</span><br></pre></td></tr></table></figure>
-<h2 id="进入docker容器">进入docker容器</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker exec -it xxxxxx</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>ctrl+d 退出容器且关闭</p></li>
-<li><p>ctrl+p+q 退出容器但不关闭</p></li>
-</ul>
-<h2 id="查看容器日志">查看容器日志</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker logs -f -t --tail 行数 容器名</span><br></pre></td></tr></table></figure>
-<h2 id="docker-网络操作">docker 网络操作</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker network create mynet</span><br><span class="line"></span><br><span class="line">docker network inspect mynet</span><br><span class="line"></span><br><span class="line">docker network disconnet mynet 容器ID</span><br><span class="line"></span><br><span class="line">docker network rm mynet</span><br></pre></td></tr></table></figure>
-<h2 id="docker-拷贝操作">docker 拷贝操作</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.文件从宿主机拷贝到容器:    docker cp 宿主机文件路径   容器名:存放路径</span></span><br><span class="line">docker cp /home/jenkins/test.txt jenkins:/var/jenkins_home</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.文件从容器拷贝到宿主机   docker cp 容器名:要拷贝的文件路径  宿主机存放路径  </span></span><br><span class="line">docker cp jenkins:/var/jenkins_home/test.txt /home/jenkins</span><br></pre></td></tr></table></figure>
-<h2 id="docker-数据卷">docker 数据卷</h2>
-<h3 id="创建数据卷">创建数据卷</h3>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume create 数据卷的名称</span><br></pre></td></tr></table></figure>
-<h3 id="查看数据卷详情">查看数据卷详情</h3>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume inspect 数据卷名称</span><br></pre></td></tr></table></figure>
-<h3 id="查看全部数据卷">查看全部数据卷</h3>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume ls</span><br></pre></td></tr></table></figure>
-<h3 id="删除数据卷">删除数据卷</h3>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume rm 数据卷的名称</span><br></pre></td></tr></table></figure>
-<h3 id="数据卷映射">数据卷映射</h3>
-<ul>
-<li>直接使用命令挂载</li>
-</ul>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker run -it -v 主机目录：容器目录</span><br><span class="line"> </span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ home]</span><span class="comment"># docker run -it -v /home/ceshi:/home centos /bin/bash</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>匿名 具名挂载</li>
-</ul>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment">#通过数据卷名称进行映射 ,使用名称进行映射时，我们需要先来创建出数据卷，才能使用名称进行映射。回讲容器内部自带的文件，复制到默认的存放路径中</span></span><br><span class="line">docker run -d -p 宿主机端口号:容器端口号 -v 数据卷名称:容器内部路径 --name 自定义容器名称 镜像的id <span class="comment"># -P 随机指定端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过路径进行映射，直接指定一个路径作为数据卷的存放地址，这个路径下是空的。</span></span><br><span class="line">docker run -d -p 宿主机端口号：容器端口号 -v 宿主机路径:容器内部路径 --name 自定义容器名称 镜像的id <span class="comment"># -P 随机指定端口</span></span><br></pre></td></tr></table></figure>
-<h2 id="dockerfile-自定义镜像">dockerfile 自定义镜像</h2>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">from: 指定当前自定义镜像的依赖环境</span><br><span class="line">copy: 将相对路径下的内容复制到自定义镜像中</span><br><span class="line">workdir: 声明镜像的默认工作目录</span><br><span class="line">run:执行的命令，可以编写多个</span><br><span class="line">cmd:需要执行的命令（再workdir下执行，cmd可以写多个，只以最后一个为准）</span><br><span class="line"><span class="comment">#举例</span></span><br><span class="line">from daocloud.io/library/tomcat:8.5.15-jre8</span><br><span class="line">copy springboot.war /usr/local/tomcat/webapps</span><br></pre></td></tr></table></figure>
-<p><strong>eg.</strong></p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 编写Dockerfile的文件</span></span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ dockerfile]</span><span class="comment"># cat mydockerfile-centos </span></span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER xiaofan&lt;594042358@qq.com&gt;</span><br><span class="line"> </span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line">WORKDIR $MYPATH     <span class="comment"># 镜像的工作目录</span></span><br><span class="line"> </span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line"> </span><br><span class="line">EXPOSE 80</span><br><span class="line"> </span><br><span class="line">CMD echo $MYPATH</span><br><span class="line">CMD echo &quot;---end---&quot;</span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment"># 2. 通过这个文件构建镜像</span></span><br><span class="line"><span class="comment"># 命令 docker build -f dockerfile文件路径 -t 镜像名:[tag] .</span></span><br><span class="line"> </span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ dockerfile]</span><span class="comment"># docker build -f mydockerfile-centos -t mycentos:0.1 .</span></span><br><span class="line"> </span><br><span class="line">Successfully built d2d9f0ea8cb2</span><br><span class="line">Successfully tagged mycentos:0.1</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>CMD 和ENTRYPOINT区别</p>
-</blockquote>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">CMD         <span class="comment"># 指定这个容器启动的时候要运行的命令，只有最后一个会生效可被替代</span></span><br><span class="line">ENTRYPOINT      <span class="comment"># 指定这个容器启动的时候要运行的命令， 可以追加命令</span></span><br></pre></td></tr></table></figure>
-<h3 id="制作镜像">制作镜像</h3>
-<p>编写完成Dockerfile后需要通过命令将其制作成为镜像，并且要在Dockerfile的当前目录下执行该命令，之后就以可以使用docker images 查看自己制作好的镜像。注意最后有一个.</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker build -t 镜像名称<span class="section">[:tag]</span> .</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工作学习</category>
-        <category>容器</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JVM笔记</title>
     <url>/2021/10/24/JVM%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>JVM 初探小笔记</p>
@@ -211,6 +128,89 @@
       </categories>
       <tags>
         <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker命令回顾</title>
+    <url>/2021/10/24/Docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE/</url>
+    <content><![CDATA[<p>Docker 命令备忘录 (初阶)</p>
+<span id="more"></span>
+<h2 id="设置docker自启动">设置docker自启动</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+<h2 id="docker的启动停止重启">docker的启动、停止、重启</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">service docker restart</span><br><span class="line"></span><br><span class="line">service docker stop</span><br><span class="line"></span><br><span class="line">service docker start</span><br></pre></td></tr></table></figure>
+<h2 id="指定-docker-镜像源">指定 Docker 镜像源</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h2 id="阿里云镜像加速">阿里云镜像加速</h2>
+<ol type="1">
+<li>登录阿里云服务器，找到<code>容器镜像服务</code></li>
+<li>设置Registry登录密码</li>
+<li>找到镜像加速器</li>
+<li>配置使用</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: <span class="section">[&quot;https://pi9dpp60.mirror.aliyuncs.com&quot;]</span></span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h2 id="docker-镜像">docker 镜像</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker search redis</span><br><span class="line"></span><br><span class="line">docker rmi -f xxxxxx</span><br></pre></td></tr></table></figure>
+<h2 id="docker-拉取服务镜像">docker 拉取服务镜像</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker pull redis</span><br><span class="line"></span><br><span class="line">docker push</span><br></pre></td></tr></table></figure>
+<h2 id="docker-创建一个容器">docker 创建一个容器</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">Usage: docker run <span class="section">[OPTIONS]</span> IMAGE <span class="section">[COMMAND]</span> <span class="section">[ARG...]</span>  </span><br><span class="line"> </span><br><span class="line">  -d, <span class="attr">--detach</span>=<span class="literal">false</span>         指定容器运行于前台还是后台，默认为<span class="literal">false</span>   </span><br><span class="line">  -i, <span class="attr">--interactive</span>=<span class="literal">false</span>   打开STDIN，用于控制台交互  </span><br><span class="line">  -t, <span class="attr">--tty</span>=<span class="literal">false</span>            分配tty设备，该可以支持终端登录，默认为<span class="literal">false</span>  </span><br><span class="line">  -u, <span class="attr">--user</span>=<span class="string">&quot;&quot;</span>              指定容器的用户  </span><br><span class="line">  -a, <span class="attr">--attach</span>=[]            标准输入输出流和错误信息（必须是以非docker run -d启动的容器）</span><br><span class="line">  -w, <span class="attr">--workdir</span>=<span class="string">&quot;&quot;</span>           指定容器的工作目录 </span><br><span class="line">  -c, <span class="attr">--cpu-shares</span>=<span class="number">0</span>        设置容器CPU权重，在CPU共享场景使用  </span><br><span class="line">  -e, <span class="attr">--env</span>=[]               指定环境变量，容器中可以使用该环境变量  </span><br><span class="line">  -m, <span class="attr">--memory</span>=<span class="string">&quot;&quot;</span>            指定容器的内存上限  </span><br><span class="line">  -P, <span class="attr">--publish-all</span>=<span class="literal">false</span>    指定容器暴露的端口  </span><br><span class="line">  -p, <span class="attr">--publish</span>=[]           指定容器暴露的端口 </span><br><span class="line">  -h, <span class="attr">--hostname</span>=<span class="string">&quot;&quot;</span>          指定容器的主机名  </span><br><span class="line">  -v, <span class="attr">--volume</span>=[]            给容器挂载存储卷，挂载到容器的某个目录  </span><br><span class="line">  <span class="attr">--volumes-from</span>=[]          给容器挂载其他容器上的卷，挂载到容器的某个目录</span><br><span class="line">  <span class="attr">--cap-add</span>=[]               添加权限，权限清单详见：http://linux.die.net/man/<span class="number">7</span>/capabilities  </span><br><span class="line">  <span class="attr">--cap-drop</span>=[]              删除权限，权限清单详见：http://linux.die.net/man/<span class="number">7</span>/capabilities  </span><br><span class="line">  <span class="attr">--cidfile</span>=<span class="string">&quot;&quot;</span>               运行容器后，在指定文件中写入容器PID值，一种典型的监控系统用法  </span><br><span class="line">  <span class="attr">--cpuset</span>=<span class="string">&quot;&quot;</span>                设置容器可以使用哪些CPU，此参数可以用来容器独占CPU  </span><br><span class="line">  <span class="attr">--device</span>=[]                添加主机设备给容器，相当于设备直通  </span><br><span class="line">  <span class="attr">--dns</span>=[]                   指定容器的dns服务器  </span><br><span class="line">  <span class="attr">--dns-search</span>=[]            指定容器的dns搜索域名，写入到容器的/etc/resolv.conf文件  </span><br><span class="line">  <span class="attr">--entrypoint</span>=<span class="string">&quot;&quot;</span>            覆盖image的入口点  </span><br><span class="line">  <span class="attr">--env-file</span>=[]              指定环境变量文件，文件格式为每行一个环境变量  </span><br><span class="line">  <span class="attr">--expose</span>=[]                指定容器暴露的端口，即修改镜像的暴露端口  </span><br><span class="line">  <span class="attr">--link</span>=[]                  指定容器间的关联，使用其他容器的IP、env等信息  </span><br><span class="line">  <span class="attr">--lxc-conf</span>=[]              指定容器的配置文件，只有在指定--exec-driver=lxc时使用  </span><br><span class="line">  <span class="attr">--name</span>=<span class="string">&quot;&quot;</span>                  指定容器名字，后续可以通过名字进行容器管理，links特性需要使用名字  </span><br><span class="line">  <span class="attr">--net</span>=<span class="string">&quot;bridge&quot;</span>             容器网络设置:</span><br><span class="line">                                bridge 使用docker daemon指定的网桥     </span><br><span class="line">                                host     //容器使用主机的网络  </span><br><span class="line">                                container:NAME_or_ID  &gt;//使用其他容器的网路，共享IP和PORT等网络资源  </span><br><span class="line">                                none 容器使用自己的网络（类似<span class="attr">--net</span>=bridge），但是不进行配置 </span><br><span class="line">  <span class="attr">--privileged</span>=<span class="literal">false</span>         指定容器是否为特权容器，特权容器拥有所有的capabilities  </span><br><span class="line">  <span class="attr">--restart</span>=<span class="string">&quot;no&quot;</span>             指定容器停止后的重启策略:</span><br><span class="line">                                no：容器退出时不重启  </span><br><span class="line">                                on-failure：容器故障退出（返回值非零）时重启 </span><br><span class="line">                                always：容器退出时总是重启  </span><br><span class="line">  <span class="attr">--rm</span>=<span class="literal">false</span>                 指定容器停止后自动删除容器(不支持以docker run -d启动的容器)  </span><br><span class="line">  <span class="attr">--sig-proxy</span>=<span class="literal">true</span>           设置由代理接受并处理信号，但是SIGCHLD、SIGSTOP和SIGKILL不能被代理 </span><br></pre></td></tr></table></figure>
+<p><strong>eg.</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[root@CentOS ~]</span><span class="comment"># docker run -p 8090:8080 -p 50000:50000 --restart always --link Redis:redis --name jenkins -v /home/jenkins:/home/jenkins_home --privileged=true dokcer.io/jenkins/jenkins</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看-docker-容器">查看 docker 容器</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker ps</span><br><span class="line"></span><br><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+<h2 id="启动停止重启删除docker容器">启动、停止、重启、删除docker容器</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker start xxxxxx</span><br><span class="line"></span><br><span class="line">docker stop xxxxxx</span><br><span class="line"></span><br><span class="line">docker restart xxxxxx</span><br><span class="line"></span><br><span class="line">docker rm xxxxxx</span><br><span class="line"></span><br><span class="line">docker rm $(docker ps -a- q)</span><br><span class="line">-a 查看全部的容器，包括没有运行的</span><br><span class="line">-q 之查看容器的标识</span><br></pre></td></tr></table></figure>
+<h2 id="查看镜像-元数据">查看镜像 元数据</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker inspect 容器id</span><br></pre></td></tr></table></figure>
+<h2 id="进入docker容器">进入docker容器</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker exec -it xxxxxx</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>ctrl+d 退出容器且关闭</p></li>
+<li><p>ctrl+p+q 退出容器但不关闭</p></li>
+</ul>
+<h2 id="查看容器日志">查看容器日志</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker logs -f -t --tail 行数 容器名</span><br></pre></td></tr></table></figure>
+<h2 id="docker-网络操作">docker 网络操作</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker network create mynet</span><br><span class="line"></span><br><span class="line">docker network inspect mynet</span><br><span class="line"></span><br><span class="line">docker network disconnet mynet 容器ID</span><br><span class="line"></span><br><span class="line">docker network rm mynet</span><br></pre></td></tr></table></figure>
+<h2 id="docker-拷贝操作">docker 拷贝操作</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1.文件从宿主机拷贝到容器:    docker cp 宿主机文件路径   容器名:存放路径</span></span><br><span class="line">docker cp /home/jenkins/test.txt jenkins:/var/jenkins_home</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.文件从容器拷贝到宿主机   docker cp 容器名:要拷贝的文件路径  宿主机存放路径  </span></span><br><span class="line">docker cp jenkins:/var/jenkins_home/test.txt /home/jenkins</span><br></pre></td></tr></table></figure>
+<h2 id="docker-数据卷">docker 数据卷</h2>
+<h3 id="创建数据卷">创建数据卷</h3>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume create 数据卷的名称</span><br></pre></td></tr></table></figure>
+<h3 id="查看数据卷详情">查看数据卷详情</h3>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume inspect 数据卷名称</span><br></pre></td></tr></table></figure>
+<h3 id="查看全部数据卷">查看全部数据卷</h3>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume ls</span><br></pre></td></tr></table></figure>
+<h3 id="删除数据卷">删除数据卷</h3>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker volume rm 数据卷的名称</span><br></pre></td></tr></table></figure>
+<h3 id="数据卷映射">数据卷映射</h3>
+<ul>
+<li>直接使用命令挂载</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker run -it -v 主机目录：容器目录</span><br><span class="line"> </span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ home]</span><span class="comment"># docker run -it -v /home/ceshi:/home centos /bin/bash</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>匿名 具名挂载</li>
+</ul>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment">#通过数据卷名称进行映射 ,使用名称进行映射时，我们需要先来创建出数据卷，才能使用名称进行映射。回讲容器内部自带的文件，复制到默认的存放路径中</span></span><br><span class="line">docker run -d -p 宿主机端口号:容器端口号 -v 数据卷名称:容器内部路径 --name 自定义容器名称 镜像的id <span class="comment"># -P 随机指定端口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#通过路径进行映射，直接指定一个路径作为数据卷的存放地址，这个路径下是空的。</span></span><br><span class="line">docker run -d -p 宿主机端口号：容器端口号 -v 宿主机路径:容器内部路径 --name 自定义容器名称 镜像的id <span class="comment"># -P 随机指定端口</span></span><br></pre></td></tr></table></figure>
+<h2 id="dockerfile-自定义镜像">dockerfile 自定义镜像</h2>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">from: 指定当前自定义镜像的依赖环境</span><br><span class="line">copy: 将相对路径下的内容复制到自定义镜像中</span><br><span class="line">workdir: 声明镜像的默认工作目录</span><br><span class="line">run:执行的命令，可以编写多个</span><br><span class="line">cmd:需要执行的命令（再workdir下执行，cmd可以写多个，只以最后一个为准）</span><br><span class="line"><span class="comment">#举例</span></span><br><span class="line">from daocloud.io/library/tomcat:8.5.15-jre8</span><br><span class="line">copy springboot.war /usr/local/tomcat/webapps</span><br></pre></td></tr></table></figure>
+<p><strong>eg.</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 编写Dockerfile的文件</span></span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ dockerfile]</span><span class="comment"># cat mydockerfile-centos </span></span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER xiaofan&lt;594042358@qq.com&gt;</span><br><span class="line"> </span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line">WORKDIR $MYPATH     <span class="comment"># 镜像的工作目录</span></span><br><span class="line"> </span><br><span class="line">RUN yum -y install vim</span><br><span class="line">RUN yum -y install net-tools</span><br><span class="line"> </span><br><span class="line">EXPOSE 80</span><br><span class="line"> </span><br><span class="line">CMD echo $MYPATH</span><br><span class="line">CMD echo &quot;---end---&quot;</span><br><span class="line">CMD /bin/bash</span><br><span class="line"><span class="comment"># 2. 通过这个文件构建镜像</span></span><br><span class="line"><span class="comment"># 命令 docker build -f dockerfile文件路径 -t 镜像名:[tag] .</span></span><br><span class="line"> </span><br><span class="line"><span class="section">[root@iZ2zeg4ytp0whqtmxbsqiiZ dockerfile]</span><span class="comment"># docker build -f mydockerfile-centos -t mycentos:0.1 .</span></span><br><span class="line"> </span><br><span class="line">Successfully built d2d9f0ea8cb2</span><br><span class="line">Successfully tagged mycentos:0.1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CMD 和ENTRYPOINT区别</p>
+</blockquote>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">CMD         <span class="comment"># 指定这个容器启动的时候要运行的命令，只有最后一个会生效可被替代</span></span><br><span class="line">ENTRYPOINT      <span class="comment"># 指定这个容器启动的时候要运行的命令， 可以追加命令</span></span><br></pre></td></tr></table></figure>
+<h3 id="制作镜像">制作镜像</h3>
+<p>编写完成Dockerfile后需要通过命令将其制作成为镜像，并且要在Dockerfile的当前目录下执行该命令，之后就以可以使用docker images 查看自己制作好的镜像。注意最后有一个.</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line">docker build -t 镜像名称<span class="section">[:tag]</span> .</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工作学习</category>
+        <category>容器</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
@@ -1308,254 +1308,6 @@ DCL 控制 ###2.操作数据库 *** 操作数据库 -&gt; 操作数据库中的�
       </tags>
   </entry>
   <entry>
-    <title>Spring &amp; Mybatis</title>
-    <url>/2021/10/10/Spring-Mybatis/</url>
-    <content><![CDATA[<p>这两块难啃的骨头~ 不学完 誓不改 Spring大家族 + Mybatis ...</p>
-<span id="more"></span>
-<h2 id="常用依赖">常用依赖</h2>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="常用bean配置注解支持">常用Bean配置(注解支持)</h2>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    注解扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.whlll.pojo&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr />
-<h2 id="作用域scope">作用域[Scope]</h2>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.whlll.pojo.User&quot;</span> <span class="attr">c:name</span>=<span class="string">&quot;LHL&quot;</span> <span class="attr">c:age</span>=<span class="string">&quot;20&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li></li>
-<li></li>
-</ul>
-<hr />
-<h2 id="注释说明">注释说明</h2>
-<ul>
-<li><p><span class="citation" data-cites="Atuowired">@Atuowired</span>：自动装配(先)类型(后)名字</p></li>
-<li><p>如果Atuowired不能唯一自动装配上属性，则需要通过@Qualifier(value="xxx")来</p></li>
-<li><p><span class="citation" data-cites="Nullable">@Nullable</span>：字段标记这个注解 -&gt; 说明这个字段可以为null</p></li>
-<li><p><span class="citation" data-cites="Resource">@Resource</span>：自动装配(先)名字(后)类型</p></li>
-<li><p><span class="citation" data-cites="Component">@Component</span>：组件 -&gt; 放在类上 将某个类注入到Spring容器 实现bean的自动装载</p></li>
-<li><p><span class="citation" data-cites="Component的衍生注解">@Component的衍生注解</span>(功能都一样)：</p></li>
-<li><p>dao：<span class="citation" data-cites="Repository">[@Repository]</span></p></li>
-<li><p>service：<span class="citation" data-cites="Service">[@Service]</span></p></li>
-<li><p>controller：<span class="citation" data-cites="Controller">[@Controller]</span></p></li>
-<li><p><span class="citation" data-cites="value">@value</span>：实例化赋值,放在对象或setter方法前，相当于</p></li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;address&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.whlll.pojo.Address&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;address&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>杭州<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><span class="citation" data-cites="Scope">@Scope</span>：作用域 -&gt; <a href="单例模式%20-%3E%20装载的类始终为同一个">singleton</a> / <a href="原型模式%20-%3E%20装载的类不同(分别装载)">prototype</a></li>
-</ul>
-<hr />
-<h2 id="整合mybatis">整合Mybatis</h2>
-<h3 id="导入相关jar包">1.导入相关jar包</h3>
-<ul>
-<li>junit</li>
-<li>mybatis</li>
-<li>mysql数据库</li>
-<li>spring相关的</li>
-<li>aop织入</li>
-<li>mybatis-spring【new】 ###2.编写配置文件 ###3.测试 ###（配置）</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        Spring操作数据库的话 需要spring-jdbc--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr />
-<h2 id="回忆mybatis">回忆mybatis</h2>
-<p>​ 1.编写实体类 ​ 2.编写核心配置文件 ​ 3.编写接口 ​ 4.编写Mapper.xml ​ 5.测试</p>
-<h2 id="简介">1.简介</h2>
-<h3 id="什么是mybatis">1.1 什么是Mybatis?</h3>
-<p>Mybatis -&gt; <em>优秀的持久化框架</em>(ibatis)</p>
-<h3 id="持久层">1.2 持久层</h3>
-<ul>
-<li>数据持久化</li>
-<li>持久化就是将程序的数据在持久状态和瞬时状态的转化过程</li>
-<li>内存：断电即失</li>
-<li>数据库(jdbc)，io文件持久化。</li>
-<li>生活：冷藏、 罐头。</li>
-</ul>
-<h4 id="为什么需要持久化">为什么需要持久化？</h4>
-<ul>
-<li>有一些对象，不能让他丢掉</li>
-<li>内存太贵了</li>
-</ul>
-<h3 id="持久层dao层service层controller层...">1.3 持久层(Dao层、Service层、Controller层...)</h3>
-<ul>
-<li>完成持久化工作的代码块</li>
-<li>层界限十分明显</li>
-</ul>
-<h3 id="为什么需要mybatis">1.4 为什么需要Mybatis?</h3>
-<ul>
-<li>帮助程序员将数据存入到数据库中</li>
-<li>方便</li>
-<li>传统的JDBC代码太复杂 -&gt; 简化 -&gt; 框架、自动化</li>
-<li>不用Mybatis也可以，更容易上手 &lt;- 技术没有高低之分</li>
-<li>优点:
-<ul>
-<li>简单易学：本身就很小且简单。没有任何第三方依赖，最简单安装只要两个jar文件+配置几个sql映射文件易于学习，易于使用，通过文档和源代码，可以比较完全的掌握它的设计思路和实现。</li>
-<li>灵活：mybatis不会对应用程序或者数据库的现有设计强加任何影响。 sql写在xml里，便于统一管理和优化。通过sql语句可以满足操作数据库的所有需求。</li>
-<li>解除sql与程序代码的耦合：通过提供DAO层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰，更易维护，更易单元测试。sql和代码的分离，提高了可维护性。</li>
-<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
-<li>提供对象关系映射标签，支持对象关系组建维护</li>
-<li>提供xml标签，支持编写动态sql。</li>
-</ul></li>
-</ul>
-<h4 id="最重要的一点使用的人多">最重要的一点：使用的人多</h4>
-<p>​ Spring SpringMVC SpringBoot</p>
-<h2 id="第一个mybatis程序">第一个Mybatis程序</h2>
-<hr />
-<p>思路:搭建环境 -&gt; 导入Mybatis -&gt; 编写代码 -&gt; 测试！ ###2.1 搭建环境 搭建数据库</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE `mybatis`;</span><br><span class="line"></span><br><span class="line">USE `mybatis`;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `user`(</span><br><span class="line">`id` INT(20) NOT NULL,</span><br><span class="line">`name`VARCHAR(30) DEFAULT NULL,</span><br><span class="line">`pwd`VARCHAR(30) DEFAULT NULL,</span><br><span class="line">PRIMARY KEY(`id`)</span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">INSERT INTO `user`(`id`,`name`,`pwd`) VALUES</span><br><span class="line">(1,&#x27;whlll&#x27;,&#x27;123456&#x27;),</span><br><span class="line">(2,&#x27;张三&#x27;,&#x27;123456&#x27;),</span><br><span class="line">(3,&#x27;李四&#x27;,&#x27;123456&#x27;)</span><br></pre></td></tr></table></figure>
-<p>新建项目</p>
-<ol type="1">
-<li>新建一个普通的Maven项目</li>
-<li>删除src目录</li>
-<li>导入maven依赖</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    导入依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        mysql驱动--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.25<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        mybatis--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        junit--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="创建一个模块">2.2、创建一个模块</h3>
-<ul>
-<li>编写mybatis的核心配置文件</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        configuration核心配置文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mybatis?useSSL=true<span class="symbol">&amp;amp;</span>useUnicode=ture<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123456&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>编写mybatis工具类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//sqlSessionFactory --&gt; sqlSessionpublic class MybatisUtils &#123;    private static SqlSessionFactory sqlSessionFactory;    static &#123;        try &#123;            //使用Mybatis第一步 --&gt; 获取sqlSessionFactory对象            String resource = &quot;mybatis-config.xml&quot;;            InputStream inputStream = Resources.getResourceAsStream(resource);            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;    &#125;    //既然有了 SqlSessionFactory，顾名思义，我们可以从中获得 SqlSession 的实例。    //SqlSession 提供了在数据库执行 SQL 命令所需的所有方法。    public static SqlSession getSqlSession()&#123;        return sqlSessionFactory.openSession();    &#125;    &#125;</span></span><br></pre></td></tr></table></figure>
-<h3 id="编写代码">2.3、编写代码</h3>
-<ul>
-<li>实体类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;    <span class="keyword">private</span> <span class="keyword">int</span> id;    <span class="keyword">private</span> String name;    <span class="keyword">private</span> String pwd;    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;    &#125;    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name, String pwd)</span> </span>&#123;        <span class="keyword">this</span>.id = id;        <span class="keyword">this</span>.name = name;        <span class="keyword">this</span>.pwd = pwd;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> id;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;        <span class="keyword">this</span>.id = id;    &#125;    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> name;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;        <span class="keyword">this</span>.name = name;    &#125;    <span class="function"><span class="keyword">public</span> String <span class="title">getPwd</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> pwd;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPwd</span><span class="params">(String pwd)</span> </span>&#123;        <span class="keyword">this</span>.pwd = pwd;    &#125;&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Dao接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;    <span class="function">List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>;&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>接口实现类</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span>        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.whlll.dao.UserDao&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserList&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;</span>        select * from mybatis.user    <span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>UserMapper.xml中不要有中文注释</strong></p>
-<h3 id="测试">2.4、测试</h3>
-<ul>
-<li>junit测试</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;        <span class="comment">//获取SqlSession对象        SqlSession sqlSession = MybatisUtils.getSqlSession();        //方式一：getMapper        UserDao mapper = sqlSession.getMapper(UserDao.class);        List&lt;User&gt; userList = mapper.getUserList();        for (User user : userList) &#123;            System.out.println(user);        &#125;        //关闭SqlSession        sqlSession.close();    &#125;</span></span><br></pre></td></tr></table></figure>
-<p>可能遇到的问题：</p>
-<ol type="1">
-<li>配置文件没有注册</li>
-<li>绑定接口错误</li>
-<li>方法名不对</li>
-<li>返回类型不对</li>
-<li>Maven导出资源问题</li>
-<li>Mapper.xml中不要使用中文注解</li>
-</ol>
-<h2 id="crud">3、CRUD</h2>
-<h3 id="namespace">1、namespace</h3>
-<p>namespace中的包名要和Dao/mapper中的包名一致</p>
-<h3 id="select">2、select</h3>
-<p>选择，查询语句</p>
-<ul>
-<li>id：就是对应的namesqace中的方法名;</li>
-<li>resultType：Sql语句执行的返回值;</li>
-<li>parameterType：参数类型！</li>
-</ul>
-<ol type="1">
-<li>编写接口</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//根据id查询用户    User getUserById(int id);</span></span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>编写对应的mapper中的sql语句</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;select id=<span class="string">&quot;getUserById&quot;</span> parameterType=<span class="string">&quot;int&quot;</span> resultType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;        select * from mybatis.user where id = #&#123;id&#125;    &lt;/select&gt;</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>测试</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserById</span><span class="params">()</span></span>&#123;        SqlSession sqlSession = MybatisUtils.getSqlSession();        UserMapper mapper = sqlSession.getMapper(UserMapper.class);        User user = mapper.getUserById(<span class="number">1</span>);        System.out.println(user);        sqlSession.close();    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="insert">3、insert</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;insert id=<span class="string">&quot;addUser&quot;</span> parameterType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;    insert into mybatis.user (id, name, pwd) value (#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;);&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="update">4、update</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;update id=<span class="string">&quot;updateUser&quot;</span> parameterType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;    update mybatis.user    set name = #&#123;name&#125;,        pwd=#&#123;pwd&#125;    where id = #&#123;id&#125;;&lt;/update&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="delete">5、delete</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;delete id=<span class="string">&quot;deleteUser&quot;</span> parameterType=<span class="string">&quot;int&quot;</span>&gt;    delete from mybatis.user where id=#&#123;id&#125;;&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>增删改 -&gt; 要提交commit</strong></p>
-<p><strong>注意事项：</strong></p>
-<ul>
-<li>标签不要匹配错</li>
-<li>resource 绑定 mapper 需要匹配路径！</li>
-<li>程序配置文件必须符合规范！</li>
-<li>NullPointException,没有注册到资源</li>
-<li>输出的xml文件中存在中文乱码问题！</li>
-<li>maven资源没有导出的问题！</li>
-</ul>
-<p>##万能的Map</p>
-<p>假设，我们的实体类，或者数据库中的表，字段或者参数过多，我们应当考虑Map！</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能的Map    int addUser2(Map&lt;String, Object&gt; map);</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser2&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span>        insert into mybatis.user (id, name, pwd) values (#&#123;userid&#125;,#&#123;userName&#125;,#&#123;passWord&#125;);    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser2</span><span class="params">()</span></span>&#123;        SqlSession sqlSession = MybatisUtils.getSqlSession();        UserMapper mapper = sqlSession.getMapper(UserMapper.class);        HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();        map.put(<span class="string">&quot;userid&quot;</span>, <span class="number">5</span>);        map.put(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;Hello&quot;</span>);        map.put(<span class="string">&quot;passWord&quot;</span>, <span class="string">&quot;2222333&quot;</span>);        mapper.addUser2(map);        sqlSession.commit();        sqlSession.close();    &#125;</span><br></pre></td></tr></table></figure>
-<p>Map传递参数，直接在sql中取出key即可！ [parameterType="map"]</p>
-<p>对象传递参数，直接在sql中取对象的属性即可！ [parameterType="Object"]</p>
-<p>只有一个基本类型的参数情况下，可以直接在sql中取到！</p>
-<p>多个参数用Map，或者注解！</p>
-<p><strong>模糊查询怎么写？</strong></p>
-<ol type="1">
-<li>java代码执行的时候，传递通配符 % %</li>
-</ol>
-<p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; userList = mapper.getUserLike(<span class="string">&quot;%李%&quot;</span>);</span><br></pre></td></tr></table></figure></p>
-<ol start="2" type="1">
-<li>在sql拼接中使用通配符！</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from mybatis.user where name like &quot;%&quot;#&#123;value&#125;&quot;%&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="配置解析">4、配置解析</h2>
-<h3 id="核心配置文件">1、核心配置文件</h3>
-<ul>
-<li>mybatis-config.xml</li>
-<li>Mybatis的配置文件包含了会深深影响Mybatis行为的设置和属性信息</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">configuration（配置）properties（属性）settings（设置）typeAliases（类型别名）typeHandlers（类型处理器）objectFactory（对象工厂）plugins（插件）environments（环境配置）environment（环境变量）transactionManager（事务管理器）dataSource（数据源）databaseIdProvider（数据库厂商标识）mappers（映射器）</span><br></pre></td></tr></table></figure>
-<h2 id="环境配置environments">2、环境配置（environments）</h2>
-<p>MyBatis 可以配置成适应多种环境</p>
-<p><strong>不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环境。</strong></p>
-<p><em>学会使用配置多套运行环境！</em></p>
-<p>MyBatis默认的事务管理器就是JDBC，连接池：POOLED</p>
-<p>##3、属性properties</p>
-<p>我们可以通过properties属性来实现配置文件</p>
-<p>这些属性可以在外部进行配置，并可以进行动态替换。你既可以在典型的Java属性文件中配置这些属性， 也可以在properties元素的子元素中设置。[db.properties]</p>
-<p>1.编写一个配置文件</p>
-<p>db.properties</p>
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">driver</span>=<span class="string">com.mysql.cj.jdbc.Driverurl=jdbc:mysql://localhost:3306/mybatis?userSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTCusername=rootpassword=root</span></span><br></pre></td></tr></table></figure>
-<p>2.在核心配置文件中引入</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引用外部配置文件--&gt;</span><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;db.properties&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span>    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>1.可以直接引入外部文件</li>
-<li>2.可以在其中增加一些配置属性</li>
-<li>3.如果两个文件有同一个字段，优先使用外部配置文件的</li>
-</ul>
-<h2 id="别名">4.别名</h2>
-<h2 id="mybatis-spring">Mybatis-Spring</h2>
-<p>1.编写数据源配置</p>
-<p>2.sqlSessionFactory</p>
-<p>3.sqlSessionTemplate</p>
-<p>4.需要给接口加实现类[]</p>
-<p>5.将自己写的实现类，注入到Spring中，测试使用即可</p>
-<h2 id="声明式事务">声明式事务</h2>
-<h3 id="回顾事务">1、回顾事务</h3>
-<ul>
-<li>把一组业务当成一个业务来做：要么都成功，要么都失败！</li>
-<li>事务在项目开发中，十分重要，涉及到数据的一致性问题，不能马虎！</li>
-<li>确保完整性和一致性</li>
-</ul>
-<h3 id="spring中七种propagation类的事务属性详解">2、Spring中七种Propagation类的事务属性详解：</h3>
-<p><strong>REQUIRED</strong>：支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。</p>
-<p><strong>SUPPORTS</strong>：支持当前事务，如果当前没有事务，就以非事务方式执行。</p>
-<p><strong>MANDATORY</strong>：支持当前事务，如果当前没有事务，就抛出异常。</p>
-<p><strong>REQUIRES_NEW</strong>：新建事务，如果当前存在事务，把当前事务挂起。</p>
-<p><strong>NOT_SUPPORTED</strong>：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</p>
-<p><strong>NEVER</strong>：以非事务方式执行，如果当前存在事务，则抛出异常。</p>
-<p><strong>NESTED</strong>：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。</p>
-]]></content>
-      <categories>
-        <category>工作学习</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>Mybatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>RabbitMq笔记</title>
     <url>/2021/10/07/RabbitMq%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>通信小能手 RabbitMq 多种模式 满足你的各种需求~</p>
@@ -2049,6 +1801,254 @@ DCL 控制 ###2.操作数据库 *** 操作数据库 -&gt; 操作数据库中的�
       </tags>
   </entry>
   <entry>
+    <title>Spring &amp; Mybatis</title>
+    <url>/2021/10/10/Spring-Mybatis/</url>
+    <content><![CDATA[<p>这两块难啃的骨头~ 不学完 誓不改 Spring大家族 + Mybatis ...</p>
+<span id="more"></span>
+<h2 id="常用依赖">常用依赖</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用bean配置注解支持">常用Bean配置(注解支持)</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="string"><span class="tag">       http://www.springframework.org/schema/context/spring-context.xsd&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    注解扫描--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.whlll.pojo&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="作用域scope">作用域[Scope]</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;user2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.whlll.pojo.User&quot;</span> <span class="attr">c:name</span>=<span class="string">&quot;LHL&quot;</span> <span class="attr">c:age</span>=<span class="string">&quot;20&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singleton&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li></li>
+<li></li>
+</ul>
+<hr />
+<h2 id="注释说明">注释说明</h2>
+<ul>
+<li><p><span class="citation" data-cites="Atuowired">@Atuowired</span>：自动装配(先)类型(后)名字</p></li>
+<li><p>如果Atuowired不能唯一自动装配上属性，则需要通过@Qualifier(value="xxx")来</p></li>
+<li><p><span class="citation" data-cites="Nullable">@Nullable</span>：字段标记这个注解 -&gt; 说明这个字段可以为null</p></li>
+<li><p><span class="citation" data-cites="Resource">@Resource</span>：自动装配(先)名字(后)类型</p></li>
+<li><p><span class="citation" data-cites="Component">@Component</span>：组件 -&gt; 放在类上 将某个类注入到Spring容器 实现bean的自动装载</p></li>
+<li><p><span class="citation" data-cites="Component的衍生注解">@Component的衍生注解</span>(功能都一样)：</p></li>
+<li><p>dao：<span class="citation" data-cites="Repository">[@Repository]</span></p></li>
+<li><p>service：<span class="citation" data-cites="Service">[@Service]</span></p></li>
+<li><p>controller：<span class="citation" data-cites="Controller">[@Controller]</span></p></li>
+<li><p><span class="citation" data-cites="value">@value</span>：实例化赋值,放在对象或setter方法前，相当于</p></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;address&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.whlll.pojo.Address&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;address&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span>杭州<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><span class="citation" data-cites="Scope">@Scope</span>：作用域 -&gt; <a href="单例模式%20-%3E%20装载的类始终为同一个">singleton</a> / <a href="原型模式%20-%3E%20装载的类不同(分别装载)">prototype</a></li>
+</ul>
+<hr />
+<h2 id="整合mybatis">整合Mybatis</h2>
+<h3 id="导入相关jar包">1.导入相关jar包</h3>
+<ul>
+<li>junit</li>
+<li>mybatis</li>
+<li>mysql数据库</li>
+<li>spring相关的</li>
+<li>aop织入</li>
+<li>mybatis-spring【new】 ###2.编写配置文件 ###3.测试 ###（配置）</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.47<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        Spring操作数据库的话 需要spring-jdbc--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.2.0.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.9.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="回忆mybatis">回忆mybatis</h2>
+<p>​ 1.编写实体类 ​ 2.编写核心配置文件 ​ 3.编写接口 ​ 4.编写Mapper.xml ​ 5.测试</p>
+<h2 id="简介">1.简介</h2>
+<h3 id="什么是mybatis">1.1 什么是Mybatis?</h3>
+<p>Mybatis -&gt; <em>优秀的持久化框架</em>(ibatis)</p>
+<h3 id="持久层">1.2 持久层</h3>
+<ul>
+<li>数据持久化</li>
+<li>持久化就是将程序的数据在持久状态和瞬时状态的转化过程</li>
+<li>内存：断电即失</li>
+<li>数据库(jdbc)，io文件持久化。</li>
+<li>生活：冷藏、 罐头。</li>
+</ul>
+<h4 id="为什么需要持久化">为什么需要持久化？</h4>
+<ul>
+<li>有一些对象，不能让他丢掉</li>
+<li>内存太贵了</li>
+</ul>
+<h3 id="持久层dao层service层controller层...">1.3 持久层(Dao层、Service层、Controller层...)</h3>
+<ul>
+<li>完成持久化工作的代码块</li>
+<li>层界限十分明显</li>
+</ul>
+<h3 id="为什么需要mybatis">1.4 为什么需要Mybatis?</h3>
+<ul>
+<li>帮助程序员将数据存入到数据库中</li>
+<li>方便</li>
+<li>传统的JDBC代码太复杂 -&gt; 简化 -&gt; 框架、自动化</li>
+<li>不用Mybatis也可以，更容易上手 &lt;- 技术没有高低之分</li>
+<li>优点:
+<ul>
+<li>简单易学：本身就很小且简单。没有任何第三方依赖，最简单安装只要两个jar文件+配置几个sql映射文件易于学习，易于使用，通过文档和源代码，可以比较完全的掌握它的设计思路和实现。</li>
+<li>灵活：mybatis不会对应用程序或者数据库的现有设计强加任何影响。 sql写在xml里，便于统一管理和优化。通过sql语句可以满足操作数据库的所有需求。</li>
+<li>解除sql与程序代码的耦合：通过提供DAO层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰，更易维护，更易单元测试。sql和代码的分离，提高了可维护性。</li>
+<li>提供映射标签，支持对象与数据库的orm字段关系映射</li>
+<li>提供对象关系映射标签，支持对象关系组建维护</li>
+<li>提供xml标签，支持编写动态sql。</li>
+</ul></li>
+</ul>
+<h4 id="最重要的一点使用的人多">最重要的一点：使用的人多</h4>
+<p>​ Spring SpringMVC SpringBoot</p>
+<h2 id="第一个mybatis程序">第一个Mybatis程序</h2>
+<hr />
+<p>思路:搭建环境 -&gt; 导入Mybatis -&gt; 编写代码 -&gt; 测试！ ###2.1 搭建环境 搭建数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE `mybatis`;</span><br><span class="line"></span><br><span class="line">USE `mybatis`;</span><br><span class="line"></span><br><span class="line">CREATE TABLE `user`(</span><br><span class="line">`id` INT(20) NOT NULL,</span><br><span class="line">`name`VARCHAR(30) DEFAULT NULL,</span><br><span class="line">`pwd`VARCHAR(30) DEFAULT NULL,</span><br><span class="line">PRIMARY KEY(`id`)</span><br><span class="line">)ENGINE=INNODB DEFAULT CHARSET=utf8;</span><br><span class="line"></span><br><span class="line">INSERT INTO `user`(`id`,`name`,`pwd`) VALUES</span><br><span class="line">(1,&#x27;whlll&#x27;,&#x27;123456&#x27;),</span><br><span class="line">(2,&#x27;张三&#x27;,&#x27;123456&#x27;),</span><br><span class="line">(3,&#x27;李四&#x27;,&#x27;123456&#x27;)</span><br></pre></td></tr></table></figure>
+<p>新建项目</p>
+<ol type="1">
+<li>新建一个普通的Maven项目</li>
+<li>删除src目录</li>
+<li>导入maven依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--    导入依赖--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        mysql驱动--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.25<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        mybatis--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        junit--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建一个模块">2.2、创建一个模块</h3>
+<ul>
+<li>编写mybatis的核心配置文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--        configuration核心配置文件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/mybatis?useSSL=true<span class="symbol">&amp;amp;</span>useUnicode=ture<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;123456&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写mybatis工具类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//sqlSessionFactory --&gt; sqlSessionpublic class MybatisUtils &#123;    private static SqlSessionFactory sqlSessionFactory;    static &#123;        try &#123;            //使用Mybatis第一步 --&gt; 获取sqlSessionFactory对象            String resource = &quot;mybatis-config.xml&quot;;            InputStream inputStream = Resources.getResourceAsStream(resource);            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);        &#125; catch (IOException e) &#123;            e.printStackTrace();        &#125;    &#125;    //既然有了 SqlSessionFactory，顾名思义，我们可以从中获得 SqlSession 的实例。    //SqlSession 提供了在数据库执行 SQL 命令所需的所有方法。    public static SqlSession getSqlSession()&#123;        return sqlSessionFactory.openSession();    &#125;    &#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="编写代码">2.3、编写代码</h3>
+<ul>
+<li>实体类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;    <span class="keyword">private</span> <span class="keyword">int</span> id;    <span class="keyword">private</span> String name;    <span class="keyword">private</span> String pwd;    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;    &#125;    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String name, String pwd)</span> </span>&#123;        <span class="keyword">this</span>.id = id;        <span class="keyword">this</span>.name = name;        <span class="keyword">this</span>.pwd = pwd;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> id;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;        <span class="keyword">this</span>.id = id;    &#125;    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> name;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;        <span class="keyword">this</span>.name = name;    &#125;    <span class="function"><span class="keyword">public</span> String <span class="title">getPwd</span><span class="params">()</span> </span>&#123;        <span class="keyword">return</span> pwd;    &#125;    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPwd</span><span class="params">(String pwd)</span> </span>&#123;        <span class="keyword">this</span>.pwd = pwd;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Dao接口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;    <span class="function">List&lt;User&gt; <span class="title">getUserList</span><span class="params">()</span></span>;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接口实现类</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span>        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span>        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.whlll.dao.UserDao&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserList&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;</span>        select * from mybatis.user    <span class="tag">&lt;/<span class="name">select</span>&gt;</span><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>UserMapper.xml中不要有中文注释</strong></p>
+<h3 id="测试">2.4、测试</h3>
+<ul>
+<li>junit测试</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;        <span class="comment">//获取SqlSession对象        SqlSession sqlSession = MybatisUtils.getSqlSession();        //方式一：getMapper        UserDao mapper = sqlSession.getMapper(UserDao.class);        List&lt;User&gt; userList = mapper.getUserList();        for (User user : userList) &#123;            System.out.println(user);        &#125;        //关闭SqlSession        sqlSession.close();    &#125;</span></span><br></pre></td></tr></table></figure>
+<p>可能遇到的问题：</p>
+<ol type="1">
+<li>配置文件没有注册</li>
+<li>绑定接口错误</li>
+<li>方法名不对</li>
+<li>返回类型不对</li>
+<li>Maven导出资源问题</li>
+<li>Mapper.xml中不要使用中文注解</li>
+</ol>
+<h2 id="crud">3、CRUD</h2>
+<h3 id="namespace">1、namespace</h3>
+<p>namespace中的包名要和Dao/mapper中的包名一致</p>
+<h3 id="select">2、select</h3>
+<p>选择，查询语句</p>
+<ul>
+<li>id：就是对应的namesqace中的方法名;</li>
+<li>resultType：Sql语句执行的返回值;</li>
+<li>parameterType：参数类型！</li>
+</ul>
+<ol type="1">
+<li>编写接口</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//根据id查询用户    User getUserById(int id);</span></span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>编写对应的mapper中的sql语句</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;select id=<span class="string">&quot;getUserById&quot;</span> parameterType=<span class="string">&quot;int&quot;</span> resultType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;        select * from mybatis.user where id = #&#123;id&#125;    &lt;/select&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>测试</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUserById</span><span class="params">()</span></span>&#123;        SqlSession sqlSession = MybatisUtils.getSqlSession();        UserMapper mapper = sqlSession.getMapper(UserMapper.class);        User user = mapper.getUserById(<span class="number">1</span>);        System.out.println(user);        sqlSession.close();    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="insert">3、insert</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;insert id=<span class="string">&quot;addUser&quot;</span> parameterType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;    insert into mybatis.user (id, name, pwd) value (#&#123;id&#125;,#&#123;name&#125;,#&#123;pwd&#125;);&lt;/insert&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="update">4、update</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;update id=<span class="string">&quot;updateUser&quot;</span> parameterType=<span class="string">&quot;com.whlll.pojo.User&quot;</span>&gt;    update mybatis.user    set name = #&#123;name&#125;,        pwd=#&#123;pwd&#125;    where id = #&#123;id&#125;;&lt;/update&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="delete">5、delete</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;delete id=<span class="string">&quot;deleteUser&quot;</span> parameterType=<span class="string">&quot;int&quot;</span>&gt;    delete from mybatis.user where id=#&#123;id&#125;;&lt;/delete&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>增删改 -&gt; 要提交commit</strong></p>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>标签不要匹配错</li>
+<li>resource 绑定 mapper 需要匹配路径！</li>
+<li>程序配置文件必须符合规范！</li>
+<li>NullPointException,没有注册到资源</li>
+<li>输出的xml文件中存在中文乱码问题！</li>
+<li>maven资源没有导出的问题！</li>
+</ul>
+<p>##万能的Map</p>
+<p>假设，我们的实体类，或者数据库中的表，字段或者参数过多，我们应当考虑Map！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//万能的Map    int addUser2(Map&lt;String, Object&gt; map);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;addUser2&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;map&quot;</span>&gt;</span>        insert into mybatis.user (id, name, pwd) values (#&#123;userid&#125;,#&#123;userName&#125;,#&#123;passWord&#125;);    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span>    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser2</span><span class="params">()</span></span>&#123;        SqlSession sqlSession = MybatisUtils.getSqlSession();        UserMapper mapper = sqlSession.getMapper(UserMapper.class);        HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();        map.put(<span class="string">&quot;userid&quot;</span>, <span class="number">5</span>);        map.put(<span class="string">&quot;userName&quot;</span>, <span class="string">&quot;Hello&quot;</span>);        map.put(<span class="string">&quot;passWord&quot;</span>, <span class="string">&quot;2222333&quot;</span>);        mapper.addUser2(map);        sqlSession.commit();        sqlSession.close();    &#125;</span><br></pre></td></tr></table></figure>
+<p>Map传递参数，直接在sql中取出key即可！ [parameterType="map"]</p>
+<p>对象传递参数，直接在sql中取对象的属性即可！ [parameterType="Object"]</p>
+<p>只有一个基本类型的参数情况下，可以直接在sql中取到！</p>
+<p>多个参数用Map，或者注解！</p>
+<p><strong>模糊查询怎么写？</strong></p>
+<ol type="1">
+<li>java代码执行的时候，传递通配符 % %</li>
+</ol>
+<p><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">List&lt;User&gt; userList = mapper.getUserLike(<span class="string">&quot;%李%&quot;</span>);</span><br></pre></td></tr></table></figure></p>
+<ol start="2" type="1">
+<li>在sql拼接中使用通配符！</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select * from mybatis.user where name like &quot;%&quot;#&#123;value&#125;&quot;%&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="配置解析">4、配置解析</h2>
+<h3 id="核心配置文件">1、核心配置文件</h3>
+<ul>
+<li>mybatis-config.xml</li>
+<li>Mybatis的配置文件包含了会深深影响Mybatis行为的设置和属性信息</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">configuration（配置）properties（属性）settings（设置）typeAliases（类型别名）typeHandlers（类型处理器）objectFactory（对象工厂）plugins（插件）environments（环境配置）environment（环境变量）transactionManager（事务管理器）dataSource（数据源）databaseIdProvider（数据库厂商标识）mappers（映射器）</span><br></pre></td></tr></table></figure>
+<h2 id="环境配置environments">2、环境配置（environments）</h2>
+<p>MyBatis 可以配置成适应多种环境</p>
+<p><strong>不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环境。</strong></p>
+<p><em>学会使用配置多套运行环境！</em></p>
+<p>MyBatis默认的事务管理器就是JDBC，连接池：POOLED</p>
+<p>##3、属性properties</p>
+<p>我们可以通过properties属性来实现配置文件</p>
+<p>这些属性可以在外部进行配置，并可以进行动态替换。你既可以在典型的Java属性文件中配置这些属性， 也可以在properties元素的子元素中设置。[db.properties]</p>
+<p>1.编写一个配置文件</p>
+<p>db.properties</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">driver</span>=<span class="string">com.mysql.cj.jdbc.Driverurl=jdbc:mysql://localhost:3306/mybatis?userSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTCusername=rootpassword=root</span></span><br></pre></td></tr></table></figure>
+<p>2.在核心配置文件中引入</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--引用外部配置文件--&gt;</span><span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">&quot;db.properties&quot;</span>&gt;</span>    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span>    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>1.可以直接引入外部文件</li>
+<li>2.可以在其中增加一些配置属性</li>
+<li>3.如果两个文件有同一个字段，优先使用外部配置文件的</li>
+</ul>
+<h2 id="别名">4.别名</h2>
+<h2 id="mybatis-spring">Mybatis-Spring</h2>
+<p>1.编写数据源配置</p>
+<p>2.sqlSessionFactory</p>
+<p>3.sqlSessionTemplate</p>
+<p>4.需要给接口加实现类[]</p>
+<p>5.将自己写的实现类，注入到Spring中，测试使用即可</p>
+<h2 id="声明式事务">声明式事务</h2>
+<h3 id="回顾事务">1、回顾事务</h3>
+<ul>
+<li>把一组业务当成一个业务来做：要么都成功，要么都失败！</li>
+<li>事务在项目开发中，十分重要，涉及到数据的一致性问题，不能马虎！</li>
+<li>确保完整性和一致性</li>
+</ul>
+<h3 id="spring中七种propagation类的事务属性详解">2、Spring中七种Propagation类的事务属性详解：</h3>
+<p><strong>REQUIRED</strong>：支持当前事务，如果当前没有事务，就新建一个事务。这是最常见的选择。</p>
+<p><strong>SUPPORTS</strong>：支持当前事务，如果当前没有事务，就以非事务方式执行。</p>
+<p><strong>MANDATORY</strong>：支持当前事务，如果当前没有事务，就抛出异常。</p>
+<p><strong>REQUIRES_NEW</strong>：新建事务，如果当前存在事务，把当前事务挂起。</p>
+<p><strong>NOT_SUPPORTED</strong>：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</p>
+<p><strong>NEVER</strong>：以非事务方式执行，如果当前存在事务，则抛出异常。</p>
+<p><strong>NESTED</strong>：支持当前事务，如果当前事务存在，则执行一个嵌套事务，如果当前没有事务，就新建一个事务。</p>
+]]></content>
+      <categories>
+        <category>工作学习</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>Mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot笔记</title>
     <url>/2021/10/24/SpringBoot%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>SpringBoot 未完待续 无期限更新</p>
@@ -2516,130 +2516,6 @@ DCL 控制 ###2.操作数据库 *** 操作数据库 -&gt; 操作数据库中的�
       </categories>
       <tags>
         <tag>建站指南</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>深度学习Pytorch环境配置</title>
-    <url>/2021/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p>大三上创新实践 机器学习环境搭建</p>
-<span id="more"></span>
-<blockquote>
-<p>本文主要介绍使用<strong>Pycharm</strong>(Python最好用的文本编辑器) + <strong>Anaconda</strong>(管理Python、conda科学包、和依赖项，以及本地<strong>切换不同的Python环境</strong>) + <strong>Pytorch</strong>(主流深度学习科学包)</p>
-</blockquote>
-<h2 id="下载-pycharm-anaconda">下载 Pycharm &amp; Anaconda</h2>
-<ul>
-<li>Pycharm</li>
-</ul>
-<blockquote>
-<p>https://www.jetbrains.com/zh-cn/pycharm/download/#section=windows</p>
-</blockquote>
-<ul>
-<li>Anaconda(individual 个人版)</li>
-</ul>
-<blockquote>
-<p>https://www.anaconda.com/products/individual</p>
-</blockquote>
-<p><strong>注意</strong>：<strong>使用管理员运行</strong> + 勾选<strong>将anaconda添加到系统环境变量</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262158954.png" /></p>
-<h2 id="使用conda配置pytorch环境">使用conda配置Pytorch环境</h2>
-<h3 id="运行-anaconda-prompt">运行 <strong>Anaconda Prompt</strong></h3>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262201696.png" /></p>
-<p><strong>注意：</strong></p>
-<blockquote>
-<p>一个坑 ：使用 <strong>conda</strong> 更新或者下载依赖项或包的时候 记得关闭VPN代理 否者会报错 <strong>Unexpected Error</strong></p>
-</blockquote>
-<ul>
-<li>出现下 证明安装成功</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262238855.png" /></p>
-<h3 id="配置清华镜像源">配置清华镜像源</h3>
-<blockquote>
-<p>为什么博主配置以后比访问外网还慢 不理解 如果你也后悔了</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
-<h4 id="取消配置清华镜像源">取消配置清华镜像源</h4>
-<ul>
-<li>删除 <strong>C:* 下的 </strong>.condarc** 文件即可 (如果没有就用Everything搜一搜在哪)</li>
-</ul>
-<h4 id="查看镜像源是否配置成功">查看镜像源是否配置成功</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure>
-<h3 id="创建pytorch的环境">创建Pytorch的环境</h3>
-<ul>
-<li><strong>命名</strong>环境 并 指定 <strong>Python</strong> 版本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n [名字] python=3.7</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看所有环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
-<ul>
-<li>激活创建的环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda activate [名字]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>命令行跳转到 <strong>([名字]) C:&gt;</strong> 则跳转成功</p>
-</blockquote>
-<ul>
-<li>下载 <strong>Pytorch</strong>（官网CV下来的）</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一路 y 或者 Enter</p>
-<p>可多次运行次命令 查看是否漏包 如提示 <strong>All Done</strong> 证明 Pytorch 安装成功</p>
-</blockquote>
-<ul>
-<li>下载 <strong>juypter notebook</strong>（可以分开运行你程序的每一个板块 验证阶段性的结果是否符合预期）</li>
-</ul>
-<blockquote>
-<p>使用方法 参见 https://www.zhihu.com/question/46309360/answer/254638807</p>
-<p>运行方法 -&gt; 在当前环境下 输入 <strong>juypter notebook</strong> 即可运行 当前环境下的 notebook</p>
-</blockquote>
-<h3 id="退出当前环境">退出当前环境</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda deactivate [名字]</span><br></pre></td></tr></table></figure>
-<h3 id="删除存在的环境">删除存在的环境</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda remove -n [名字] --all</span><br></pre></td></tr></table></figure>
-<h2 id="使用-pycharm-配置-创建好的-pytorch-环境">使用 PyCharm 配置 创建好的 Pytorch 环境</h2>
-<ul>
-<li><strong>文件</strong> -&gt; <strong>设置</strong> -&gt; <strong>Python解释器 设置按钮</strong></li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262310264.png" /></p>
-<ul>
-<li>配置本地环境(Anaconda安装目录 因人而异)</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262310697.png" /></p>
-<ul>
-<li>创建 一个 5x3 的 随机初始化的 Tensor</li>
-</ul>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262316477.png" /></p>
-<h3 id="conda-命令回顾">Conda 命令回顾</h3>
-<ul>
-<li>查看 conda 基本信息</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure>
-<ul>
-<li>激活环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda activate [名字]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出当前环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda deactivate [名字]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除已创建的环境</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda remove -n [名字] --all</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建环境 指定Python版本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n [名字] python=3.5</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载包和依赖...</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install juypter notebook</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Pytorch</tag>
-        <tag>深度学习</tag>
       </tags>
   </entry>
   <entry>
@@ -3111,6 +2987,130 @@ DCL 控制 ###2.操作数据库 *** 操作数据库 -&gt; 操作数据库中的�
       <tags>
         <tag>408考研</tag>
         <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深度学习Pytorch环境配置</title>
+    <url>/2021/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p>大三上创新实践 机器学习环境搭建</p>
+<span id="more"></span>
+<blockquote>
+<p>本文主要介绍使用<strong>Pycharm</strong>(Python最好用的文本编辑器) + <strong>Anaconda</strong>(管理Python、conda科学包、和依赖项，以及本地<strong>切换不同的Python环境</strong>) + <strong>Pytorch</strong>(主流深度学习科学包)</p>
+</blockquote>
+<h2 id="下载-pycharm-anaconda">下载 Pycharm &amp; Anaconda</h2>
+<ul>
+<li>Pycharm</li>
+</ul>
+<blockquote>
+<p>https://www.jetbrains.com/zh-cn/pycharm/download/#section=windows</p>
+</blockquote>
+<ul>
+<li>Anaconda(individual 个人版)</li>
+</ul>
+<blockquote>
+<p>https://www.anaconda.com/products/individual</p>
+</blockquote>
+<p><strong>注意</strong>：<strong>使用管理员运行</strong> + 勾选<strong>将anaconda添加到系统环境变量</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262158954.png" /></p>
+<h2 id="使用conda配置pytorch环境">使用conda配置Pytorch环境</h2>
+<h3 id="运行-anaconda-prompt">运行 <strong>Anaconda Prompt</strong></h3>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262201696.png" /></p>
+<p><strong>注意：</strong></p>
+<blockquote>
+<p>一个坑 ：使用 <strong>conda</strong> 更新或者下载依赖项或包的时候 记得关闭VPN代理 否者会报错 <strong>Unexpected Error</strong></p>
+</blockquote>
+<ul>
+<li>出现下 证明安装成功</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262238855.png" /></p>
+<h3 id="配置清华镜像源">配置清华镜像源</h3>
+<blockquote>
+<p>为什么博主配置以后比访问外网还慢 不理解 如果你也后悔了</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge</span><br><span class="line"></span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+<h4 id="取消配置清华镜像源">取消配置清华镜像源</h4>
+<ul>
+<li>删除 <strong>C:* 下的 </strong>.condarc** 文件即可 (如果没有就用Everything搜一搜在哪)</li>
+</ul>
+<h4 id="查看镜像源是否配置成功">查看镜像源是否配置成功</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure>
+<h3 id="创建pytorch的环境">创建Pytorch的环境</h3>
+<ul>
+<li><strong>命名</strong>环境 并 指定 <strong>Python</strong> 版本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n [名字] python=3.7</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看所有环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<ul>
+<li>激活创建的环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda activate [名字]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>命令行跳转到 <strong>([名字]) C:&gt;</strong> 则跳转成功</p>
+</blockquote>
+<ul>
+<li>下载 <strong>Pytorch</strong>（官网CV下来的）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一路 y 或者 Enter</p>
+<p>可多次运行次命令 查看是否漏包 如提示 <strong>All Done</strong> 证明 Pytorch 安装成功</p>
+</blockquote>
+<ul>
+<li>下载 <strong>juypter notebook</strong>（可以分开运行你程序的每一个板块 验证阶段性的结果是否符合预期）</li>
+</ul>
+<blockquote>
+<p>使用方法 参见 https://www.zhihu.com/question/46309360/answer/254638807</p>
+<p>运行方法 -&gt; 在当前环境下 输入 <strong>juypter notebook</strong> 即可运行 当前环境下的 notebook</p>
+</blockquote>
+<h3 id="退出当前环境">退出当前环境</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda deactivate [名字]</span><br></pre></td></tr></table></figure>
+<h3 id="删除存在的环境">删除存在的环境</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda remove -n [名字] --all</span><br></pre></td></tr></table></figure>
+<h2 id="使用-pycharm-配置-创建好的-pytorch-环境">使用 PyCharm 配置 创建好的 Pytorch 环境</h2>
+<ul>
+<li><strong>文件</strong> -&gt; <strong>设置</strong> -&gt; <strong>Python解释器 设置按钮</strong></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262310264.png" /></p>
+<ul>
+<li>配置本地环境(Anaconda安装目录 因人而异)</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262310697.png" /></p>
+<ul>
+<li>创建 一个 5x3 的 随机初始化的 Tensor</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110262316477.png" /></p>
+<h3 id="conda-命令回顾">Conda 命令回顾</h3>
+<ul>
+<li>查看 conda 基本信息</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda info</span><br></pre></td></tr></table></figure>
+<ul>
+<li>激活环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda activate [名字]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出当前环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda deactivate [名字]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除已创建的环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda remove -n [名字] --all</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建环境 指定Python版本</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n [名字] python=3.5</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载包和依赖...</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda install juypter notebook</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Pytorch</tag>
+        <tag>深度学习</tag>
       </tags>
   </entry>
 </search>
