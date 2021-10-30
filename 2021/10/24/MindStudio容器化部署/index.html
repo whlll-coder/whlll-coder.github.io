@@ -147,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0Docker"><span class="nav-text">安装 | 更新Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0docker%E7%BB%84"><span class="nav-text">用户添加到docker组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E7%9B%B8%E8%A7%81docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE"><span class="nav-text">docker 基本命令(相见docker命令回顾)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0docker"><span class="nav-text">安装 | 更新Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0docker%E7%BB%84"><span class="nav-text">用户添加到docker组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9B%B8%E8%A7%81docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE"><span class="nav-text">docker 基本命令(相见docker命令回顾)</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -315,139 +315,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="安装-更新Docker"><a href="#安装-更新Docker" class="headerlink" title="安装 | 更新Docker"></a>安装 | 更新Docker</h2><span id="more"></span>
-
+        <h2 id="安装-更新docker">安装 | 更新Docker</h2>
+<span id="more"></span>
 <ul>
 <li>如果原来docker版本老旧 删除之</li>
 <li>Ubuntu</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker-ce docker.io</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>Centos</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove docker</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>更新apt包</li>
 <li>Ubuntu</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>更新yum包</li>
 <li>Centos</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
-<li><p>Centos</p>
-</li>
-<li><p>安装需要的包</p>
-</li>
+<li><p>Centos</p></li>
+<li><p>安装需要的包</p></li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>设置镜像的仓库(可以不用 网上CV下来的)</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager \</span><br><span class="line">	--add-repo \ </span><br><span class="line">https://download.docker,com/linux/centos/docker-ce.repo ## 这是个默认从国外的 </span><br><span class="line"></span><br><span class="line">yum-config-manager \ </span><br><span class="line">	--add-repo \ </span><br><span class="line">	htttp://mirrors.aliyum.com/docker-ce/linux/centos/docker-ce.repo ## 推荐使用aliyun</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>安装</li>
 <li>Ubuntu</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install docker.io</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Centos</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y docker</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>安装验证</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line"></span><br><span class="line">Docker version 20.10.9, build c2ea9bc</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="用户添加到docker组"><a href="#用户添加到docker组" class="headerlink" title="用户添加到docker组"></a>用户添加到docker组</h2><ul>
+<h2 id="用户添加到docker组">用户添加到docker组</h2>
+<ul>
 <li>查看是否有docker组</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/group</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>如果没有就创建</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>将当前用户添加到docker组</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -G docker whlll（你的用户ID）</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>重启docker服务</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>如果直接使用root 可以忽略此步</p>
 </blockquote>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A">https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A</a><br>提取码：pz61 </p>
+<h2 id="安装">安装</h2>
+<p>链接：https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A 提取码：pz61</p>
 <ul>
 <li>FileZilla FTP传输 c32.zip 到虚拟机(推荐当前用户的home目录) 解压</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip c32.zip</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>加载镜像到docker(在解压后c32v1的目录)</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i c32v1</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>查看镜像ID是否加载成功</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>重命名镜像</li>
 </ul>
 <blockquote>
-<p>使用 <strong>docker images</strong> 查看镜像ID </p>
-<p>使用 **docker ps -a ** 查看运行的容器ID</p>
+<p>使用 <strong>docker images</strong> 查看镜像ID</p>
+<p>使用 <strong>docker ps -a </strong> 查看运行的容器ID</p>
 <p>使用 <strong>docker ps -aq</strong> 查看运行和退出状态的容器ID</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag [镜像ID] [名字]:[标签]</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>登录本机图形化界面 配置图形化显示</li>
 </ul>
@@ -455,21 +408,14 @@
 <p>注意：Ubuntu上没有这个<strong>x11-xserver-utils</strong>工具 如果使用Centos 最后一步 图形化窗口无法初始化 先挖个坑以后填 当前推荐使用Debian 下的linux版本 如Ubuntu</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install x11-xserver-utils</span><br><span class="line"></span><br><span class="line">xhost +</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>启动镜像</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --network=host -v /etc/localtime:/etc/localtime:ro -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE [镜像ID] bash</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>第一次启动需要这个命令 后续每次启动都不需要 使用以下命令</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --network=host [镜像ID] bash</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>进入之前创建好的容器</li>
 </ul>
@@ -479,14 +425,10 @@
 <p>再使用一下命令进入</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exex -it [容器ID] bash</span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li>切换MindStudio的安装用户</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - ascend</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>ascend用户和root用户的密码均为各自的用户名</p>
 </blockquote>
@@ -494,51 +436,39 @@
 <li>进入home目录并启动MindStudio</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/MindStudio-ubuntu/bin/</span><br><span class="line"></span><br><span class="line">./MindStudio.sh</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="docker-基本命令-相见docker命令回顾"><a href="#docker-基本命令-相见docker命令回顾" class="headerlink" title="docker 基本命令(相见docker命令回顾)"></a>docker 基本命令(相见docker命令回顾)</h2><ul>
+<h2 id="docker-基本命令相见docker命令回顾">docker 基本命令(相见docker命令回顾)</h2>
+<ul>
 <li>查看运行中的容器使用</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>查看所有的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>停止运行中的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop [容器ID]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>启动停止的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start [容器ID]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>删除停止的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm [容器ID]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>强制删除运行中的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f [容器ID]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>进入运行中的容器</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exex -it [容器ID] bash</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>回退</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CTRL + d</span><br></pre></td></tr></table></figure>
-
-
-
 
     </div>
 
@@ -651,6 +581,12 @@
   
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
 
 
