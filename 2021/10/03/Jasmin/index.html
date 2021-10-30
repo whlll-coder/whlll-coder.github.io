@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="大二下 计组 Jasmin 作弊小技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jasmin">
+<meta property="og:url" content="http://example.com/2021/10/03/Jasmin/index.html">
+<meta property="og:site_name" content="whlll-blog">
+<meta property="og:description" content="大二下 计组 Jasmin 作弊小技巧">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210605001508591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210604233032443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210604235242822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210604235616851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210605001002661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-10-03T10:39:22.000Z">
+<meta property="article:modified_time" content="2021-10-30T11:27:16.376Z">
+<meta property="article:author" content="whlll">
+<meta property="article:tag" content="Jvm">
+<meta property="article:tag" content="Jasmin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210605001508591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center">
+
+
+<link rel="canonical" href="http://example.com/2021/10/03/Jasmin/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/03/Jasmin/","path":"2021/10/03/Jasmin/","title":"Jasmin"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Jasmin | whlll-blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whlll-blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jasmin%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9F%BA%E6%9C%AC%E7%BC%96%E8%AF%91%E6%93%8D%E4%BD%9C"><span class="nav-text">jasmin环境搭建与基本编译操作:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jdk%E5%AE%89%E8%A3%85%E9%AA%8C%E8%AF%81"><span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%AD%A5%E9%AA%A4"><span class="nav-text">编译步骤:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%93%E4%BD%A0%E4%BC%9Ajava%E5%90%8E%E6%83%85%E5%86%B5%E5%B0%B1%E5%8F%98%E5%BE%97%E4%B8%8D%E4%B8%80%E6%A0%B7%E4%BA%86"><span class="nav-text">当你会java后,情况就变得不一样了:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E8%A7%84%E5%88%99"><span class="nav-text">部分规则:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-text">最后:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%80%85%E5%AF%84%E8%AF%AD"><span class="nav-text">笔者寄语:</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whlll"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">whlll</p>
+  <div class="site-description" itemprop="description">whlll的小破站❥</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated">
+    <button><i class="fa fa-comment"></i>
+      Chat with me
+    </button>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whlll-coder" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whlll-coder" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whlll0305lhl@gmail.com" title="E-Mail → mailto:whlll0305lhl@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/7193773610" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;7193773610" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jmyblog.top/" title="https:&#x2F;&#x2F;www.jmyblog.top&#x2F;" rel="noopener" target="_blank">谁把钱丢了</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      
+            <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+            <div class="widget-wrap">
+                <h3 class="widget-title">都有啥</h3>
+                <div id="myCanvasContainer" class="widget tagcloud">
+                    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/408%E8%80%83%E7%A0%94/" rel="tag">408考研</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jasmin/" rel="tag">Jasmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jvm/" rel="tag">Jvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MindStudio/" rel="tag">MindStudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netty/" rel="tag">Netty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pytorch/" rel="tag">Pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMq/" rel="tag">RabbitMq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/" rel="tag">建站指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">消息中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">1</span></li></ul>
+                    </canvas>
+                </div>
+            </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/whlll-coder" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/03/Jasmin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="whlll">
+      <meta itemprop="description" content="whlll的小破站❥">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whlll-blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jasmin
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-03 18:39:22" itemprop="dateCreated datePublished" datetime="2021-10-03T18:39:22+08:00">2021-10-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-30 19:27:16" itemprop="dateModified" datetime="2021-10-30T19:27:16+08:00">2021-10-30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">工作学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>大二下 计组 Jasmin 作弊小技巧</p>
+<span id="more"></span>
+<blockquote>
+<p>这篇文章主要教你jasmin的环境的搭建,基本编译语法,以及如何从java快速编写jasmin程序,以应付课程任务,鉴于网上相关资源太少,也没什么人研究这个,写自己的第一篇Blog,回忆一下jasmin的学习过程吧0.0</p>
+</blockquote>
+<h2 id="jasmin环境搭建与基本编译操作"><strong>jasmin环境搭建与基本编译操作:</strong></h2>
+<p>首先您只需要支付5积分便可从我分享的资源下载jasmin并获得本人编写的部分jasmin例程供你学习.链接附文章末尾</p>
+<h2 id="准备工作">准备工作</h2>
+<p>下载jdk并配置好环境变量,命令行输入java --version检查是否成功</p>
+<h2 id="jdk安装验证"><img src="https://img-blog.csdnimg.cn/20210605001508591.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jdk安装验证" /></h2>
+<p>jasmin内部文件+examples例程: <img src="https://img-blog.csdnimg.cn/20210604233032443.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="jasmin软件" /><img src="https://img-blog.csdnimg.cn/20210604235242822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="examples例程" /></p>
+<h2 id="编译步骤"><strong>编译步骤:</strong></h2>
+<ul>
+<li>1.win+R 输入cmd打开命令行操作界面,打开jasmin文件夹所在目录:这里我将它放在D下方便操作</li>
+<li>2.输入:java -jar jasmin.jar examples2.j(ps:q2.j为笔者所写的冒泡排序)编译,(Generated编译成功)生成class执行文件.<img src="https://img-blog.csdnimg.cn/20210604235616851.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="编译" /></li>
+<li>3.输入:java q2运行(q2对应代码中的q2类,如果代码中你给debug,那么它编译之后便生产的debug.class可执行文件)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line">.class <span class="keyword">public</span> q2</span><br><span class="line">.<span class="keyword">super</span> java/lang/Object</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">public</span> &lt;init&gt;()V</span><br><span class="line">   aload_0</span><br><span class="line">   invokenonvirtual java/lang/Object/&lt;init&gt;()V</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.<span class="function">method <span class="keyword">public</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">([Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function">.limit locals 20</span></span><br><span class="line"><span class="function">.limit stack 10</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">new java/util/Scanner</span></span><br><span class="line"><span class="function">dup</span></span><br><span class="line"><span class="function">getstatic java/lang/System.in Ljava/io/InputStream</span>;</span><br><span class="line">invokespecial java/util/Scanner/&lt;init&gt;(Ljava/io/InputStream;)V</span><br><span class="line">astore_0</span><br><span class="line"></span><br><span class="line">bipush <span class="number">10</span></span><br><span class="line">newarray <span class="keyword">int</span></span><br><span class="line">astore_1</span><br><span class="line"></span><br><span class="line">iconst_0</span><br><span class="line">istore_2</span><br><span class="line"></span><br><span class="line">ldc <span class="string">&quot;input:&quot;</span></span><br><span class="line">getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">swap</span><br><span class="line">invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V</span><br><span class="line">Loadarray:</span><br><span class="line">aload_0</span><br><span class="line">invokevirtual java/util/Scanner/nextInt()I</span><br><span class="line">istore_3</span><br><span class="line"></span><br><span class="line">aload_1</span><br><span class="line">iload_2</span><br><span class="line">iload_3</span><br><span class="line">iastore</span><br><span class="line"></span><br><span class="line">iinc <span class="number">2</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">iload_2</span><br><span class="line">bipush <span class="number">10</span></span><br><span class="line">if_icmplt Loadarray</span><br><span class="line"></span><br><span class="line">bubsort:</span><br><span class="line">aload_1</span><br><span class="line">arraylength</span><br><span class="line">istore <span class="number">4</span></span><br><span class="line"></span><br><span class="line">iload <span class="number">4</span></span><br><span class="line">bipush <span class="number">1</span></span><br><span class="line">isub</span><br><span class="line">istore <span class="number">11</span></span><br><span class="line"></span><br><span class="line">iconst_0</span><br><span class="line">istore <span class="number">5</span></span><br><span class="line"></span><br><span class="line">Loop_1:</span><br><span class="line">iconst_0</span><br><span class="line">istore <span class="number">6</span></span><br><span class="line"></span><br><span class="line">iload <span class="number">5</span></span><br><span class="line">iload <span class="number">4</span></span><br><span class="line">if_icmplt Loop_2</span><br><span class="line">goto output</span><br><span class="line">Loop_2:</span><br><span class="line">iload <span class="number">11</span></span><br><span class="line">iload <span class="number">5</span></span><br><span class="line">isub</span><br><span class="line">istore <span class="number">10</span></span><br><span class="line"></span><br><span class="line">iload <span class="number">6</span></span><br><span class="line">iload <span class="number">10</span></span><br><span class="line">if_icmplt exchange_judge</span><br><span class="line">goto else_1</span><br><span class="line">exchange_judge:</span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">6</span></span><br><span class="line">iaload</span><br><span class="line"></span><br><span class="line">iload <span class="number">6</span></span><br><span class="line">bipush <span class="number">1</span></span><br><span class="line">iadd</span><br><span class="line">istore <span class="number">7</span></span><br><span class="line"></span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">7</span></span><br><span class="line">iaload</span><br><span class="line"></span><br><span class="line">if_icmpgt exchange</span><br><span class="line">goto else_2</span><br><span class="line">exchange:</span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">6</span></span><br><span class="line">iaload</span><br><span class="line">istore <span class="number">8</span></span><br><span class="line"></span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">7</span></span><br><span class="line">iaload</span><br><span class="line">istore <span class="number">9</span></span><br><span class="line"></span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">6</span></span><br><span class="line">iload <span class="number">9</span></span><br><span class="line">iastore</span><br><span class="line"></span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">7</span></span><br><span class="line">iload <span class="number">8</span></span><br><span class="line">iastore</span><br><span class="line">goto else_2</span><br><span class="line"></span><br><span class="line">else_1:</span><br><span class="line">iinc <span class="number">5</span> <span class="number">1</span></span><br><span class="line">goto Loop_1</span><br><span class="line"></span><br><span class="line">else_2:</span><br><span class="line">iinc <span class="number">6</span> <span class="number">1</span></span><br><span class="line">goto Loop_2</span><br><span class="line"></span><br><span class="line">output:</span><br><span class="line">ldc <span class="string">&quot;order:&quot;</span></span><br><span class="line">jsr Print</span><br><span class="line">iconst_0</span><br><span class="line">istore <span class="number">12</span></span><br><span class="line">Loop_3:</span><br><span class="line">aload_1</span><br><span class="line">iload <span class="number">12</span></span><br><span class="line">iaload</span><br><span class="line">istore <span class="number">13</span></span><br><span class="line">getstatic java/lang/System.out Ljava/io/PrintStream;</span><br><span class="line">iload <span class="number">13</span></span><br><span class="line">invokevirtual java/io/PrintStream/print(I)V</span><br><span class="line">ldc <span class="string">&quot; &quot;</span></span><br><span class="line">jsr Print</span><br><span class="line">iinc <span class="number">12</span> <span class="number">1</span></span><br><span class="line">iload <span class="number">12</span></span><br><span class="line">bipush <span class="number">10</span></span><br><span class="line">if_icmplt Loop_3</span><br><span class="line"></span><br><span class="line">ldc <span class="string">&quot; whlll  &quot;</span></span><br><span class="line">jsr Print</span><br><span class="line">ldc <span class="string">&quot; 19041420  &quot;</span></span><br><span class="line">jsr Print</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">Print:</span><br><span class="line">astore <span class="number">2</span></span><br><span class="line">getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">swap</span><br><span class="line">invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V</span><br><span class="line">ret <span class="number">2</span></span><br><span class="line"></span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+<p><em>请忽视博主的学号姓名0.0</em></p>
+<ul>
+<li>4.运行结果:<img src="https://img-blog.csdnimg.cn/20210605001002661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ1ODkzNTE2,size_16,color_FFFFFF,t_70#pic_center" alt="运行结果" /> So easy!</li>
+</ul>
+<h2 id="当你会java后情况就变得不一样了"><strong>当你会java后,情况就变得不一样了:</strong></h2>
+<p>当你有一个约瑟夫环的java代码+javap <em>约瑟夫环 java:</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> YSF;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 500个小孩围一圈，数到3的退出，问剩下最后的小孩原来是多少号？</span></span><br><span class="line"><span class="comment"> * author@</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YueSeFuHuan</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Scanner sca = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">&quot;输入该游戏的参与人数：&quot;</span>);</span><br><span class="line">		<span class="keyword">int</span> n = sca.nextInt();</span><br><span class="line">		System.out.println(<span class="string">&quot;输入数到退出的数字：&quot;</span>);</span><br><span class="line">		<span class="keyword">int</span> m = sca.nextInt();</span><br><span class="line">		sca.close();</span><br><span class="line">		<span class="keyword">int</span> len = n;</span><br><span class="line">		<span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			a[i] = i + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (len &gt;= m)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i % n] &gt; <span class="number">0</span>)</span><br><span class="line">			&#123; <span class="comment">// 这里判断是否被圈出去</span></span><br><span class="line">				<span class="keyword">if</span> (j % m == <span class="number">0</span>)</span><br><span class="line">				&#123; <span class="comment">// 这里判断是否报的数相同，是则退出该位置，且下一位重新报数</span></span><br><span class="line">				<span class="comment">// System.out.print(a[i%n]+&quot;,&quot;);</span></span><br><span class="line">					a[i % n] = -<span class="number">1</span>;</span><br><span class="line">					i++;</span><br><span class="line">					j = <span class="number">1</span>;</span><br><span class="line">					len--;</span><br><span class="line">				&#125; <span class="keyword">else</span></span><br><span class="line">				&#123; <span class="comment">// 不相同则继续</span></span><br><span class="line">					i++;</span><br><span class="line">					j++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">else</span></span><br><span class="line">			&#123; <span class="comment">// 表示该位置已被圈出，跳向下一位</span></span><br><span class="line">				i++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[k] &gt; <span class="number">0</span>)</span><br><span class="line">				System.out.print(a[k] + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;     whllll 19041420&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>eclipse配置好javap插件(java提供的一个用来查看java字节码的工具),那么你将得到:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">Compiled from <span class="string">&quot;YueSeFuHuan.java&quot;</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">YSF</span>.<span class="title">YueSeFuHuan</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> YSF.YueSeFuHuan();</span><br><span class="line">    Code:</span><br><span class="line">       <span class="number">0</span>: aload_0</span><br><span class="line">       <span class="number">1</span>: invokespecial #<span class="number">8</span>                  <span class="comment">// Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span></span><br><span class="line">       <span class="number">4</span>: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    Code:</span><br><span class="line">       <span class="number">0</span>: <span class="keyword">new</span>           #<span class="number">16</span>                 <span class="comment">// class java/util/Scanner</span></span><br><span class="line">       <span class="number">3</span>: dup</span><br><span class="line">       <span class="number">4</span>: getstatic     #<span class="number">18</span>                 <span class="comment">// Field java/lang/System.in:Ljava/io/InputStream;</span></span><br><span class="line">       <span class="number">7</span>: invokespecial #<span class="number">24</span>                 <span class="comment">// Method java/util/Scanner.&quot;&lt;init&gt;&quot;:(Ljava/io/InputStream;)V</span></span><br><span class="line">      <span class="number">10</span>: astore_1</span><br><span class="line">      <span class="number">11</span>: getstatic     #<span class="number">27</span>                 <span class="comment">// Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">      <span class="number">14</span>: ldc           #<span class="number">31</span>                 <span class="comment">// String 输入该游戏的参与人数：</span></span><br><span class="line">      <span class="number">16</span>: invokevirtual #<span class="number">33</span>                 <span class="comment">// Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">      <span class="number">19</span>: aload_1</span><br><span class="line">      <span class="number">20</span>: invokevirtual #<span class="number">39</span>                 <span class="comment">// Method java/util/Scanner.nextInt:()I</span></span><br><span class="line">      <span class="number">23</span>: istore_2</span><br><span class="line">      <span class="number">24</span>: getstatic     #<span class="number">27</span>                 <span class="comment">// Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">      <span class="number">27</span>: ldc           #<span class="number">43</span>                 <span class="comment">// String 输入数到退出的数字：</span></span><br><span class="line">      <span class="number">29</span>: invokevirtual #<span class="number">33</span>                 <span class="comment">// Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">      <span class="number">32</span>: aload_1</span><br><span class="line">      <span class="number">33</span>: invokevirtual #<span class="number">39</span>                 <span class="comment">// Method java/util/Scanner.nextInt:()I</span></span><br><span class="line">      <span class="number">36</span>: istore_3</span><br><span class="line">      <span class="number">37</span>: aload_1</span><br><span class="line">      <span class="number">38</span>: invokevirtual #<span class="number">45</span>                 <span class="comment">// Method java/util/Scanner.close:()V</span></span><br><span class="line">      <span class="number">41</span>: iload_2</span><br><span class="line">      <span class="number">42</span>: istore        <span class="number">4</span></span><br><span class="line">      <span class="number">44</span>: iload_2</span><br><span class="line">      <span class="number">45</span>: newarray       <span class="keyword">int</span></span><br><span class="line">      <span class="number">47</span>: astore        <span class="number">5</span></span><br><span class="line">      <span class="number">49</span>: iconst_0</span><br><span class="line">      <span class="number">50</span>: istore        <span class="number">6</span></span><br><span class="line">      <span class="number">52</span>: goto          <span class="number">67</span></span><br><span class="line">      <span class="number">55</span>: aload         <span class="number">5</span></span><br><span class="line">      <span class="number">57</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">59</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">61</span>: iconst_1</span><br><span class="line">      <span class="number">62</span>: iadd</span><br><span class="line">      <span class="number">63</span>: iastore</span><br><span class="line">      <span class="number">64</span>: iinc          <span class="number">6</span>, <span class="number">1</span></span><br><span class="line">      <span class="number">67</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">69</span>: iload_2</span><br><span class="line">      <span class="number">70</span>: if_icmplt     <span class="number">55</span></span><br><span class="line">      <span class="number">73</span>: iconst_0</span><br><span class="line">      <span class="number">74</span>: istore        <span class="number">6</span></span><br><span class="line">      <span class="number">76</span>: iconst_1</span><br><span class="line">      <span class="number">77</span>: istore        <span class="number">7</span></span><br><span class="line">      <span class="number">79</span>: goto          <span class="number">131</span></span><br><span class="line">      <span class="number">82</span>: aload         <span class="number">5</span></span><br><span class="line">      <span class="number">84</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">86</span>: iload_2</span><br><span class="line">      <span class="number">87</span>: irem</span><br><span class="line">      <span class="number">88</span>: iaload</span><br><span class="line">      <span class="number">89</span>: ifle          <span class="number">128</span></span><br><span class="line">      <span class="number">92</span>: iload         <span class="number">7</span></span><br><span class="line">      <span class="number">94</span>: iload_3</span><br><span class="line">      <span class="number">95</span>: irem</span><br><span class="line">      <span class="number">96</span>: ifne          <span class="number">119</span></span><br><span class="line">      <span class="number">99</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">101</span>: iload         <span class="number">6</span></span><br><span class="line">     <span class="number">103</span>: iload_2</span><br><span class="line">     <span class="number">104</span>: irem</span><br><span class="line">     <span class="number">105</span>: iconst_m1</span><br><span class="line">     <span class="number">106</span>: iastore</span><br><span class="line">     <span class="number">107</span>: iinc          <span class="number">6</span>, <span class="number">1</span></span><br><span class="line">     <span class="number">110</span>: iconst_1</span><br><span class="line">     <span class="number">111</span>: istore        <span class="number">7</span></span><br><span class="line">     <span class="number">113</span>: iinc          <span class="number">4</span>, -<span class="number">1</span></span><br><span class="line">     <span class="number">116</span>: goto          <span class="number">131</span></span><br><span class="line">     <span class="number">119</span>: iinc          <span class="number">6</span>, <span class="number">1</span></span><br><span class="line">     <span class="number">122</span>: iinc          <span class="number">7</span>, <span class="number">1</span></span><br><span class="line">     <span class="number">125</span>: goto          <span class="number">131</span></span><br><span class="line">     <span class="number">128</span>: iinc          <span class="number">6</span>, <span class="number">1</span></span><br><span class="line">     <span class="number">131</span>: iload         <span class="number">4</span></span><br><span class="line">     <span class="number">133</span>: iload_3</span><br><span class="line">     <span class="number">134</span>: if_icmpge     <span class="number">82</span></span><br><span class="line">     <span class="number">137</span>: iconst_0</span><br><span class="line">     <span class="number">138</span>: istore        <span class="number">8</span></span><br><span class="line">     <span class="number">140</span>: goto          <span class="number">183</span></span><br><span class="line">     <span class="number">143</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">145</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">147</span>: iaload</span><br><span class="line">     <span class="number">148</span>: ifle          <span class="number">180</span></span><br><span class="line">     <span class="number">151</span>: getstatic     #<span class="number">27</span>                 <span class="comment">// Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">     <span class="number">154</span>: <span class="keyword">new</span>           #<span class="number">48</span>                 <span class="comment">// class java/lang/StringBuilder</span></span><br><span class="line">     <span class="number">157</span>: dup</span><br><span class="line">     <span class="number">158</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">160</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">162</span>: iaload</span><br><span class="line">     <span class="number">163</span>: invokestatic  #<span class="number">50</span>                 <span class="comment">// Method java/lang/String.valueOf:(I)Ljava/lang/String;</span></span><br><span class="line">     <span class="number">166</span>: invokespecial #<span class="number">56</span>                 <span class="comment">// Method java/lang/StringBuilder.&quot;&lt;init&gt;&quot;:(Ljava/lang/String;)V</span></span><br><span class="line">     <span class="number">169</span>: ldc           #<span class="number">58</span>                 <span class="comment">// String ,</span></span><br><span class="line">     <span class="number">171</span>: invokevirtual #<span class="number">60</span>                 <span class="comment">// Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;</span></span><br><span class="line">     <span class="number">174</span>: invokevirtual #<span class="number">64</span>                 <span class="comment">// Method java/lang/StringBuilder.toString:()Ljava/lang/String;</span></span><br><span class="line">     <span class="number">177</span>: invokevirtual #<span class="number">68</span>                 <span class="comment">// Method java/io/PrintStream.print:(Ljava/lang/String;)V</span></span><br><span class="line">     <span class="number">180</span>: iinc          <span class="number">8</span>, <span class="number">1</span></span><br><span class="line">     <span class="number">183</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">185</span>: iload_2</span><br><span class="line">     <span class="number">186</span>: if_icmplt     <span class="number">143</span></span><br><span class="line">     <span class="number">189</span>: getstatic     #<span class="number">27</span>                 <span class="comment">// Field java/lang/System.out:Ljava/io/PrintStream;</span></span><br><span class="line">     <span class="number">192</span>: ldc           #<span class="number">71</span>                 <span class="comment">// String      whllll 19041420</span></span><br><span class="line">     <span class="number">194</span>: invokevirtual #<span class="number">33</span>                 <span class="comment">// Method java/io/PrintStream.println:(Ljava/lang/String;)V</span></span><br><span class="line">     <span class="number">197</span>: <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>下一步:</strong>修改为jasmin的标准代码以及结构</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line">.class <span class="keyword">public</span> YSF</span><br><span class="line">.<span class="keyword">super</span> java/lang/Object</span><br><span class="line"></span><br><span class="line">.method <span class="keyword">public</span> &lt;init&gt;()V</span><br><span class="line">   aload_0</span><br><span class="line">   invokenonvirtual java/lang/Object/&lt;init&gt;()V</span><br><span class="line">   <span class="keyword">return</span></span><br><span class="line">.end method</span><br><span class="line"></span><br><span class="line">.<span class="function">method <span class="keyword">public</span> <span class="keyword">static</span> <span class="title">main</span><span class="params">([Ljava/lang/String;)</span>V</span></span><br><span class="line"><span class="function">.limit locals 10</span></span><br><span class="line"><span class="function">.limit stack 10</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">       0: new java/util/Scanner</span></span><br><span class="line"><span class="function">       3: dup</span></span><br><span class="line"><span class="function">       4: getstatic java/lang/System.in Ljava/io/InputStream</span>;</span><br><span class="line">       <span class="number">7</span>: invokespecial java/util/Scanner/&lt;init&gt;(Ljava/io/InputStream;)V</span><br><span class="line">      <span class="number">10</span>: astore_1</span><br><span class="line">      <span class="number">11</span>: getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">      <span class="number">14</span>: ldc <span class="string">&quot;Enter the number of players in the game: &quot;</span></span><br><span class="line">      <span class="number">16</span>: invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V</span><br><span class="line">      <span class="number">19</span>: aload_1</span><br><span class="line">      <span class="number">20</span>: invokevirtual java/util/Scanner/nextInt()I</span><br><span class="line">      <span class="number">23</span>: istore_2</span><br><span class="line">      <span class="number">24</span>: getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">      <span class="number">27</span>: ldc <span class="string">&quot;Enter the number to the exit number:&quot;</span></span><br><span class="line">      <span class="number">29</span>: invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V</span><br><span class="line">      <span class="number">32</span>: aload_1</span><br><span class="line">      <span class="number">33</span>: invokevirtual java/util/Scanner/nextInt()I</span><br><span class="line">      <span class="number">36</span>: istore_3</span><br><span class="line">      <span class="number">37</span>: aload_1</span><br><span class="line">      <span class="number">38</span>: invokevirtual java/util/Scanner/close()V</span><br><span class="line">      <span class="number">41</span>: iload_2</span><br><span class="line">      <span class="number">42</span>: istore        <span class="number">4</span></span><br><span class="line">      <span class="number">44</span>: iload_2</span><br><span class="line">      <span class="number">45</span>: newarray       <span class="keyword">int</span></span><br><span class="line">      <span class="number">47</span>: astore        <span class="number">5</span></span><br><span class="line">      <span class="number">49</span>: iconst_0</span><br><span class="line">      <span class="number">50</span>: istore        <span class="number">6</span></span><br><span class="line">      <span class="number">52</span>: goto          <span class="number">67</span></span><br><span class="line">      <span class="number">55</span>: aload         <span class="number">5</span></span><br><span class="line">      <span class="number">57</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">59</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">61</span>: iconst_1</span><br><span class="line">      <span class="number">62</span>: iadd</span><br><span class="line">      <span class="number">63</span>: iastore</span><br><span class="line">      <span class="number">64</span>: iinc          <span class="number">6</span> <span class="number">1</span></span><br><span class="line">      <span class="number">67</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">69</span>: iload_2</span><br><span class="line">      <span class="number">70</span>: if_icmplt     <span class="number">55</span></span><br><span class="line">      <span class="number">73</span>: iconst_0</span><br><span class="line">      <span class="number">74</span>: istore        <span class="number">6</span></span><br><span class="line">      <span class="number">76</span>: iconst_1</span><br><span class="line">      <span class="number">77</span>: istore        <span class="number">7</span></span><br><span class="line">      <span class="number">79</span>: goto          <span class="number">131</span></span><br><span class="line">      <span class="number">82</span>: aload         <span class="number">5</span></span><br><span class="line">      <span class="number">84</span>: iload         <span class="number">6</span></span><br><span class="line">      <span class="number">86</span>: iload_2</span><br><span class="line">      <span class="number">87</span>: irem</span><br><span class="line">      <span class="number">88</span>: iaload</span><br><span class="line">      <span class="number">89</span>: ifle          <span class="number">128</span></span><br><span class="line">      <span class="number">92</span>: iload         <span class="number">7</span></span><br><span class="line">      <span class="number">94</span>: iload_3</span><br><span class="line">      <span class="number">95</span>: irem</span><br><span class="line">      <span class="number">96</span>: ifne          <span class="number">119</span></span><br><span class="line">      <span class="number">99</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">101</span>: iload         <span class="number">6</span></span><br><span class="line">     <span class="number">103</span>: iload_2</span><br><span class="line">     <span class="number">104</span>: irem</span><br><span class="line">     <span class="number">105</span>: iconst_m1</span><br><span class="line">     <span class="number">106</span>: iastore</span><br><span class="line">     <span class="number">107</span>: iinc          <span class="number">6</span> <span class="number">1</span></span><br><span class="line">     <span class="number">110</span>: iconst_1</span><br><span class="line">     <span class="number">111</span>: istore        <span class="number">7</span></span><br><span class="line">     <span class="number">113</span>: iinc          <span class="number">4</span> -<span class="number">1</span></span><br><span class="line">     <span class="number">116</span>: goto          <span class="number">131</span></span><br><span class="line">     <span class="number">119</span>: iinc          <span class="number">6</span> <span class="number">1</span></span><br><span class="line">     <span class="number">122</span>: iinc          <span class="number">7</span> <span class="number">1</span></span><br><span class="line">     <span class="number">125</span>: goto          <span class="number">131</span></span><br><span class="line">     <span class="number">128</span>: iinc          <span class="number">6</span> <span class="number">1</span></span><br><span class="line">     <span class="number">131</span>: iload         <span class="number">4</span></span><br><span class="line">     <span class="number">133</span>: iload_3</span><br><span class="line">     <span class="number">134</span>: if_icmpge     <span class="number">82</span></span><br><span class="line">     <span class="number">137</span>: iconst_0</span><br><span class="line">     <span class="number">138</span>: istore        <span class="number">8</span></span><br><span class="line">     <span class="number">140</span>: goto          <span class="number">183</span></span><br><span class="line">     <span class="number">143</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">145</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">147</span>: iaload</span><br><span class="line">     <span class="number">148</span>: ifle          <span class="number">180</span></span><br><span class="line">     <span class="number">151</span>: getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">     <span class="number">154</span>: <span class="keyword">new</span> java/lang/StringBuilder</span><br><span class="line">     <span class="number">157</span>: dup</span><br><span class="line">     <span class="number">158</span>: aload         <span class="number">5</span></span><br><span class="line">     <span class="number">160</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">162</span>: iaload</span><br><span class="line">     <span class="number">163</span>: invokestatic java/lang/String/valueOf(I)Ljava/lang/String;</span><br><span class="line">     <span class="number">166</span>: invokespecial java/lang/StringBuilder/&lt;init&gt;(Ljava/lang/String;)V</span><br><span class="line">     <span class="number">169</span>: ldc <span class="string">&quot;,&quot;</span></span><br><span class="line">     <span class="number">171</span>: invokevirtual java/lang/StringBuilder/append(Ljava/lang/String;)Ljava/lang/StringBuilder;</span><br><span class="line">     <span class="number">174</span>: invokevirtual java/lang/StringBuilder/toString()Ljava/lang/String;</span><br><span class="line">     <span class="number">177</span>: invokevirtual java/io/PrintStream/print(Ljava/lang/String;)V</span><br><span class="line">     <span class="number">180</span>: iinc          <span class="number">8</span> <span class="number">1</span></span><br><span class="line">     <span class="number">183</span>: iload         <span class="number">8</span></span><br><span class="line">     <span class="number">185</span>: iload_2</span><br><span class="line">     <span class="number">186</span>: if_icmplt     <span class="number">143</span></span><br><span class="line">     <span class="number">189</span>: getstatic java/lang/System/out Ljava/io/PrintStream;</span><br><span class="line">     <span class="number">192</span>: ldc <span class="string">&quot;     whllll 19041420&quot;</span></span><br><span class="line">     <span class="number">194</span>: invokevirtual java/io/PrintStream/println(Ljava/lang/String;)V</span><br><span class="line">     <span class="number">197</span>: <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">.end method</span><br></pre></td></tr></table></figure>
+<h2 id="部分规则">部分规则:</h2>
+<ol type="1">
+<li>'#+数字' 替换为 'javap给的注释内容'(#16 // class java/util/Scanner)</li>
+<li>将 . 替换为 /</li>
+<li>去掉 " "(双引号) <em>具体参考约瑟夫环案例</em></li>
+</ol>
+<h2 id="最后"><strong>最后:</strong></h2>
+<p>一段jasmin代码就搞定了,快速完成了您的课程任务0.0 只要把它放在examples文件夹目录下,后缀名改为.j,按上述操作即可编译运行啦~</p>
+<h2 id="笔者寄语"><strong>笔者寄语:</strong></h2>
+<p>jasmin作为java的独立的汇编语言,不同于java的字节码依附于java本身代码而存在,从开发上必然没有高级语言的复用性而带来的简洁优美,但其更有助于初学者学习,了解高级语言的更下层的解释,如何实现上层的功能.jasmin的语法更接近于个人计算机RISIC的体系架构,例如先装载再使用的高并发性...虽然网上都说学这玩意儿没啥意思 笔者也是因为课程要求才涉及它,这点心得希望成为那些觉得它还有点意思的人的一点动力吧0.0</p>
+<p>whlll的jasmin软件+样例程序链接: <a target="_blank" rel="noopener" href="https://download.csdn.net/download/qq_45893516/19393587">jasmin+本人写的一些样例程序仅供学习参考</a></p>
+<p>参考书籍:计算机组成及汇编语言原理(第十章) 机械工业出版社 (美)Patrick Juola 著</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/wechatpay.jpg" alt="whlll 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/alipay.jpg" alt="whlll 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Jvm/" rel="tag"><i class="fa fa-tag"></i> Jvm</a>
+              <a href="/tags/Jasmin/" rel="tag"><i class="fa fa-tag"></i> Jasmin</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/03/%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/" rel="prev" title="建站指南">
+                  <i class="fa fa-chevron-left"></i> 建站指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/07/RabbitMq%E7%AC%94%E8%AE%B0/" rel="next" title="RabbitMq笔记">
+                  RabbitMq笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NDU4My8zMTA1NA=="></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whlll</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">157k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:23</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+<script class="next-config" data-name="chatra" type="application/json">{"enable":true,"async":true,"id":"cHCGeJJx2x2CH2DDt"}</script>
+<script src="/js/third-party/chat/chatra.js"></script>
+<script async src="https://call.chatra.io/chatra.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.7","log":false,"tagMode":false});</script></body>
+</html>
