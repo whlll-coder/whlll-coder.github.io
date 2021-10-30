@@ -22,30 +22,33 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="JVM 探究">
+<meta name="description" content="KMEANS INFO 有四个牧师去郊区布道，一开始牧师们随意选了几个布道点，并且把这几个布道点的情况公告给了郊区所有的村民，于是每个村民到离自己家最近的布道点去听课。听课之后，大家觉得距离太远了，于是每个牧师统计了一下自己的课上所有的村民的地址，搬到了所有地址的中心地带，并且在海报上更新了自己的布道点的位置。牧师每一次移动不可能离所有人都更近，有的人发现A牧师移动以后自己还不如去B牧师处听课更近">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM笔记">
-<meta property="og:url" content="http://example.com/2021/10/24/JVM%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Kmeans算法初探">
+<meta property="og:url" content="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/index.html">
 <meta property="og:site_name" content="whlll-blog">
-<meta property="og:description" content="JVM 探究">
+<meta property="og:description" content="KMEANS INFO 有四个牧师去郊区布道，一开始牧师们随意选了几个布道点，并且把这几个布道点的情况公告给了郊区所有的村民，于是每个村民到离自己家最近的布道点去听课。听课之后，大家觉得距离太远了，于是每个牧师统计了一下自己的课上所有的村民的地址，搬到了所有地址的中心地带，并且在海报上更新了自己的布道点的位置。牧师每一次移动不可能离所有人都更近，有的人发现A牧师移动以后自己还不如去B牧师处听课更近">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110251637935.png">
-<meta property="article:published_time" content="2021-10-24T10:27:32.000Z">
-<meta property="article:modified_time" content="2021-10-25T08:44:08.262Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301608007.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301616821.gif">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301706552.png">
+<meta property="article:published_time" content="2021-10-30T07:42:52.000Z">
+<meta property="article:modified_time" content="2021-10-30T09:16:47.878Z">
 <meta property="article:author" content="whlll">
-<meta property="article:tag" content="JVM">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110251637935.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif">
 
 
-<link rel="canonical" href="http://example.com/2021/10/24/JVM%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/24/JVM%E7%AC%94%E8%AE%B0/","path":"2021/10/24/JVM笔记/","title":"JVM笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/","path":"2021/10/30/Kmeans算法初探/","title":"Kmeans算法初探"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>JVM笔记 | whlll-blog</title>
+<title>Kmeans算法初探 | whlll-blog</title>
   
 
 
@@ -149,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM-%E6%8E%A2%E7%A9%B6"><span class="nav-text">JVM 探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JVM%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">1.JVM的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JVM%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">2.JVM的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">3.类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%8F%8C%E4%BA%B2%E5%A7%94%E4%BB%BB%E6%9C%BA%E5%88%B6"><span class="nav-text">4.双亲委任机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-text">5.沙箱安全机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-PC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">7.PC寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-text">8.方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%A0%88"><span class="nav-text">9.栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%B8%89%E7%A7%8DJVM"><span class="nav-text">10.三种JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%A0%86"><span class="nav-text">11.堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E6%B0%B8%E4%B9%85%E5%8C%BA"><span class="nav-text">13.永久区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-text">14.堆内存调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-GC"><span class="nav-text">15.GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-JMM"><span class="nav-text">16.JMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E6%80%BB%E7%BB%93"><span class="nav-text">17.总结</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KMEANS-INFO"><span class="nav-text">KMEANS INFO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KMEANS-DETAILS"><span class="nav-text">KMEANS DETAILS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SHORTCOMING"><span class="nav-text">SHORTCOMING</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OPTIMIZATION-OF-KMEANS"><span class="nav-text">OPTIMIZATION OF KMEANS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MONTE-CARLO-METHOD"><span class="nav-text">MONTE CARLO METHOD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kmeans-gt-Kmeans-gt-Kmeans-II"><span class="nav-text">Kmeans -&gt; Kmeans++ -&gt; Kmeans II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kmeans"><span class="nav-text">Kmeans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kmeans-1"><span class="nav-text">Kmeans++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kmeans-II"><span class="nav-text">Kmeans II</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PRETREATMENT"><span class="nav-text">PRETREATMENT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISODATA"><span class="nav-text">ISODATA</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -258,7 +261,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/24/JVM%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -271,7 +274,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JVM笔记
+          Kmeans算法初探
         </h1>
 
         <div class="post-meta-container">
@@ -281,23 +284,17 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-10-24 18:27:32" itemprop="dateCreated datePublished" datetime="2021-10-24T18:27:32+08:00">2021-10-24</time>
+      <time title="创建时间：2021-10-30 15:42:52 / 修改时间：17:16:47" itemprop="dateCreated datePublished" datetime="2021-10-30T15:42:52+08:00">2021-10-30</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-25 16:44:08" itemprop="dateModified" datetime="2021-10-25T16:44:08+08:00">2021-10-25</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%B7%A5%E4%BD%9C%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">工作学习</span></a>
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
         </span>
     </span>
 
@@ -308,7 +305,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -326,111 +323,103 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="JVM-探究"><a href="#JVM-探究" class="headerlink" title="JVM 探究"></a>JVM 探究</h1><span id="more"></span>
+        <h2 id="KMEANS-INFO"><a href="#KMEANS-INFO" class="headerlink" title="KMEANS INFO"></a>KMEANS INFO</h2><blockquote>
+<p>有<strong>四个牧师</strong>去郊区布道，一开始牧师们随意选了几个布道点，并且把这几个布道点的情况公告给了郊区所有的<strong>村民</strong>，于是每个村民到离自己家最近的布道点去听课。听课之后，大家觉得距离太远了，于是<strong>每个牧师统计了一下自己的课上所有的村民的地址，搬到了所有地址的中心地带</strong>，并且在海报上更新了自己的布道点的位置。牧师每一次移动不可能离所有人都更近，有的人发现A牧师移动以后自己还不如去B牧师处听课更近，于是每个村民又去了离自己最近的布道点……就这样，牧师每个礼拜更新自己的位置，<strong>村民根据自己的情况选择布道点</strong>，最终稳定了下来。</p>
+</blockquote>
+<span id="more"></span>
 
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110251637935.png"></p>
 <ul>
-<li>对 JVM 的理解 java8虚拟机和之前的变化更新?</li>
-<li>什么是OOM，什么是栈溢出 StackOverflowError? 怎么分析？</li>
-<li>JVM的常用调优参数有哪些？</li>
-<li>内存快照如何抓取，怎么分析Dump文件？</li>
-<li>谈谈对JVM中，类加载器你的认识？</li>
-</ul>
-<h3 id="1-JVM的位置"><a href="#1-JVM的位置" class="headerlink" title="1.JVM的位置"></a>1.JVM的位置</h3><p>操作系统之上 -&gt; 操作系统的代理</p>
-<h3 id="2-JVM的体系结构"><a href="#2-JVM的体系结构" class="headerlink" title="2.JVM的体系结构"></a>2.JVM的体系结构</h3><p>Class File -&gt; Class Loader -&gt; Runtime Data Area(Method Area &amp; Stack &amp; Native Method Stack &amp; Heap &amp; program counter) &lt;-&gt; 执行引擎 &lt;-&gt; 本地方法接口 &lt;- 本地方法库</p>
-<h3 id="3-类加载器"><a href="#3-类加载器" class="headerlink" title="3.类加载器"></a>3.类加载器</h3><p>作用：加载 Class 文件 -&gt; </p>
-<p>1.虚拟机自带的加载器 </p>
-<p>2.启动类(根)加载器 </p>
-<p>3.扩展类加载器 </p>
-<p>4.应用程序加载器</p>
-<h3 id="4-双亲委任机制"><a href="#4-双亲委任机制" class="headerlink" title="4.双亲委任机制"></a>4.双亲委任机制</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">       1.类加载器收到类加载的请求</span></span><br><span class="line"><span class="comment">       2.将这个请求向上委托给父类加载器去完成，一直向上委托，直到启动类加载器</span></span><br><span class="line"><span class="comment">       3.启动类加载器检查是否能够加载当前这个类，能加载就结束，使用当前的加载器，否则就抛出异常，通知子加载器进行加载</span></span><br><span class="line"><span class="comment">       4.重复 3 过程</span></span><br><span class="line"><span class="comment">       Class not Found ~  </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-沙箱安全机制"><a href="#5-沙箱安全机制" class="headerlink" title="5.沙箱安全机制"></a>5.沙箱安全机制</h3><p><strong>组成沙箱的基本组件:</strong></p>
-<ul>
-<li>字节码校验器(bytecode verifier) :确保Java类文件遵循Java语言规范。这样可以帮助Java程序实现内存保护。但并不是所有的类文件都会经过字节码校验，比如核心类。</li>
-</ul>
-<hr>
-<ul>
-<li>类裝载器(class loader) :其中类装载器在3个方面对Java沙箱起作用 它防止恶意代码去干涉善意的代码; 它守护了被信任的类库边界;</li>
-</ul>
-<hr>
-<ul>
-<li>它将代码归入保护域,确定了代码可以进行哪些操作。 虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成， 每一个被装载的类将有一个名字，这个命名空间是由Java虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。 类装载器采用的机制是双亲委派模式。 <ul>
-<li>1.从最内层JVM自带类加载器开始加载,外层恶意同名类得不到加载从而无法使用; </li>
-<li>2.由于严格通过包来区分了访问域,外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。 </li>
+<li>村民牧师解释<ul>
+<li>四个牧师: <font color=red>K(种类 ML中叫类聚中心)</font></li>
+<li>村民: K种样本集合</li>
+<li>牧师更改布道点: <font color=red>更改类聚中心位置</font></li>
+<li>村民根据自己情况选择布道点: 迭代已达到稳定</li>
 </ul>
 </li>
 </ul>
-<hr>
+<h2 id="KMEANS-DETAILS"><a href="#KMEANS-DETAILS" class="headerlink" title="KMEANS DETAILS"></a>KMEANS DETAILS</h2><p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif"></p>
 <ul>
-<li>存取控制器(access controller) :存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略设定,可以由用户指定。 </li>
+<li>1.初始化K个样本作为初试类聚中心a = a1、a2、a3、a4、a5</li>
+<li>2.针对每个样本中的xi计算到每个样本类聚中心的距离(欧氏距离)最小值，分到对应的类聚中心的类中</li>
 </ul>
-<hr>
+<p>$$<br>d=\sqrt{\sum_{i=0}^N(x_{1i}-x_{2i})^2}<br>$$</p>
 <ul>
-<li>安全管理器(security manager) : 是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。 </li>
+<li>3.针对每个类别ai,重新计算它的类聚中心</li>
 </ul>
-<hr>
+<p>$$<br>a_j=\frac1{\abs{C_i}}\sum{x}(x\epsilon{C_i})<br>$$</p>
 <ul>
-<li>安全软件包(security package) : java.security下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括: <ul>
-<li>安全提供者 </li>
-<li>消息摘要</li>
-<li>数字签名 </li>
-<li>加密</li>
-<li>鉴别<br>###6.Native</li>
+<li>4.重复上面 2 3 两步操作，直到达到某个中止条件（<strong>迭代次数</strong>、<strong>最小误差变化</strong>等）</li>
 </ul>
-</li>
+<h2 id="SHORTCOMING"><a href="#SHORTCOMING" class="headerlink" title="SHORTCOMING"></a>SHORTCOMING</h2><ul>
+<li>K 值需要人为设定，不同 K 值得到的结果不一样 (<strong>Gap statistic</strong>)</li>
+<li>对初始的簇中心敏感，不同选取方式会得到不同结果 (<strong>Kmeans++ | Kmeans II</strong>)</li>
+<li>对异常值敏感 (<strong>Pretreatment</strong>)</li>
+<li>不适合太离散的分类、样本类别不平衡的分类、非凸形状的分类 (<strong>核函数</strong>)</li>
+<li>样本只能归为一类，不适合多分类任务 (<strong>ISODATA细分样本</strong>)</li>
 </ul>
-<p>native:凡是带了native关键字的，说明java的作用范围达不到了，<strong>回去调用底层C语言的库</strong> -&gt; 会进入 <strong>本地方法栈</strong><br>调用本地方法接口 <strong>JNI(Java Native Interface)</strong> JNI作用：开拓Java的使用，融合C &amp; C++<br>它在内存中开辟了一块标记区域：Native Method Stack,登记native方法<br>在最终执行的时候，加载本地方法库中的方法通过JNI</p>
-<h3 id="7-PC寄存器"><a href="#7-PC寄存器" class="headerlink" title="7.PC寄存器"></a>7.PC寄存器</h3><p>程序计数器(Program Counter Register):每个线程都有一个程序计数器，是线程私有的，就是一个指针, 指向方法区中的方法字节码(用来存储指向像一条指令的地址， 也即将要执行的指令代码)，在执行引擎读取下一条指令, 是一个非常小的内存空间，几乎可以忽略不计</p>
-<h3 id="8-方法区"><a href="#8-方法区" class="headerlink" title="8.方法区"></a>8.方法区</h3><p>保存在着被加载过的每一个类的信息；这些信息由类加载器在加载类的时候，从类的源文件中抽取出来；static变量信息也保存在方法区中；</p>
-<p>可以看做是将类（Class）的元数据，保存在方法区里；</p>
-<p>方法区是线程共享的；当有多个线程都用到一个类的时候，而这个类还未被加载，则应该只有一个线程去加载类，让其他线程等待；</p>
-<p>方法区的大小不必是固定的，jvm可以根据应用的需要动态调整。jvm也可以允许用户和程序指定方法区的初始大小，最小和最大限制；</p>
-<p>方法区同样存在垃圾收集，因为通过用户定义的类加载器可以动态扩展Java程序，这样可能会导致一些类，不再被使用，变为垃圾。这时候需要进行垃圾清理</p>
-<h3 id="9-栈"><a href="#9-栈" class="headerlink" title="9.栈"></a>9.栈</h3><h3 id="10-三种JVM"><a href="#10-三种JVM" class="headerlink" title="10.三种JVM"></a>10.三种JVM</h3><ul>
-<li>Sun公司HotSpot Java Hotspot™ 64-Bit Server VM (build 25.181-b13,mixed mode) </li>
-<li>BEA JRockit </li>
-<li>IBM J9VM</li>
-</ul>
-<p>我们学习都是: Hotspot</p>
-<h3 id="11-堆"><a href="#11-堆" class="headerlink" title="11.堆"></a>11.堆</h3><p>Heap 堆内存的大小是可以调节的 </p>
-<p>类加载器读取了文件后，一般会把什么放在堆中? -&gt; 类、方法、常量、变量~ 保存我们所有引用类型的真实对象；堆内存中还要细分为三个区：</p>
+<h2 id="OPTIMIZATION-OF-KMEANS"><a href="#OPTIMIZATION-OF-KMEANS" class="headerlink" title="OPTIMIZATION OF KMEANS"></a>OPTIMIZATION OF KMEANS</h2><p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301608007.png"></p>
 <ul>
-<li>新生区</li>
-<li>养老区</li>
-<li>永久区</li>
+<li>手肘法(人工确定K)</li>
 </ul>
-<p>###12.新生区、养老区</p>
-<p><strong>新生区</strong></p>
+<blockquote>
+<p>当 K &lt; 2 时，曲线急速下降；当 K &gt; 2 时，曲线趋于平稳，通过手肘法我们认为拐点 2 为 K 的最佳值</p>
+</blockquote>
 <ul>
-<li>类：诞生 和成长的地方，甚至死亡；</li>
-<li>伊甸园 所有的对象都是在伊甸园区new出来的</li>
-<li>幸存者区(0,1) </li>
+<li><strong>Gap statistic</strong></li>
 </ul>
-<p><strong>养老区</strong><br>新生区存活下来的</p>
-<h3 id="13-永久区"><a href="#13-永久区" class="headerlink" title="13.永久区"></a>13.永久区</h3><p>这个区域常驻内存，用来存放JDK自身携带的Class对象，Interface元数据，存储的是java运行时的一些环境或类信息，这个区域不存在垃圾回收，关闭JVM虚拟就会释放这个区域的内存</p>
+<p>$$<br>𝑑_{𝑖𝑖^′}=\Sigma(𝑥_{𝑖𝑗}−𝑥_{𝑖^′ 𝑗})^2 (𝑖=1,2…𝑛;𝑗=1,2,…𝑝)\to 描述与中心的距离<br>$$</p>
+<p>$$<br>n_r=\abs{C_r} \to 样本空间<br>$$</p>
+<p>$$<br>W_k=\Sigma(\frac{1}{2n_r}D_r) \to 损失函数<br>$$</p>
+<p>$$<br>最终公式\to Gap_n(k)=E^*{log(W_k)}-log(W_k)<br>$$</p>
+<p>$$<br>E^*{log(W_k)}\to how\ to\ get?<br>$$</p>
+<blockquote>
+<p>参考论文: <a target="_blank" rel="noopener" href="https://statweb.stanford.edu/~gwalther/gap">Estimating the number of clusters in a data set via the gap statistic </a></p>
+<p>Robert Tibshirani , Guenther Walther and Trevor Hastie</p>
+<p>Stanford University</p>
+</blockquote>
+<h2 id="MONTE-CARLO-METHOD"><a href="#MONTE-CARLO-METHOD" class="headerlink" title="MONTE CARLO METHOD"></a>MONTE CARLO METHOD</h2><p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301616821.gif"></p>
 <ul>
-<li>jdk1.6之前：永久代，常量池在方法区</li>
-<li>jdk1.7   ：永久代，去永久代 ，常量池在堆中</li>
-<li>jdk1.8之后：无永久代，常量池在元空间</li>
+<li>解决两类问题</li>
 </ul>
-<h3 id="14-堆内存调优"><a href="#14-堆内存调优" class="headerlink" title="14.堆内存调优"></a>14.堆内存调优</h3><h3 id="15-GC"><a href="#15-GC" class="headerlink" title="15.GC"></a>15.GC</h3><p>JVM在进行GC时，并不是对这三个区统一回收,大部分时候，回收都是新生代</p>
+<blockquote>
+<p>一类是所求解的问题<strong>本身</strong>具有内在的随机性，借助计算机的运算能力可以直接模拟这种随机的过程</p>
+<p> 另一种类型是所求解问题可以<strong>转化</strong>为某种随机分布的特征数，比如随机事件出现的概率，或者随机变量的期望值</p>
+</blockquote>
 <ul>
-<li>新生代</li>
-<li>幸存区</li>
-<li>老年区</li>
+<li>理解</li>
 </ul>
-<p>GC两种类: 轻GC(普通GC)、重GC(全局GC)</p>
-<p>GC题目：</p>
+<blockquote>
+<p>假设你有一袋豆子，把豆子均匀地朝这个图形上撒，然后数这个图形之中有多少颗豆子，这个豆子的数目就是图形的面积。当你的豆子越小，撒的越多的时候，结果就越精确。借助计算机程序可以生成大量均匀分布坐标点，然后统计出图形内的点数，通过它们占总点数的比例和坐标点生成范围的面积就可以求出图形面积。</p>
+</blockquote>
+<h2 id="Kmeans-gt-Kmeans-gt-Kmeans-II"><a href="#Kmeans-gt-Kmeans-gt-Kmeans-II" class="headerlink" title="Kmeans -&gt; Kmeans++ -&gt; Kmeans II"></a>Kmeans -&gt; Kmeans++ -&gt; Kmeans II</h2><h3 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取数据 n 个 m维 的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机生成 K 个 m维 的点(where)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(t)</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">           <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>;j &lt; k;j++)</span><br><span class="line">	  		   计算 i 到类 j 的距离</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;I &lt; k;i++)</span><br><span class="line">           <span class="number">1.</span>  找出所有属于自己这一类的所有数据点</span><br><span class="line">           <span class="number">2.</span>  把自己的坐标修改为这些数据中心点坐标</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="Kmeans-1"><a href="#Kmeans-1" class="headerlink" title="Kmeans++"></a>Kmeans++</h3><ul>
+<li>1.随机选取ai</li>
+<li>2.计算数据到之前 n 个聚类中心最远的距离 , 并以一定的概率 </li>
+</ul>
+<p>$$<br>\frac{D(x)^2}{∑D(x)^2}<br>$$</p>
+<p>​        选择新的中心点ai</p>
 <ul>
-<li>JVM的内存模型和分区 -&gt; 详细到每个分区放什么</li>
-<li>堆里面的分区有哪些？Eden, form , to , 老年区，有什么特点</li>
-<li>GC的算法有哪些？标记清除法，标记压缩，复制算法，引用计数器，怎么用</li>
-<li>轻GC和重GC分别在什么时候发生</li>
+<li>3.重复步骤2</li>
 </ul>
-<p>引用计数法：</p>
-<p>常用算法</p>
-<h3 id="16-JMM"><a href="#16-JMM" class="headerlink" title="16.JMM"></a>16.JMM</h3><h3 id="17-总结"><a href="#17-总结" class="headerlink" title="17.总结"></a>17.总结</h3>
+<h3 id="Kmeans-II"><a href="#Kmeans-II" class="headerlink" title="Kmeans II"></a>Kmeans II</h3><ul>
+<li>在Kmeans++基础上 每次遍历取样k个，重复该取样过程klog(n)次，得到一个集合，然后随机选取 K个点作为类聚中心</li>
+</ul>
+<h2 id="PRETREATMENT"><a href="#PRETREATMENT" class="headerlink" title="PRETREATMENT"></a>PRETREATMENT</h2><p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301706552.png"></p>
+<blockquote>
+<p>当样本点过于离散时的效果</p>
+</blockquote>
+<ul>
+<li>1.预处理提前过滤掉异常值</li>
+<li>2.通过一个<font color=red>非线性映射</font>，将输入空间中的数据点映射到高位的特征空间中，并在新的特征空间中进行聚类。<font color=red>非线性映射增加了数据点线性可分的概率</font>，从而在经典的聚类算法失效的情况下，通过引入核函数可以达到更为<strong>准确</strong>的聚类结果。</li>
+</ul>
+<h2 id="ISODATA"><a href="#ISODATA" class="headerlink" title="ISODATA"></a>ISODATA</h2><blockquote>
+<p>ISODATA (迭代自组织数据分析法)。它解决了 K 的值需要预先人为的确定这一缺点。而当遇到高维度、海量的数据集时，人们往往很难准确地估计出 K 的大小</p>
+</blockquote>
+<ul>
+<li>当属于某个类别的样本数过少时把这个类别去除，当属于某个类别的样本数过多、分散程度较大时把这个类别分为两个子类别</li>
+</ul>
+
     </div>
 
     
@@ -457,21 +446,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/10/24/Docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE/" rel="prev" title="Docker命令回顾">
-                  <i class="fa fa-chevron-left"></i> Docker命令回顾
+                <a href="/2021/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="prev" title="深度学习Pytorch环境配置">
+                  <i class="fa fa-chevron-left"></i> 深度学习Pytorch环境配置
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/10/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%94%E8%AE%B0/" rel="next" title="计算机网络笔记">
-                  计算机网络笔记 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
