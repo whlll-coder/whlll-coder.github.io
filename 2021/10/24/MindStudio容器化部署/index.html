@@ -147,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0docker"><span class="nav-text">安装 | 更新Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0docker%E7%BB%84"><span class="nav-text">用户添加到docker组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E7%9B%B8%E8%A7%81docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE"><span class="nav-text">docker 基本命令(相见docker命令回顾)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-%E6%9B%B4%E6%96%B0Docker"><span class="nav-text">安装 | 更新Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0%E5%88%B0docker%E7%BB%84"><span class="nav-text">用户添加到docker组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4-%E7%9B%B8%E8%A7%81docker%E5%91%BD%E4%BB%A4%E5%9B%9E%E9%A1%BE"><span class="nav-text">docker 基本命令(相见docker命令回顾)</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -317,8 +317,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>大三上 创新实践 华为云 MindStudio 容器化部署</p>
 <span id="more"></span>
-<h2 id="安装-更新docker">安装 | 更新Docker</h2>
-<ul>
+<h2 id="安装-更新Docker"><a href="#安装-更新Docker" class="headerlink" title="安装 | 更新Docker"></a>安装 | 更新Docker</h2><ul>
 <li>如果原来docker版本老旧 删除之</li>
 <li>Ubuntu</li>
 </ul>
@@ -338,8 +337,10 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>Centos</p></li>
-<li><p>安装需要的包</p></li>
+<li><p>Centos</p>
+</li>
+<li><p>安装需要的包</p>
+</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
 <ul>
@@ -359,8 +360,7 @@
 <li>安装验证</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br><span class="line"></span><br><span class="line">Docker version 20.10.9, build c2ea9bc</span><br></pre></td></tr></table></figure>
-<h2 id="用户添加到docker组">用户添加到docker组</h2>
-<ul>
+<h2 id="用户添加到docker组"><a href="#用户添加到docker组" class="headerlink" title="用户添加到docker组"></a>用户添加到docker组</h2><ul>
 <li>查看是否有docker组</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/group</span><br></pre></td></tr></table></figure>
@@ -379,8 +379,7 @@
 <blockquote>
 <p>如果直接使用root 可以忽略此步</p>
 </blockquote>
-<h2 id="安装">安装</h2>
-<p>链接：https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A 提取码：pz61</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A">https://pan.baidu.com/s/1M5bcfzus_hKPSN_cJCVZ5A</a><br>提取码：pz61 </p>
 <ul>
 <li>FileZilla FTP传输 c32.zip 到虚拟机(推荐当前用户的home目录) 解压</li>
 </ul>
@@ -397,7 +396,7 @@
 <li>重命名镜像</li>
 </ul>
 <blockquote>
-<p>使用 <strong>docker images</strong> 查看镜像ID</p>
+<p>使用 <strong>docker images</strong> 查看镜像ID </p>
 <p>使用 <strong>docker ps -a </strong> 查看运行的容器ID</p>
 <p>使用 <strong>docker ps -aq</strong> 查看运行和退出状态的容器ID</p>
 </blockquote>
@@ -437,8 +436,7 @@
 <li>进入home目录并启动MindStudio</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/MindStudio-ubuntu/bin/</span><br><span class="line"></span><br><span class="line">./MindStudio.sh</span><br></pre></td></tr></table></figure>
-<h2 id="docker-基本命令相见docker命令回顾">docker 基本命令(相见docker命令回顾)</h2>
-<ul>
+<h2 id="docker-基本命令-相见docker命令回顾"><a href="#docker-基本命令-相见docker命令回顾" class="headerlink" title="docker 基本命令(相见docker命令回顾)"></a>docker 基本命令(相见docker命令回顾)</h2><ul>
 <li>查看运行中的容器使用</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
@@ -545,7 +543,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">162k</span>
+    <span title="站点总字数">161k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
