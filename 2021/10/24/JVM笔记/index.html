@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM-%E6%8E%A2%E7%A9%B6"><span class="nav-text">JVM 探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JVM%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">1.JVM的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JVM%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">2.JVM的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">3.类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%8F%8C%E4%BA%B2%E5%A7%94%E4%BB%BB%E6%9C%BA%E5%88%B6"><span class="nav-text">4.双亲委任机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-text">5.沙箱安全机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Native"><span class="nav-text">6.Native</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-PC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">7.PC寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-text">8.方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E6%A0%88"><span class="nav-text">9.栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E4%B8%89%E7%A7%8DJVM"><span class="nav-text">10.三种JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%A0%86"><span class="nav-text">11.堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E6%96%B0%E7%94%9F%E5%8C%BA%E3%80%81%E5%85%BB%E8%80%81%E5%8C%BA"><span class="nav-text">12.新生区、养老区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E6%B0%B8%E4%B9%85%E5%8C%BA"><span class="nav-text">13.永久区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-text">14.堆内存调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-GC"><span class="nav-text">15.GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-JMM"><span class="nav-text">16.JMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-%E6%80%BB%E7%BB%93"><span class="nav-text">17.总结</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jvm-%E6%8E%A2%E7%A9%B6"><span class="nav-text">JVM 探究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">1.JVM的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jvm%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-text">2.JVM的体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-text">3.类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E4%BB%BB%E6%9C%BA%E5%88%B6"><span class="nav-text">4.双亲委任机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-text">5.沙箱安全机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pc%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text">7.PC寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-text">8.方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88"><span class="nav-text">9.栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%A7%8Djvm"><span class="nav-text">10.三种JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86"><span class="nav-text">11.堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E5%8C%BA"><span class="nav-text">13.永久区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-text">14.堆内存调优</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gc"><span class="nav-text">15.GC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jmm"><span class="nav-text">16.JMM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">17.总结</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -328,7 +328,8 @@
     <div class="post-body" itemprop="articleBody">
         <p>JVM 初探小笔记</p>
 <span id="more"></span>
-<h1 id="JVM-探究"><a href="#JVM-探究" class="headerlink" title="JVM 探究"></a>JVM 探究</h1><p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110251637935.png" alt=""></p>
+<h1 id="jvm-探究">JVM 探究</h1>
+<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110251637935.png" /></p>
 <ul>
 <li>对 JVM 的理解 java8虚拟机和之前的变化更新?</li>
 <li>什么是OOM，什么是栈溢出 StackOverflowError? 怎么分析？</li>
@@ -336,83 +337,97 @@
 <li>内存快照如何抓取，怎么分析Dump文件？</li>
 <li>谈谈对JVM中，类加载器你的认识？</li>
 </ul>
-<h3 id="1-JVM的位置"><a href="#1-JVM的位置" class="headerlink" title="1.JVM的位置"></a>1.JVM的位置</h3><p>操作系统之上 -&gt; 操作系统的代理</p>
-<h3 id="2-JVM的体系结构"><a href="#2-JVM的体系结构" class="headerlink" title="2.JVM的体系结构"></a>2.JVM的体系结构</h3><p>Class File -&gt; Class Loader -&gt; Runtime Data Area(Method Area &amp; Stack &amp; Native Method Stack &amp; Heap &amp; program counter) &lt;-&gt; 执行引擎 &lt;-&gt; 本地方法接口 &lt;- 本地方法库</p>
-<h3 id="3-类加载器"><a href="#3-类加载器" class="headerlink" title="3.类加载器"></a>3.类加载器</h3><p>作用：加载 Class 文件 -&gt; </p>
-<p>1.虚拟机自带的加载器 </p>
-<p>2.启动类(根)加载器 </p>
-<p>3.扩展类加载器 </p>
+<h3 id="jvm的位置">1.JVM的位置</h3>
+<p>操作系统之上 -&gt; 操作系统的代理</p>
+<h3 id="jvm的体系结构">2.JVM的体系结构</h3>
+<p>Class File -&gt; Class Loader -&gt; Runtime Data Area(Method Area &amp; Stack &amp; Native Method Stack &amp; Heap &amp; program counter) &lt;-&gt; 执行引擎 &lt;-&gt; 本地方法接口 &lt;- 本地方法库</p>
+<h3 id="类加载器">3.类加载器</h3>
+<p>作用：加载 Class 文件 -&gt;</p>
+<p>1.虚拟机自带的加载器</p>
+<p>2.启动类(根)加载器</p>
+<p>3.扩展类加载器</p>
 <p>4.应用程序加载器</p>
-<h3 id="4-双亲委任机制"><a href="#4-双亲委任机制" class="headerlink" title="4.双亲委任机制"></a>4.双亲委任机制</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">       1.类加载器收到类加载的请求</span></span><br><span class="line"><span class="comment">       2.将这个请求向上委托给父类加载器去完成，一直向上委托，直到启动类加载器</span></span><br><span class="line"><span class="comment">       3.启动类加载器检查是否能够加载当前这个类，能加载就结束，使用当前的加载器，否则就抛出异常，通知子加载器进行加载</span></span><br><span class="line"><span class="comment">       4.重复 3 过程</span></span><br><span class="line"><span class="comment">       Class not Found ~  </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<h3 id="5-沙箱安全机制"><a href="#5-沙箱安全机制" class="headerlink" title="5.沙箱安全机制"></a>5.沙箱安全机制</h3><p><strong>组成沙箱的基本组件:</strong></p>
+<h3 id="双亲委任机制">4.双亲委任机制</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">       1.类加载器收到类加载的请求</span></span><br><span class="line"><span class="comment">       2.将这个请求向上委托给父类加载器去完成，一直向上委托，直到启动类加载器</span></span><br><span class="line"><span class="comment">       3.启动类加载器检查是否能够加载当前这个类，能加载就结束，使用当前的加载器，否则就抛出异常，通知子加载器进行加载</span></span><br><span class="line"><span class="comment">       4.重复 3 过程</span></span><br><span class="line"><span class="comment">       Class not Found ~  </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h3 id="沙箱安全机制">5.沙箱安全机制</h3>
+<p><strong>组成沙箱的基本组件:</strong></p>
 <ul>
 <li>字节码校验器(bytecode verifier) :确保Java类文件遵循Java语言规范。这样可以帮助Java程序实现内存保护。但并不是所有的类文件都会经过字节码校验，比如核心类。</li>
 </ul>
-<hr>
+<hr />
 <ul>
 <li>类裝载器(class loader) :其中类装载器在3个方面对Java沙箱起作用 它防止恶意代码去干涉善意的代码; 它守护了被信任的类库边界;</li>
 </ul>
-<hr>
+<hr />
 <ul>
-<li>它将代码归入保护域,确定了代码可以进行哪些操作。 虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成， 每一个被装载的类将有一个名字，这个命名空间是由Java虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。 类装载器采用的机制是双亲委派模式。 <ul>
-<li>1.从最内层JVM自带类加载器开始加载,外层恶意同名类得不到加载从而无法使用; </li>
-<li>2.由于严格通过包来区分了访问域,外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。 </li>
-</ul>
-</li>
-</ul>
-<hr>
+<li>它将代码归入保护域,确定了代码可以进行哪些操作。 虚拟机为不同的类加载器载入的类提供不同的命名空间，命名空间由一系列唯一的名称组成， 每一个被装载的类将有一个名字，这个命名空间是由Java虚拟机为每一个类装载器维护的，它们互相之间甚至不可见。 类装载器采用的机制是双亲委派模式。
 <ul>
-<li>存取控制器(access controller) :存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略设定,可以由用户指定。 </li>
+<li>1.从最内层JVM自带类加载器开始加载,外层恶意同名类得不到加载从而无法使用;</li>
+<li>2.由于严格通过包来区分了访问域,外层恶意的类通过内置代码也无法获得权限访问到内层类，破坏代码就自然无法生效。</li>
+</ul></li>
 </ul>
-<hr>
+<hr />
 <ul>
-<li>安全管理器(security manager) : 是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。 </li>
+<li>存取控制器(access controller) :存取控制器可以控制核心API对操作系统的存取权限，而这个控制的策略设定,可以由用户指定。</li>
 </ul>
-<hr>
+<hr />
 <ul>
-<li>安全软件包(security package) : java.security下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括: <ul>
-<li>安全提供者 </li>
+<li>安全管理器(security manager) : 是核心API和操作系统之间的主要接口。实现权限控制，比存取控制器优先级高。</li>
+</ul>
+<hr />
+<ul>
+<li>安全软件包(security package) : java.security下的类和扩展包下的类，允许用户为自己的应用增加新的安全特性，包括:
+<ul>
+<li>安全提供者</li>
 <li>消息摘要</li>
-<li>数字签名 </li>
+<li>数字签名</li>
 <li>加密</li>
-<li>鉴别<h3 id="6-Native"><a href="#6-Native" class="headerlink" title="6.Native"></a>6.Native</h3></li>
+<li>鉴别 ###6.Native</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p>native:凡是带了native关键字的，说明java的作用范围达不到了，<strong>回去调用底层C语言的库</strong> -&gt; 会进入 <strong>本地方法栈</strong><br>调用本地方法接口 <strong>JNI(Java Native Interface)</strong> JNI作用：开拓Java的使用，融合C &amp; C++<br>它在内存中开辟了一块标记区域：Native Method Stack,登记native方法<br>在最终执行的时候，加载本地方法库中的方法通过JNI</p>
-<h3 id="7-PC寄存器"><a href="#7-PC寄存器" class="headerlink" title="7.PC寄存器"></a>7.PC寄存器</h3><p>程序计数器(Program Counter Register):每个线程都有一个程序计数器，是线程私有的，就是一个指针, 指向方法区中的方法字节码(用来存储指向像一条指令的地址， 也即将要执行的指令代码)，在执行引擎读取下一条指令, 是一个非常小的内存空间，几乎可以忽略不计</p>
-<h3 id="8-方法区"><a href="#8-方法区" class="headerlink" title="8.方法区"></a>8.方法区</h3><p>保存在着被加载过的每一个类的信息；这些信息由类加载器在加载类的时候，从类的源文件中抽取出来；static变量信息也保存在方法区中；</p>
+<p>native:凡是带了native关键字的，说明java的作用范围达不到了，<strong>回去调用底层C语言的库</strong> -&gt; 会进入 <strong>本地方法栈</strong> 调用本地方法接口 <strong>JNI(Java Native Interface)</strong> JNI作用：开拓Java的使用，融合C &amp; C++ 它在内存中开辟了一块标记区域：Native Method Stack,登记native方法 在最终执行的时候，加载本地方法库中的方法通过JNI</p>
+<h3 id="pc寄存器">7.PC寄存器</h3>
+<p>程序计数器(Program Counter Register):每个线程都有一个程序计数器，是线程私有的，就是一个指针, 指向方法区中的方法字节码(用来存储指向像一条指令的地址， 也即将要执行的指令代码)，在执行引擎读取下一条指令, 是一个非常小的内存空间，几乎可以忽略不计</p>
+<h3 id="方法区">8.方法区</h3>
+<p>保存在着被加载过的每一个类的信息；这些信息由类加载器在加载类的时候，从类的源文件中抽取出来；static变量信息也保存在方法区中；</p>
 <p>可以看做是将类（Class）的元数据，保存在方法区里；</p>
 <p>方法区是线程共享的；当有多个线程都用到一个类的时候，而这个类还未被加载，则应该只有一个线程去加载类，让其他线程等待；</p>
 <p>方法区的大小不必是固定的，jvm可以根据应用的需要动态调整。jvm也可以允许用户和程序指定方法区的初始大小，最小和最大限制；</p>
 <p>方法区同样存在垃圾收集，因为通过用户定义的类加载器可以动态扩展Java程序，这样可能会导致一些类，不再被使用，变为垃圾。这时候需要进行垃圾清理</p>
-<h3 id="9-栈"><a href="#9-栈" class="headerlink" title="9.栈"></a>9.栈</h3><h3 id="10-三种JVM"><a href="#10-三种JVM" class="headerlink" title="10.三种JVM"></a>10.三种JVM</h3><ul>
-<li>Sun公司HotSpot Java Hotspot™ 64-Bit Server VM (build 25.181-b13,mixed mode) </li>
-<li>BEA JRockit </li>
+<h3 id="栈">9.栈</h3>
+<h3 id="三种jvm">10.三种JVM</h3>
+<ul>
+<li>Sun公司HotSpot Java Hotspot™ 64-Bit Server VM (build 25.181-b13,mixed mode)</li>
+<li>BEA JRockit</li>
 <li>IBM J9VM</li>
 </ul>
 <p>我们学习都是: Hotspot</p>
-<h3 id="11-堆"><a href="#11-堆" class="headerlink" title="11.堆"></a>11.堆</h3><p>Heap 堆内存的大小是可以调节的 </p>
+<h3 id="堆">11.堆</h3>
+<p>Heap 堆内存的大小是可以调节的</p>
 <p>类加载器读取了文件后，一般会把什么放在堆中? -&gt; 类、方法、常量、变量~ 保存我们所有引用类型的真实对象；堆内存中还要细分为三个区：</p>
 <ul>
 <li>新生区</li>
 <li>养老区</li>
 <li>永久区</li>
 </ul>
-<h3 id="12-新生区、养老区"><a href="#12-新生区、养老区" class="headerlink" title="12.新生区、养老区"></a>12.新生区、养老区</h3><p><strong>新生区</strong></p>
+<p>###12.新生区、养老区</p>
+<p><strong>新生区</strong></p>
 <ul>
 <li>类：诞生 和成长的地方，甚至死亡；</li>
 <li>伊甸园 所有的对象都是在伊甸园区new出来的</li>
-<li>幸存者区(0,1) </li>
+<li>幸存者区(0,1)</li>
 </ul>
-<p><strong>养老区</strong><br>新生区存活下来的</p>
-<h3 id="13-永久区"><a href="#13-永久区" class="headerlink" title="13.永久区"></a>13.永久区</h3><p>这个区域常驻内存，用来存放JDK自身携带的Class对象，Interface元数据，存储的是java运行时的一些环境或类信息，这个区域不存在垃圾回收，关闭JVM虚拟就会释放这个区域的内存</p>
+<p><strong>养老区</strong> 新生区存活下来的</p>
+<h3 id="永久区">13.永久区</h3>
+<p>这个区域常驻内存，用来存放JDK自身携带的Class对象，Interface元数据，存储的是java运行时的一些环境或类信息，这个区域不存在垃圾回收，关闭JVM虚拟就会释放这个区域的内存</p>
 <ul>
 <li>jdk1.6之前：永久代，常量池在方法区</li>
-<li>jdk1.7   ：永久代，去永久代 ，常量池在堆中</li>
+<li>jdk1.7 ：永久代，去永久代 ，常量池在堆中</li>
 <li>jdk1.8之后：无永久代，常量池在元空间</li>
 </ul>
-<h3 id="14-堆内存调优"><a href="#14-堆内存调优" class="headerlink" title="14.堆内存调优"></a>14.堆内存调优</h3><h3 id="15-GC"><a href="#15-GC" class="headerlink" title="15.GC"></a>15.GC</h3><p>JVM在进行GC时，并不是对这三个区统一回收,大部分时候，回收都是新生代</p>
+<h3 id="堆内存调优">14.堆内存调优</h3>
+<h3 id="gc">15.GC</h3>
+<p>JVM在进行GC时，并不是对这三个区统一回收,大部分时候，回收都是新生代</p>
 <ul>
 <li>新生代</li>
 <li>幸存区</li>
@@ -428,7 +443,9 @@
 </ul>
 <p>引用计数法：</p>
 <p>常用算法</p>
-<h3 id="16-JMM"><a href="#16-JMM" class="headerlink" title="16.JMM"></a>16.JMM</h3><h3 id="17-总结"><a href="#17-总结" class="headerlink" title="17.总结"></a>17.总结</h3>
+<h3 id="jmm">16.JMM</h3>
+<h3 id="总结">17.总结</h3>
+
     </div>
 
     
@@ -503,7 +520,7 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">161k</span>
+    <span title="站点总字数">162k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
