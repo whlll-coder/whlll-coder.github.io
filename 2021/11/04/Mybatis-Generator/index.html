@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="MyBatis Generator (MBG) 是一个Mybatis的代码生成器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis Generator">
+<meta property="og:url" content="http://example.com/2021/11/04/Mybatis-Generator/index.html">
+<meta property="og:site_name" content="whlll-blog">
+<meta property="og:description" content="MyBatis Generator (MBG) 是一个Mybatis的代码生成器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-04T13:31:18.000Z">
+<meta property="article:modified_time" content="2021-11-06T09:17:09.169Z">
+<meta property="article:author" content="whlll">
+<meta property="article:tag" content="代码生成器">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/11/04/Mybatis-Generator/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/11/04/Mybatis-Generator/","path":"2021/11/04/Mybatis-Generator/","title":"Mybatis Generator"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Mybatis Generator | whlll-blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whlll-blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-generator%E4%BB%8B%E7%BB%8D"><span class="nav-text">MyBatis Generator介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E9%A1%B9"><span class="nav-text">依赖项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-generator-%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="nav-text">MyBatis Generator 快速入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8java%E8%BF%90%E8%A1%8C-mybatis-generator%E9%AD%94%E7%9C%BC%E9%A1%B9%E7%9B%AE%E4%B8%AD"><span class="nav-text">使用Java运行 MyBatis Generator(魔眼项目中)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8xml%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%BB%8Ejava%E8%BF%90%E8%A1%8Cmbg"><span class="nav-text">使用XML配置文件从Java运行MBG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%9F%BA%E4%BA%8Ejava%E7%9A%84%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8Cmgb"><span class="nav-text">通过基于Java的配置运行MGB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis-generator-xml-%E9%85%8D%E7%BD%AE%E5%8F%82%E8%80%83"><span class="nav-text">MyBatis Generator XML 配置参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#classpathentry%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;classPathEntry&gt;元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90"><span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#columnoverride-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;columnOverride&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-1"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-1"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-1"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#columnrenamingrule-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;columnRenamingRule&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-2"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-2"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-2"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#commentgenerator%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;commentGenerator&gt;元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-3"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-3"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-3"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-text">支持的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#context-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;context&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-4"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-4"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-4"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7-1"><span class="nav-text">支持的属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generatedkey-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;generatedKey&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-5"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-5"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-5"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generatorconfiguration-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;generatorConfiguration&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-6"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-6"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-6"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ignorecolumn-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;ignoreColumn&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-7"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-7"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-7"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaclientgenerator-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;javaClientGenerator&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-8"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-8"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-8"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7-2"><span class="nav-text">支持的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jdbcconnection-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;jdbcConnection&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-9"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-9"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-9"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#plugin-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;plugin&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-10"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-10"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-10"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#properties-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;properties&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-11"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-11"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-11"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;property&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-12"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-12"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-12"><span class="nav-text">子元素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sqlmapgenerator-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;sqlMapGenerator&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-13"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-13"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-13"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7-3"><span class="nav-text">支持的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-3"><span class="nav-text">示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table-%E5%85%83%E7%B4%A0"><span class="nav-text">&lt;table&gt; 元素</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-text">数据库标识符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%85%E9%80%89%E5%B1%9E%E6%80%A7-14"><span class="nav-text">必选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7-14"><span class="nav-text">可选属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E5%85%83%E7%B4%A0-14"><span class="nav-text">子元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E5%B1%9E%E6%80%A7-4"><span class="nav-text">支持的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-4"><span class="nav-text">示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="nav-text">使用生成的对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#java%E5%AE%9E%E4%BD%93%E5%AF%B9%E8%B1%A1"><span class="nav-text">JAVA实体对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E9%94%AE%E7%B1%BB"><span class="nav-text">主键类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E7%B1%BB"><span class="nav-text">记录类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blob%E8%AE%B0%E5%BD%95%E7%B1%BB"><span class="nav-text">BLOB记录类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#example%E7%B1%BB"><span class="nav-text">Example类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sql%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6"><span class="nav-text">SQL映射文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-text">结果集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#blob%E7%BB%93%E6%9E%9C%E9%9B%86"><span class="nav-text">BLOB结果集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#where%E6%9D%A1%E4%BB%B6sql%E8%AF%AD%E5%8F%A5"><span class="nav-text">Where条件SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%BB%E9%94%AE%E6%9F%A5%E8%AF%A2"><span class="nav-text">根据主键查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-text">根据条件查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E5%8C%85%E5%90%ABblob%E5%AD%97%E6%AE%B5%E6%96%B9%E6%B3%95selectbyexamplewithblobs"><span class="nav-text">根据条件查询包含BLOB字段(方法:selectByExampleWithBLOBs)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%80%A7%E6%8F%92%E5%85%A5"><span class="nav-text">选择性插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%BB%E9%94%AE%E6%9B%B4%E6%96%B0"><span class="nav-text">根据主键更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%BB%E9%94%AE%E6%9B%B4%E6%96%B0%E5%8C%85%E5%90%ABblob%E5%AD%97%E6%AE%B5"><span class="nav-text">根据主键更新包含BLOB字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%BB%E9%94%AE%E9%80%89%E6%8B%A9%E6%80%A7%E6%9B%B4%E6%96%B0"><span class="nav-text">根据主键选择性更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E4%B8%BB%E9%94%AE%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95"><span class="nav-text">根据主键删除记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95"><span class="nav-text">根据条件删除记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95%E6%80%BB%E6%95%B0"><span class="nav-text">根据条件查询记录总数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="nav-text">根据条件更新记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95%E5%8C%85%E5%90%ABblob%E5%AD%97%E6%AE%B5"><span class="nav-text">根据条件修改记录包含BLOB字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%9D%A1%E4%BB%B6%E9%80%89%E6%8B%A9%E6%80%A7%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95"><span class="nav-text">根据条件选择性更新记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AF%B9%E8%B1%A1"><span class="nav-text">Java客户端对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%9A%E7%94%A8dao%E6%96%B9%E6%B3%95"><span class="nav-text">通用DAO方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xmlmapper-%E5%AE%A2%E6%88%B7%E7%AB%AF-mybatis-3.x"><span class="nav-text">XMLMAPPER 客户端 (MyBatis 3.x)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example%E7%B1%BB%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-text">Example类使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2"><span class="nav-text">复杂查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%BB%E9%87%8D%E5%A4%8D%E6%9F%A5%E8%AF%A2"><span class="nav-text">去重复查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#criteria%E7%B1%BB"><span class="nav-text">Criteria类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95example%E7%B1%BB"><span class="nav-text">扩展Example类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%8E%9F%E5%88%99"><span class="nav-text">一般原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A9%E5%B1%95vs%E6%8F%92%E4%BB%B6"><span class="nav-text">扩展vs插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="nav-text">添加条件语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9B%BF%E6%8D%A2"><span class="nav-text">1. 简单字符串替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E6%9D%A1%E4%BB%B6%E5%8F%82%E6%95%B0"><span class="nav-text">2. 单条件参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%9D%A1%E4%BB%B6"><span class="nav-text">3. 列表条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#between%E6%9D%A1%E4%BB%B6"><span class="nav-text">4. Between条件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql-%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">MySql 使用注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B"><span class="nav-text">无符号类型</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whlll"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">whlll</p>
+  <div class="site-description" itemprop="description">whlll的小破站❥</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button site-overview-item animated">
+    <button><i class="fa fa-comment"></i>
+      Chat with me
+    </button>
+  </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whlll-coder" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whlll-coder" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whlll0305lhl@gmail.com" title="E-Mail → mailto:whlll0305lhl@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/7193773610" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;7193773610" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.jmyblog.top/" title="https:&#x2F;&#x2F;www.jmyblog.top&#x2F;" rel="noopener" target="_blank">谁把钱丢了</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+      
+            <script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+            <script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+            <div class="widget-wrap">
+                <h3 class="widget-title">都有啥</h3>
+                <div id="myCanvasContainer" class="widget tagcloud">
+                    <canvas width="250" height="250" id="resCanvas" style="width=100%">
+                        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/408%E8%80%83%E7%A0%94/" rel="tag">408考研</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hibernate/" rel="tag">Hibernate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jasmin/" rel="tag">Jasmin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jvm/" rel="tag">Jvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MindStudio/" rel="tag">MindStudio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySql/" rel="tag">MySql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/" rel="tag">Mybatis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Netty/" rel="tag">Netty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pytorch/" rel="tag">Pytorch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMq/" rel="tag">RabbitMq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/" rel="tag">代码生成器</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/" rel="tag">建站指南</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag">消息中间件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">1</span></li></ul>
+                    </canvas>
+                </div>
+            </div>
+      
+
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/whlll-coder" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/04/Mybatis-Generator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="whlll">
+      <meta itemprop="description" content="whlll的小破站❥">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whlll-blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Mybatis Generator
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-04 21:31:18" itemprop="dateCreated datePublished" datetime="2021-11-04T21:31:18+08:00">2021-11-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-11-06 17:17:09" itemprop="dateModified" datetime="2021-11-06T17:17:09+08:00">2021-11-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E4%BD%9C%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">工作学习</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>40k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>36 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>MyBatis Generator (MBG) 是一个Mybatis的代码生成器</p>
+<span id="more"></span>
+<blockquote>
+<p>他可以内省数据库的表（或多个表）然后生成可以用来访问（多个）表的基础对象。 这样和数据库表进行交互时不需要创建对象和配置文件。 MBG的解决了对数据库操作有最大影响的一些简单的CRUD（插入，查询，更新，删除）操作。 您仍然需要对联合查询和存储过程手写SQL和对象</p>
+</blockquote>
+<h2 id="mybatis-generator介绍">MyBatis Generator介绍</h2>
+<p>MyBatis Generator 会生成:</p>
+<ul>
+<li><p>匹配表结构的Java POJO，可能包括:</p>
+<ul>
+<li>一个和表主键匹配的类(如果存在主键[注:只有联合主键会有])</li>
+<li>一个包含了非主键字段的类(BLOB字段除外[注:单字段做主键时这里会包含])</li>
+<li>一个包含了BLOB字段的类 (如果表包含了BLOB字段)</li>
+<li>一个允许动态查询、更新和删除的类[注:指的是Example查询]</li>
+</ul>
+<p>这些类之间会有适当的继承关系。 请注意可以配置生成器来生成不同类型的 POJO 的层次结构。 例如，如果您愿意您可能会选择针对每个表生成一个单独的实体对象。</p></li>
+<li><p>MyBatis/iBATIS 兼容 SQL 映射 XML 文件。MBG 在配置中为每个表简单的 CRUD 操作生成 SQL。 生成的 SQL 语句包括：</p>
+<ul>
+<li>insert (插入)</li>
+<li>update by primary key (根据主键更新记录)</li>
+<li>update by example (根据条件更新记录)</li>
+<li>delete by primary key (根据主键删除记录)</li>
+<li>delete by example (根据条件删除记录)</li>
+<li>select by primary key (根据主键查询记录)</li>
+<li>select by example (根据条件查询记录集)</li>
+<li>count by example (根据条件查询记录总数)</li>
+</ul>
+<p>根据表的结构，生成的这些语句会有不同的变化（例如，如果表中没有主键，那么 MBG 将不会生成update by primary key方法）。</p></li>
+<li><p>Java客户端类会适当的使用上面的对象，生成Java客户端类时可选的。 MBG会为MyBatis 3.x生成如下客户端类：</p>
+<ul>
+<li>一个可以和MyBatis 3.x一起使用的mapper接口类MBG会为iBATIS 2.x生成如下的客户端类：</li>
+<li>符合 <a target="_blank" rel="noopener" href="http://www.springframework.org/">Spring</a> 框架的DAO类。</li>
+<li>只使用iBATIS SQL映射API的DAO。 这种DAO可以通过下面两种方式生成：提供<code>SqlMapClient</code>通过构造方法或者setter注入。</li>
+<li>符合iBATIS DAO 框架的DAO (iBATIS可选的一部分，这一框架已经过时，我们建议您使用Spring框架替代)。</li>
+</ul></li>
+</ul>
+<p>MyBatis generator 可以在迭代开发环境中良好的运行， 在持续的构建环境中作为一个ant任务或maven插件。 运行MBG时要记住以下重要的事：</p>
+<ol type="1">
+<li>MBG 会自动合并已经存在并且和新生成的文件重名的 XML。MBG 不会覆盖您对已经生成xml所做的修改。 您可以反复的运行而不必担心失去您自定义的更改。 MBG 将取代所有以前运行中生成的 XML 元素。</li>
+<li>MBG <strong>不会</strong> 合并 Java 文件,他可以覆盖已经存在的文件或者保存新生成的文件为一个不同的唯一的名字。 您可以手动合并这些更改。 当您使用<a target="_blank" rel="noopener" href="http://www.eclipse.org/">Eclipse</a> 插件时, MBG 可以自动合并 Java 文件.</li>
+</ol>
+<h3 id="依赖项">依赖项</h3>
+<p>MBG依赖JRE,需要JRE6.0或以上版本。 此外，还有一个继承了DatabaseMetaData接口的JDBC驱动。 特别是<code>getColumns</code>和<code>getPrimaryKeys</code>两个方法时必须的。</p>
+<h2 id="mybatis-generator-快速入门">MyBatis Generator 快速入门</h2>
+<p>若要启动并快速运行 MyBatis Generator（MBG），请按以下步骤进行:</p>
+<ol type="1">
+<li><p>创建并填写适当的配置文件。 至少，您必须指定:</p>
+<ol type="1">
+<li><code>&lt;jdbcConnection&gt;</code> 元素定义如何连接目标数据库</li>
+<li><code>&lt;javaModelGenerator&gt;</code> 元素来指定生成 Java 模型对象所属的包</li>
+<li><code>&lt;sqlMapGenerator&gt;</code> 元素来指定生成 SQL 映射文件所属的包和的目标项目</li>
+<li>(可选的) <code>&lt;javaClientGenerator&gt;</code> 元素来指定目标包和目标项目生成的客户端接口和类 （如果您不想生成 Java 客户端代码您可以省略<code>&lt; javaClientGenerator &gt;</code> 元素）</li>
+</ol>
+<p>查看 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/java-opensource-doc/configreference/xmlconfig.html">XML 配置文件参考</a> 一个配置文件的例子.</p></li>
+<li><p>将文件保存在一些方便的位置(例如 .xml)</p></li>
+<li><p>按下面的方式从命令行运行 MBG:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar mybatis-generator-core-x.x.x.jar -configfile \temp\generatorConfig.xml -overwrite</span><br></pre></td></tr></table></figure>
+<p>这会告诉 MBG 使用配置文件去运行。 MBG还会覆盖已经存在的同名Java文件。 如果您想保留已经存在的Java文件，您可以忽略 <code>-overwrite</code> 参数。 如果存在冲突, MBG 会用一个唯一的名字保存新生成的文件（例如：MyClass.java.1)。</p></li>
+<li><p>MBG运行后, 您将需要创建或修改的标准 MyBatis 或 iBATIS 配置文件来使用新生成的代码。</p></li>
+</ol>
+<h2 id="使用java运行-mybatis-generator魔眼项目中">使用Java运行 MyBatis Generator(魔眼项目中)</h2>
+<p>MyBatis Generator (MBG) 可以直接使用Java调用。 对于配置，您可以使用XML配置文件，或者完全使用Java进行配置。</p>
+<h3 id="使用xml配置文件从java运行mbg">使用XML配置文件从Java运行MBG</h3>
+<p>下面的代码例子展示了如何通过XML配置文件从Java运行MBG。 他不显示异常处理，但是编译错误是很明显的 :)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; warnings = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="keyword">boolean</span> overwrite = <span class="keyword">true</span>;</span><br><span class="line">File configFile = <span class="keyword">new</span> File(<span class="string">&quot;generatorConfig.xml&quot;</span>);</span><br><span class="line">ConfigurationParser cp = <span class="keyword">new</span> ConfigurationParser(warnings);</span><br><span class="line">Configuration config = cp.parseConfiguration(configFile);</span><br><span class="line">DefaultShellCallback callback = <span class="keyword">new</span> DefaultShellCallback(overwrite);</span><br><span class="line">MyBatisGenerator myBatisGenerator = <span class="keyword">new</span> MyBatisGenerator(config, callback, warnings);</span><br><span class="line">myBatisGenerator.generate(<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<p>注意:</p>
+<ul>
+<li>配置文件属性可以通过 ConfigurationParser 的构造函数的参数传递给解析器。如果没有显式传递，配置文件的属性将会从JVM的系统属性搜索。 例如，属性 <code>generated.source.dir</code> 可以在配置文件中通过 <code>$&#123;generated.source.dir&#125;</code> 被访问。</li>
+<li>如果没有指定配置文件中的一个属性，这个属性将会原样输出。</li>
+</ul>
+<h3 id="通过基于java的配置运行mgb">通过基于Java的配置运行MGB</h3>
+<p>下面的代码例子展示了如何通过基于Java的配置运行MGB。 他不显示异常处理，但是编译错误是很明显的 :)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; warnings = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="keyword">boolean</span> overwrite = <span class="keyword">true</span>;</span><br><span class="line">Configuration config = <span class="keyword">new</span> Configuration();</span><br><span class="line"></span><br><span class="line"><span class="comment">//   ... fill out the config object as appropriate...</span></span><br><span class="line"></span><br><span class="line">DefaultShellCallback callback = <span class="keyword">new</span> DefaultShellCallback(overwrite);</span><br><span class="line">MyBatisGenerator myBatisGenerator = <span class="keyword">new</span> MyBatisGenerator(config, callback, warnings);</span><br><span class="line">myBatisGenerator.generate(<span class="keyword">null</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="mybatis-generator-xml-配置参考">MyBatis Generator XML 配置参考</h2>
+<p>最常见的用例中，代码生成器(MBG)是由一个XML配置文件驱动。配置文件告诉MBG:</p>
+<ul>
+<li>如何连接到数据库</li>
+<li>生成什么对象，以及如何生成它们</li>
+<li>那些表生成对象</li>
+</ul>
+<p>下面是一个MBG配置文件的例子。查阅每个元素单独的页面查看更多有关元素的更多信息和属性值。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">generatorConfiguration</span></span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">classPathEntry</span> <span class="attr">location</span>=<span class="string">&quot;/Program Files/IBM/SQLLIB/java/db2java.zip&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">&quot;DB2Tables&quot;</span> <span class="attr">targetRuntime</span>=<span class="string">&quot;MyBatis3&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">&quot;COM.ibm.db2.jdbc.app.DB2Driver&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">connectionURL</span>=<span class="string">&quot;jdbc:db2:TEST&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">userId</span>=<span class="string">&quot;db2admin&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">password</span>=<span class="string">&quot;db2admin&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaTypeResolver</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;forceBigDecimals&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;test.model&quot;</span> <span class="attr">targetProject</span>=<span class="string">&quot;\MBGTestProject\src&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;trimStrings&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;test.xml&quot;</span>  <span class="attr">targetProject</span>=<span class="string">&quot;\MBGTestProject\src&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">&quot;XMLMAPPER&quot;</span> <span class="attr">targetPackage</span>=<span class="string">&quot;test.dao&quot;</span>  <span class="attr">targetProject</span>=<span class="string">&quot;\MBGTestProject\src&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">schema</span>=<span class="string">&quot;DB2ADMIN&quot;</span> <span class="attr">tableName</span>=<span class="string">&quot;ALLTYPES&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;Customer&quot;</span> &gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;useActualColumnNames&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">generatedKey</span> <span class="attr">column</span>=<span class="string">&quot;ID&quot;</span> <span class="attr">sqlStatement</span>=<span class="string">&quot;DB2&quot;</span> <span class="attr">identity</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">columnOverride</span> <span class="attr">column</span>=<span class="string">&quot;DATE_FIELD&quot;</span> <span class="attr">property</span>=<span class="string">&quot;startDate&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ignoreColumn</span> <span class="attr">column</span>=<span class="string">&quot;FRED&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">columnOverride</span> <span class="attr">column</span>=<span class="string">&quot;LONG_VARCHAR_FIELD&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;VARCHAR&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>有关此文件的重要说明:</p>
+<ul>
+<li>该文件指定旧式DB2 CLI驱动程序将用于连接到数据库，并指定在何处可以找到驱动程序。</li>
+<li>Java类型解析器不应该强制型对象字段BigDecimal的使用，这意味着整数类型(短、整型、长等)如果可能的话将被取代。 此功能是为了使数据库DECIMAL和NUMERIC列容易处理。</li>
+<li>Java模型生成器应该使用子包。 这意味着在这种情况下生成的模型对象将被放置在名为 <code>test.model.db2admin</code> 的包中（因为表在 DB2ADMIN schema中）。 如果 <code>enableSubPackages</code> 属性设置为 <code>false</code>， 那么包名将会是 <code>test.model</code>。 Java模型生成器也应该对字符串进行trim操作。 这意味着任何字符串属性的setter方法将调用trim方法 - 如果您的数据库可能会在字符末尾返回空白符，这是非常有用的。</li>
+<li>SQL映射生成器将使用子包。这意味着这种情况下生成的XML文件将被放置在名为 <code>test.xml.db2admin</code> 的包中（因为表在 DB2ADMIN schema中）。 如果 <code>enableSubPackages</code> 属性设置为 <code>false</code>， 那么包名将会是 <code>test.xml</code>。</li>
+<li>DAO生成器将使用子包。这意味着这种情况下生成的DAO类都会被放置在名为 <code>test.dao.db2admin</code> 的包中（因为表在 DB2ADMIN schema中）。 如果 <code>enableSubPackages</code> 属性设置为 <code>false</code>， 那么包名将会是 <code>test.dao</code>。 DAO生成器会生成一些引用Mybatis XML配置的mapper接口。</li>
+</ul>
+<h3 id="classpathentry元素"><code>&lt;classPathEntry&gt;</code>元素</h3>
+<p><code>&lt;classPathEntry&gt;</code> 元素 用于添加运行类路径位置到类路径中的 MyBatis Generator（MBG）。 <code>&lt;classPathEntry&gt;</code> 元素是 <code>&lt;generatorConfiguraion&gt;</code> 的子元素. MBG 在这些情况下从这些路径下加载类:</p>
+<ul>
+<li>当加载 JDBC 驱动内省数据库时</li>
+<li>当加载根类中的 JavaModelGenerator 检查重写的方法时</li>
+</ul>
+<p>这个元素是可选的，而且如果您给MGB安装了类路径，您就不需要这个元素(例如 使用<code>java</code>命令时使用参数<code>-cp</code>)。</p>
+<p><strong>重要说明:</strong> 加载扩展一个 MBG 的类或实现 MBG 的接口之一的类时，不会使用这些位置。 在这种情况下，您必须以相同的方式将 MBG 添加到运行时的类路径下(例如 使用<code>java</code>命令时使用参数<code>-cp</code>)。</p>
+<h4 id="必选属性">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">location</td>
+<td style="text-align: left;">要添加到类路径中的 JAR/ZIP 文件的完整路径名称或要添加到类路径中的目录。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性">可选属性</h4>
+<p>无</p>
+<h4 id="子元素">子元素</h4>
+<p>无</p>
+<h4 id="例子">例子</h4>
+<p>这里指定了DB2 JDBC驱动的路径:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">classPathEntry</span> <span class="attr">location</span>=<span class="string">&quot;/Program Files/IBM/SQLLIB/java/db2java.zip&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="columnoverride-元素"><code>&lt;columnOverride&gt;</code> 元素</h3>
+<p>MyBatis Generator (MBG) 使用 <code>&lt;columnOverride&gt;</code> 元素从将某些属性默认计算的值更改为内省数据库列得的值。 这个元素是 <code>&lt;table&gt;</code>元素可选的一个子元素。</p>
+<h4 id="必选属性-1">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">column</td>
+<td style="text-align: left;">要内省的列名</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-1">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">property</td>
+<td style="text-align: left;">要使用的 Java 属性的名称。如果没有指定，MBG会根据列名生成。 例如，如果一个表的一列名为"STRT_DTE"， MBG会根据"useActualColumnNames"属性(查看 <code>&lt;table&gt;</code> 的属性获取更多的信息) 生成"STRT_DTE" 或 "strtDte"。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">javaType</td>
+<td style="text-align: left;">该列属性的完全限定的 Java 类型。如果需要，这可以覆盖由 <code>JavaTypeResolver</code> 计算出的类型。 对某些数据库来说， 这是必要的用来处理“奇怪的”数据库类型（例如 MySql 的 unsigned bigint 类型需要映射为 java.lang.Object)。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">jdbcType</td>
+<td style="text-align: left;">该列的 JDBC 类型 (INTEGER, DECIMAL, NUMERIC, VARCHAR 等等)。 如果需要，这可以覆盖由 <code>JavaTypeResolver</code> 计算出的类型。 对某些数据库来说，这是必要的用来处理怪异的 JDBC 驱动 (例如 DB2 的 LONGVARCHAR 类型需要为iBATIS 映射为 VARCHAR)。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">typeHandler</td>
+<td style="text-align: left;">用户定义的需要用来处理这列的类型处理器。 它必须是一个继承iBATIS的 <code>TypeHandler</code> 类或 <code>TypeHandlerCallback</code>接口（该接口很容易继承） 的全限定的类名。 如果没有指定或者是空白，iBATIS会用默认的类型处理器来处理类型。 <strong>重要:</strong> MBG 不会校验这个类型处理器是否存在或者可用。 MGB只是简单的将这个值插入到生成的SQL映射的配置文件中。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">delimitedColumnName</td>
+<td style="text-align: left;">指定是否应在生成的 SQL 分隔的列名称。 如果列的名称中包含空格，MGB会自动的分割列名， 所以这个重写只有当列名需要强制为一个合适的名字或者列名是数据库中的保留字时是必要的。当设置为 "true" 是, <code>column</code> 属性用于重写必须匹配从数据库返回的列名。分隔符指定在 <code>&lt;context&gt;</code> 元素上。<em>默认值是false。然而MGB会自动分割包含空格的列名，所以在这种情况下不需要重写。</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-1">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N) 注：在此处定义的任何属性都会被加入相应的内省列的属性集合中。 MBG目前不响应任何属性。 此元素被设置使得对于每一列的特殊值，可以在该插件被编码， 以产生或修改一些独特的特定列中的事件被提供给插件。</li>
+</ul>
+<h3 id="columnrenamingrule-元素"><code>&lt;columnRenamingRule&gt;</code> 元素</h3>
+<p>MyBatis Generator (MBG) 使用 <code>&lt;columnRenamingRule&gt;</code> 元素处理在内省表 中相应的属性名之前重命名数据库列。 这对那些存在同一前缀的字段想在生成属性名时去除前缀的表非常有用。 例子，假设一个表包含以下的列：</p>
+<ul>
+<li>CUST_BUSINESS_NAME</li>
+<li>CUST_STREET_ADDRESS</li>
+<li>CUST_CITY</li>
+<li>CUST_STATE</li>
+</ul>
+<p>生成的所有属性名中如果都包含 CUST的前缀可能会让人不爽。这些前缀可以通过如下方式定义重命名规则:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">columnRenamingRule</span> <span class="attr">searchString</span>=<span class="string">&quot;^CUST_&quot;</span> <span class="attr">replaceString</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意，在内部，MBG使用<code>java.util.regex.Matcher.replaceAll</code>方法实现这个功能。 请参阅有关该方法的文档和在Java中使用正则表达式的例子。</p>
+<p>当 <code>&lt;columnOverride&gt;</code> 匹配一列时，这个元素（<code>&lt;columnRenamingRule&gt;</code>）会被忽略。 <code>&lt;columnOverride&gt;</code>优先于重命名的规则。</p>
+<p>如果指定该选项，重命名规则会在生成属性名前替换列名。 计算出的属性名可能不同，这取决于 <code>&lt;table&gt;</code> 元素上的 "useActualColumnNames"属性。 下表显示了如果重命名规则用于字段集上时不同的值:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">列名</th>
+<th style="text-align: left;">属性 useActualColumnNames="true"</th>
+<th style="text-align: left;">属性 useActualColumnNames="false"</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CUST_BUSINESS_NAME</td>
+<td style="text-align: left;">BUSINESS_NAME</td>
+<td style="text-align: left;">businessName</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUST_STREET_ADDRESS</td>
+<td style="text-align: left;">STREET_ADDRESS</td>
+<td style="text-align: left;">streetAddress</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CUST_CITY</td>
+<td style="text-align: left;">CITY</td>
+<td style="text-align: left;">city</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CUST_STATE</td>
+<td style="text-align: left;">STATE</td>
+<td style="text-align: left;">state</td>
+</tr>
+</tbody>
+</table>
+<p>这个元素是 <code>&lt;table&gt;</code> 元素的一个可选的子元素。</p>
+<h4 id="必选属性-2">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">searchString</td>
+<td style="text-align: left;">定义将被替换的子字符串的正则表达式。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-2">可选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">replaceString</td>
+<td style="text-align: left;">这是一个用来替换搜索字符串列每一个匹配项的字符串。如果没有指定，就会使用空字符串。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-2">子元素</h4>
+<p>无</p>
+<h3 id="commentgenerator元素"><code>&lt;commentGenerator&gt;</code>元素</h3>
+<p><code>&lt;commentGenerator&gt;</code> 元素用来定义注释生成器的属性。 注释生成器用来给由 MyBatis Generator (MBG) 生成的多种元素（Java自动，Java方法，XML元素等等）生成注释。 默认的注释生成器将 JavaDoc 注释添加到所有生成的Java元素上，从而使Eclipse插件可以使用合并Java的功能。 此外，注释还会添加到每一个生成的XML元素。 注释的目的还在于告诉用户这个元素是生成的，并且有可能重新生成（也就是说 - 他们不应该被修改）。 这个元素是 <code>context</code> 元素的一个可选的子元素。</p>
+<p>默认的实现类是 <code>org.mybatis.generator.internal.DefaultCommentGenerator</code>。 如果您只想修改某些行为，默认的实现类专门为扩展进行设计。</p>
+<h4 id="必选属性-3">必选属性</h4>
+<p>无</p>
+<h4 id="可选属性-3">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">使用用户指定提供的注释生成器类型。 这个类必须继承<code>org.mybatis.generator.api.CommentGenerator</code>接口。 而且必须有一个默认的构造函数。 这个属性接收指定特殊的值 DEFAULT，这将会使用默认的实现类（这和不指定该属性的效果一样）。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-3">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N)</li>
+</ul>
+<h4 id="支持的属性">支持的属性</h4>
+<p>这个表格列出了注释生成器中所有可以通过 <code>&lt;property&gt;</code> 子元素进行设置的属性：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性名</th>
+<th style="text-align: left;">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">suppressAllComments</td>
+<td style="text-align: left;">这个属性用来指定MBG生成的代码中是否包含任何注释。 这个属性有以下可选值：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false <em>这是默认值</em> 当这个属性是false或者没有指定时，所有生成的元素都会包含用来说明这是生成元素的注释。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">true 当这个属性是true时，不会往生成的元素中添加任何注释。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>警告:</strong> 如果您将这个值设为true，那么所有的代码合并都会被禁用。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">suppressDate</td>
+<td style="text-align: left;">这个元素用来指定生成的注释中是否包含生成的日期。 这个属性有以下可选值：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">false <em>这是默认值</em> 当这个属性是false或者没有指定时，所有元素生成注释时都会带着生成时间。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">true 当这个属性是true时，注释中不会添加时间戳。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4>
+<p>这个元素指定了我们不希望生成的注释中包含时间戳:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suppressDate&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="context-元素"><code>&lt;context&gt;</code> 元素</h3>
+<p><code>&lt;context&gt;</code> 元素用于指定生成一组对象的环境。 子元素用于指定要连接到的数据库、 要生成对象的类型和要内省的表。 多个 <code>&lt;context&gt;</code> 元素可以在 <code>&lt;generatorConfiguration&gt;</code> 元素中列出来，这样可以在同一个MyBatis Generator (MBG)从不同的数据库或者使用不同的生成生成器参数生成对象。</p>
+<h4 id="必选属性-4">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">id</td>
+<td style="text-align: left;">context唯一的标识符。此值将用于某些错误消息。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-4">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">defaultModelType</td>
+<td style="text-align: left;">这个属性用来设置生成对象类型的默认值。 对象类型定义了MBG如何生成实体类。 对某些对象类型，MBG会给每一个表生成一个单独的实体类。 对另外一些对象类型，MBG会根据表结构生成不同的类。这个属性有以下可选值：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">conditional <em>这是默认值</em> 这个模型和hierarchical类似，除了如果那个单独的类将只包含一个字段，将不会生成一个单独的类。 因此,如果一个表的主键只有一个字段,那么不会为该字段生成单独的实体类,会将该字段合并到基本实体类中。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">flat 该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">hierarchical 如果表有主键,那么该模型会产生一个单独的主键实体类,如果表还有BLOB字段， 则会为表生成一个包含所有BLOB字段的单独的实体类,然后为所有其他的字段生成一个单独的实体类。 MBG会在所有生成的实体类之间维护一个继承关系（注：BLOB类 继承 其他字段类 继承 主键类）。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">targetRuntime</td>
+<td style="text-align: left;">此属性用于指定生成的代码的运行时目标。 该属性支持这些特殊的值：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">MyBatis3 <em>这是默认值</em> 使用这值的时候，MBG会生成兼容MyBatis 3.0或更高版本， 兼容JSE 5.0或更高版本的对象（例如Java模型类和Mapper接口会使用泛型）。 这些生成对象中的"by example"方法将支持几乎不受限制的动态的where子句。 另外，这些生成器生成的Java对象支持JSE 5.0特性，包含泛型和注解。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">MyBatis3Simple <em>这是默认值</em> 使用这值的时候，和上面的MyBatis3类似，但是不会有"by example"一类的方法，只有少量的动态SQL。 Ibatis2Java2 使用这值的时候，MBG会生成兼容iBATIS 2.2.0或更高版本（除了iBATIS 3），还有Java2的所有层次。 这些生成对象中的"by example"方法将支持几乎不受限制的动态的where子句。 这些生成的对象不能100%和原生的Abator或其他的代码生成器兼容。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Ibatis2Java5 使用这值的时候，MBG会生成兼容iBATIS 2.2.0或更高版本（除了iBATIS 3）， 兼容JSE 5.0或更高版本的对象（例如Java模型类和Dao类会使用泛型）。 这些生成对象中的"by example"方法将支持几乎不受限制的动态的where子句。 另外，这些生成器生成的Java对象支持JSE 5.0特性，包含泛型和注解。 这些生成的对象不能100%和原生的Abator或其他的代码生成器兼容。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">如果您想创建一个完全不同的代码生成器， 使用一个继承了<code>org.mybatis.generator.api.IntrospectedTable</code>类的权限定类名替换该值。 通过这个值，您可以创建您自己的代码生成器，然后插入到代码生成器引擎中。 查阅 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/reference/extending.html">扩展 MyBatis Generator</a> 页面获取更多信息。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">introspectedColumnImpl</td>
+<td style="text-align: left;">使用这个值去指定一个继承了<code>org.mybatis.generator.api.IntrospectedColumn</code>类的权限定名称。 这可以修改代码生成器计算列信息时候的行为。 查阅 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/reference/extending.html">扩展 MyBatis Generator</a> 页面获取更多信息。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-4">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N)</li>
+<li><code>&lt;plugin&gt;</code> (0..N)</li>
+<li><code>&lt;commentGenerator&gt;</code> (0 or 1)</li>
+<li><code>&lt;jdbcConnection&gt;</code> (1 Required)</li>
+<li><code>&lt;javaTypeResolver&gt;</code> (0 or 1)</li>
+<li><code>&lt;javaModelGenerator&gt;</code> (1 Required)</li>
+<li><code>&lt;javaMapGenerator&gt;</code> (0 or 1)</li>
+<li><code>&lt;javaClientGenerator&gt;</code> (0 or 1)</li>
+<li><code>&lt;table&gt;</code> (1..N)</li>
+</ul>
+<h4 id="支持的属性-1">支持的属性</h4>
+<p>下面的表格列出了所有可用的 <code>&lt;property&gt;</code>子元素:</p>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性名</th>
+<th style="text-align: left;">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">autoDelimitKeywords</td>
+<td style="text-align: left;">如果是true，那么MGB会分隔SQL关键字，如果他们被用作表中的列名。 MBG维护了许多不同数据库的SQL关键字列表。 然而，列表可能不是非常的全面。 如果一个特殊的关键字没有在MBG的关键字列表中， 您需要通过<code>&lt;columnOverride&gt;</code>强制分隔列。查看 <code>org.mybatis.generator.internal.db.SqlReservedWords</code> 这个类的源码查看MGB包含的关键字列表。<em>默认值是false。</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">beginningDelimiter</td>
+<td style="text-align: left;">要用作需要分隔符的 SQL 标识符开头的标识符分隔符的值。 MBG会自动分割包含空格的SQL标识符。 MGB还会自动分隔在 <code>&lt;table&gt;</code> 或 <code>&lt;columnOverride&gt;</code>中配置了具体要求的标识符。<em>默认值是双引号 (")。</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">endingDelimiter</td>
+<td style="text-align: left;">要使用作为结束的标识符分隔符需要分隔符的 SQL 标识符的值。 MBG会自动分割包含空格的SQL标识符。 MGB还会分隔在 <code>&lt;table&gt;</code> 或 <code>&lt;columnOverride&gt;</code>中配置了具体要求的标识符。<em>默认值是双引号 (")。</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">javaFileEncoding</td>
+<td style="text-align: left;">通过这个属性设置要使用的Java文件的编码。 新生成的Java文件会用这个编码写入到文件系统。 如果Java文件已经存在并且可以使用这个编码进行读取，就会执行合并操作。 如果没有指定，就会使用平台的默认编码。查阅 <code>java.nio.charset.Charset</code> 获取可以选择的编码的信息。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">javaFormatter</td>
+<td style="text-align: left;">使用此属性来指定生成的 Java 文件的用户提供 formater 的完整的类名称。 这个类必须继承 <code>org.mybatis.generator.api.JavaFormatter</code> 而且必须有一个默认（不含参数）的构造方法。 每一个context都持有一个单独的javaFormatter的实例。 默认的javaFormatter是 <code>org.mybatis.generator.api.dom.DefaultJavaFormatter</code>。 默认的格式使用内置到Java DOM类的格式。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">xmlFormatter</td>
+<td style="text-align: left;">使用此属性来指定生成的 XML 文件的用户提供 formater 的完整的类名称。 这个类必须继承 <code>org.mybatis.generator.api.XmlFormatter</code> 而且必须有一个默认（不含参数）的构造方法。 每一个context都持有一个单独的xmlFormatter的实例。 默认的xmlFormatter是 <code>org.mybatis.generator.api.dom.DefaultXmlFormatter</code>。 默认的格式使用内置到Java DOM类的格式。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="generatedkey-元素"><code>&lt;generatedKey&gt;</code> 元素</h3>
+<p><code>&lt;generatedKey&gt;</code> 元素用来指定自动生成主键的属性（identity字段或者sequences序列）。 如果指定了这个元素，MyBatis Generator (MBG)会在生成insert的SQL映射文件中插入一个合适的 <code>&lt;selectKey&gt;</code> 元素。 这个元素是 <code>&lt;table&gt;</code> 元素的一个可选的子元素。</p>
+<h4 id="必选属性-5">必选属性</h4>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">column</td>
+<td style="text-align: left;">生成列的列名。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sqlStatement</td>
+<td style="text-align: left;">将返回新值的 SQL 语句。如果这是一个identity列，您可以使用其中一个预定义的的特殊值。 或者为您的数据库使用一个合适的语句。 预先定义好的特殊值如下:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Cloudscape 这将转化为: <code>VALUES IDENTITY_VAL_LOCAL()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DB2 这将转化为: <code>VALUES IDENTITY_VAL_LOCAL()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">DB2_MF 这将转化为:<code>SELECT IDENTITY_VAL_LOCAL()               | |              | FROM SYSIBM.SYSDUMMY1</code>为运行在zOS（主框架）或者有些情况是iSeries (AS/400)上的DB2数据库使用该值</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Derby 这将转化为: <code>VALUES IDENTITY_VAL_LOCAL()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">HSQLDB 这将转化为: <code>CALL IDENTITY()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Informix 这将转化为: <code>select dbinfo('sqlca.sqlerrd1') from systables where tabid=1</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">MySql 这将转化为: <code>SELECT LAST_INSERT_ID()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SqlServer 这将转化为: <code>SELECT SCOPE_IDENTITY()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SYBASE 这将转化为: <code>SELECT @@IDENTITY</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">JDBC 这会配置MBG使用MyBatis3支持的JDBC标准的生成key来生成代码。 这是一个独立于数据库获取标识列中的值的方法。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>重要:</strong> 只有当目标运行为MyBatis3时才会产生正确的代码。 如果与iBATIS2一起使用目标运行时会产生运行时错误的代码。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-5">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">identity</td>
+<td style="text-align: left;">当设置为 <code>true</code> 时,该列会被标记为identity列， 并且 <code>&lt;selectKey&gt;</code> 元素会被插入在insert后面。 当设置为 <code>false</code> 时， <code>&lt;selectKey&gt;</code> 会插入到insert之前（通常是序列）。<strong>重要:</strong> 即使您 <code>type</code> 属性指定为"post"， 您仍然需要为 identity 列将该参数设置为 "true"。 这将标志MBG从插入列表中删除该列。默认值是 <em>false</em>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">如果指定，则此值将被添加为生成selectKey元素的类型。 此属性的值应该是"pre"或"post"。<strong>重要:</strong> 如果指定此属性的值，然后生成selectKey元素将永远被放置在insert语句之前。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-5">子元素</h4>
+<p>无</p>
+<h3 id="generatorconfiguration-元素"><code>&lt;generatorConfiguration&gt;</code> 元素</h3>
+<p><code>&lt;generatorConfiguration&gt;</code> 元素是MyBatis Generator配置的根元素。这个文件必须包含下面的 DOCTYPE:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">generatorConfiguration</span> <span class="meta-keyword">PUBLIC</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">&quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="必选属性-6">必选属性</h4>
+<p>无</p>
+<h4 id="可选属性-6">可选属性</h4>
+<p>无</p>
+<h4 id="子元素-6">子元素</h4>
+<h3 id="ignorecolumn-元素"><code>&lt;ignoreColumn&gt;</code> 元素</h3>
+<p><ignoreColumn>元素用来告诉 MyBatis Generator (MBG) 忽略一个表中的列。 生成的SQL不会使用该列，而且生成的模型对象中将不包含该列。 这个元素是 <code>&lt;table&gt;</code> 元素的一个可选的子元素。</p>
+<h4 id="必选属性-7">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">column</td>
+<td style="text-align: left;">被忽略的列名。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-7">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">delimitedColumnName</td>
+<td style="text-align: left;">当匹配对从数据库中返回的列时，如果为真，则MBG将执行区分大小写完全匹配。 如果为false(默认值)，则被认为是不区分大小写的名称。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-7">子元素</h4>
+<p>无</p>
+<h3 id="javaclientgenerator-元素"><code>&lt;javaClientGenerator&gt;</code> 元素</h3>
+<p><code>&lt;javaClientGenerator&gt;</code> 元素用于定义 Java 客户端代码生成器的属性。 Java客户端生成器生成Java接口和类，它可以简单地使用生成的Java模型和XML映射文件。 在iBATIS2目标环境中，这些对象可以生成DAO接口和实现类形式的代码。 对Mybatis来说，会生成Mapper接口形式的代码。 这个元素是 <code>&lt;context&gt;</code> 元素的一个可选的子元素。 如果不指定此元素，然后代码生成器(MBG)将不会生成Java客户端接口和类</p>
+<h4 id="必选属性-8">必选属性</h4>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">此属性用于选择一个预定义的Java客户端的生成器，或指定用户提供的Java客户端生成器。 任何用户提供的DAO生成器必须继承 <code>org.mybatis.generator.codegen.AbstractJavaClientGenerator</code> 类, 必须有一个公开默认的构造函数。该属性接收下列预定义的代码生成器之一:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">如果<code>&lt;context&gt;</code> targetRuntime 是 <strong>MyBatis3</strong>:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ANNOTATEDMAPPER 生成的对象是 MyBatis 3.x 映射器基础结构的 Java接口。 这些接口将会基于注解和 MyBatis 3.x SqlProviders。不会有XML文件生成。（注：就是纯接口使用注解的形式，不会有XML文件）ANNOTATEDMAPPER 依赖 MyBatis 3.0.4 或更高版本。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">MIXEDMAPPER 生成的对象是 MyBatis 3.x 映射器基础结构的 Java接口。 这些接口将基于注解和XML的混合形式。 注解将会用在简单注解可以实现的地方。 此客户端不会生成SqlProvider，所有复杂的动态SQL都会生成在XML中。The MIXEDMAPPER 依赖 MyBatis 3.0.4 或更高版本。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">XMLMAPPER 生成的对象是 MyBatis 3.x 映射器基础结构的 Java接口。 这些接口将会依赖于生成的XML文件。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">如果 <code>&lt;context&gt;</code> targetRuntime 是 <strong>MyBatis3Simple</strong>:</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">ANNOTATEDMAPPER 生成的对象是 MyBatis 3.x 映射器基础结构的 Java接口。 这些接口将会基于注解和 MyBatis 3.x SqlProviders。不会有XML文件生成。（注：就是纯接口使用注解的形式，不会有XML文件）The ANNOTATEDMAPPER 依赖 MyBatis 3.0.4 或更高版本。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">XMLMAPPER 生成的对象是 MyBatis 3.x 映射器基础结构的 Java接口。 这些接口将会依赖于生成的XML文件。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">如果 <code>&lt;context&gt;</code> targetRuntime 是 <strong>Ibatis2Java2</strong> or <strong>Ibatis2Java5</strong>:</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">IBATIS 生成的对象将符合（不建议使用）iBATIS的DAO框架。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">GENERIC-CI 生成的对象将只依赖于SqlMapClient。SqlMapClient将会通过构造参数依赖注入提供。 生成的对象将是DAO接口和实现类的形式。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">GENERIC-SI 生成的对象将只依赖于SqlMapClient。SqlMapClient将会通过setter方法依赖注入提供。 生成的对象将是DAO接口和实现类的形式。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">SPRING 生成的对象将符合Spring的DAO框架。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">targetPackage</td>
+<td style="text-align: left;">这个包用于放置生成的接口和实现类。 在默认的生成器中，属性"enableSubPackages"用来控制如何计算实际的包。 如果是true，如果表的catalog和schema存在，就将他们作为子包加起来。 如果"enableSubPackages"是false（默认值），计算的package将是targetPackage属性指定的值。 MBG 将创建所需的生成包的文件夹。<strong>注:</strong> 实现类的包可以通过指定下面会提到的可选的 <code>implementationPackage</code> 属性。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">targetProject</td>
+<td style="text-align: left;">这用来指定生成接口和类的目标项目。 当在Eclipse环境中运行时，此选项指定保存对象的位置的项目和源文件夹。 在其他环境中，此值应为本地文件系统上的现有目录。 如果它不存在，MBG不会创建它。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-8">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">implementationPackage</td>
+<td style="text-align: left;">如果指定了该属性，实现类就会生成在这个包中。 在默认的生成器中，属性"enableSubPackages"用来控制如何计算实际的包。 如果是true，如果表的catalog和schema存在，就将他们作为子包加起来。 如果"enableSubPackages"是false（默认值），计算的package将是targetPackage属性指定的值。 MBG 将创建所需的生成包的文件夹。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-8">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N)</li>
+</ul>
+<h4 id="支持的属性-2">支持的属性</h4>
+<p>这个表格列出了所有可以通过 <code>&lt;property&gt;</code> 子元素进行设置的属性：</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性名</th>
+<th style="text-align: left;">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">enableSubPackages</td>
+<td style="text-align: left;">这个属性用来选择MGB是否根据基于目录和内省表来生成不同的Java包。例如，假设某个表MYTABLE在MYSCHMA的schema中，也假设targetPackage属性的值设置为"com.mycompany"。 如果此属性为true，为这个表生成的DAO接口和类将被放置在包"com.mycompany.myschema"中。 如果此属性是false，生成的SQL映射将被放在"com.mycompany" schema中。<em>默认值是 false</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exampleMethodVisibility</td>
+<td style="text-align: left;">此属性用来设置不同"ByExample"方法的可见性 - selectByExample, deleteByExample等等。 如果没有指定，这些方法将会是公开的的，并将在接口中声明。 此属性使您可以隐藏这些方法如果您只想使用它们来执行其他专门的方法。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">public <em>这是默认值</em> 生成实现类中的方法将是公开的，并将该接口中声明的方法。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">private 生成实现类中的方法将是private的，也不会在接口中声明。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">protected 生成实现类中的方法将是protected的，也不会在接口中声明。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">default 生成实现类中的方法将是包内可见的，也不会在接口中声明。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>重要提示:</strong> 如果目标运行时是MyBatis3，则将忽略此属性。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">methodNameCalculator</td>
+<td style="text-align: left;">此属性用于选择一个方法名称计算器。 方法名称计算器可以用来为DAO方法提供不同的名称。 您可以选择一个预定义的值。 如果提供的选项都适合您的环境， 也可以指定一个实现了<code>org.mybatis.generator.api.DAOMethodNameCalculator</code>接口的 完全限定名称。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">default <em>这是默认值</em> 生成的方法名称会很简单("insert", "updateByPrimaryKey"等等)。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">extended 生成的方法名称将包括与方法关联的实体对象的名称("insertWidget", "updateWidgetByPrimaryKey"等等)。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>重要提示:</strong> this property is ignored if the target runtime is MyBatis3.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rootInterface</td>
+<td style="text-align: left;">此属性用于指定一个所有生成的接口都继承的父接口。 这个值可以通过表配置的 <code>rootInterface</code> 属性覆盖。<strong>重要:</strong> MBG 不验证接口是否存在或者是否是一个有效的接口。如果指定，这个属性值应该是一个全限定接口名称(例如 com.github.abel533.mapper.Mapper)。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">useLegacyBuilder</td>
+<td style="text-align: left;">如果为true，那么客户端将使用SqlBuilder为MyBatis生成动态SQL。 在MyBatis 3.2或以后版本，这个SqlBuilder废弃了，用了一个新的SQL类替代。 如果是false，MBG会使用新的SQL生成器生成客户端代码。<em>默认值是 false</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例-1">示例</h4>
+<p>此元素指定我们总希望生成的接口和对象在"text.model'包中，并且我们希望使用基于schema和catalog的子包。 它还指定了我们想使用为MyBatis3的XML配置文件的mapper接口。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;test.model&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">targetProject</span>=<span class="string">&quot;\MyProject\src&quot;</span> <span class="attr">type</span>=<span class="string">&quot;XMLMAPPER&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="jdbcconnection-元素"><code>&lt;jdbcConnection&gt;</code> 元素</h3>
+<p><code>&lt;jdbcConnection&gt;</code> 元素用于指定数据库连接所需的内省表的属性。 MyBatis Generator 使用JDBC的数据库元数据类来发现您在配置中指定的属性表。 每一个 <code>&lt;context&gt;</code> 都必须有一个<code>&lt;jdbcConnection&gt;</code>元素。</p>
+<h4 id="必选属性-9">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">driverClass</td>
+<td style="text-align: left;">用于访问数据库的JDBC驱动程序的完全限定类名称。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">connectionURL</td>
+<td style="text-align: left;">用于访问数据库的JDBC连接URL。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-9">可选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">userId</td>
+<td style="text-align: left;">访问数据库的用户ID。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">password</td>
+<td style="text-align: left;">访问数据库的密码。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-9">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N) 注意: 这里指定的任何属性将添加到JDBC驱动程序的属性中。</li>
+</ul>
+<h4 id="示例-2">示例</h4>
+<p>此元素将连接到DB2数据库配置为MBGTEST在DB2客户端配置实用程序。 使用JDBC驱动程序的默认安装位置:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">&quot;COM.ibm.db2.jdbc.app.DB2Driver&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">connectionURL</span>=<span class="string">&quot;jdbc:db2:MBGTEST&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">userId</span>=<span class="string">&quot;db2admin&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">password</span>=<span class="string">&quot;db2admin&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="plugin-元素"><code>&lt;plugin&gt;</code> 元素</h3>
+<p><code>&lt;plugin&gt;</code> 元素用来定义一个插件。插件用于扩展或修改通过MyBatis Generator (MBG)代码生成器生成的代码。 这是 <code>&lt;context&gt;</code> 元素的一个子元素。 可以在context指定任意数量的插件。插件将在配置中配置的顺序执行。</p>
+<p>有关执行插件的详细信息，请参阅 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/reference/pluggingIn.html">Implementing Plugins</a> 页面的引用。</p>
+<p>有关MyBatis Generator提供的插件代码生成器的详细信息，请参阅 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/reference/plugins.html">Supplied Plugins</a>提供参考页。</p>
+<h4 id="必选属性-10">必选属性</h4>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">type</td>
+<td style="text-align: left;">实现该接口的类的完全限定名的插件。该类必须实现该接口 <code>org.mybatis.generator.api.Plugin</code>, 必须有一个公开默认的构造函数。注意，继承 <code>org.mybatis.generator.api.PluginAdapter</code> 这个适配器类比继承接口更容易扩展。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-10">可选属性</h4>
+<p>无</p>
+<h4 id="子元素-10">子元素</h4>
+<p>无</p>
+<h3 id="properties-元素"><code>&lt;properties&gt;</code> 元素</h3>
+<p><code>&lt;properties&gt;</code> 元素用于指定一个需要在配置中解析使用的外部属性文件。 属性配置中的任何属性将接受 <code>$&#123;property&#125;</code> 这种形式的属性。 从指定的属性文件中搜索匹配的值，配置的值将会被替换。 属性文件时正常的Java属性文件的格式。</p>
+<p><code>&lt;properties&gt;</code>元素是 <code>&lt;generatorConfiguration&gt;</code> 元素的子元素。</p>
+<h4 id="必选属性-11">必选属性</h4>
+<p>以下属性是必需的，并且只能有其中一个。</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">resource</td>
+<td style="text-align: left;">属性文件的全限定名称。当指定了resource属性，将会从classpath下面搜索属性文件。 当指定为 <code>com/myproject/generatorConfig.properties</code> 时，他必须存在 <code>com.myproject</code> 包下面。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">url</td>
+<td style="text-align: left;">属性文件的URL值。这可以用于指定一个属性文件在文件系统上的特定位置，例如 <code>file:///C:/myfolder/generatorConfig.properties</code>。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-11">可选属性</h4>
+<p>无</p>
+<h4 id="子元素-11">子元素</h4>
+<p>无</p>
+<h3 id="property-元素"><code>&lt;property&gt;</code> 元素</h3>
+<p><code>&lt;property&gt;</code> 元素用于指定许多其他元素的属性。 每个支持属性元素的文档页面列出的不同值都是有效的。 此元素也可以用于将属性传递给您的任何自定义的代码生成器执行。</p>
+<h4 id="必选属性-12">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">name</td>
+<td style="text-align: left;">属性的名称(区分大小写)。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">value</td>
+<td style="text-align: left;">属性的值(通常是不区分大小写)。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-12">可选属性</h4>
+<p>无</p>
+<h4 id="子元素-12">子元素</h4>
+<p>无</p>
+<h3 id="sqlmapgenerator-元素"><code>&lt;sqlMapGenerator&gt;</code> 元素</h3>
+<p><code>&lt;sqlMapGenerator&gt;</code> element 用于定义SQL映射生成器的属性。 SQL映射生成器为每一个内省的表生成MyBatis/iBATIS形式的XML文件。</p>
+<p>如果目标是iBATIS2，那么这个元素是 <code>&lt;context&gt;</code> 元素的一个必须的子元素。</p>
+<p>如果目标是MyBatis3，那么只有当您选择javaClientGenerator需要XML时，他才是 <code>&lt;context&gt;</code> 元素的一个必须的子元素。</p>
+<p>如果不指定一个javaClientGenerator，则适用以下规则:</p>
+<ul>
+<li>如果您指定一个sqlMapGenerator，那么MBG将只生成SQL映射的XML文件和模型对象。</li>
+<li>如果您没有指定一个sqlMapGenerator，那么MBG将只会生成模型对象。</li>
+</ul>
+<h4 id="必选属性-13">必选属性</h4>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">targetPackage</td>
+<td style="text-align: left;">这个包用于放置生成的SQL映射文件。 在默认的生成器中，属性"enableSubPackages"用来控制如何计算实际的包。 如果是true，如果表的catalog和schema存在，就将他们作为子包加起来。 如果"enableSubPackages"是false（默认值），计算的package将是targetPackage属性指定的值。 MBG 将创建所需的生成包的文件夹。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">targetProject</td>
+<td style="text-align: left;">这用来指定生成SQL映射的目标项目。 当在Eclipse环境中运行时，此选项指定保存对象的位置的项目和源文件夹。 在其他环境中，此值应为本地文件系统上的现有目录。 如果它不存在，MBG不会创建它。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-13">可选属性</h4>
+<p>无</p>
+<h4 id="子元素-13">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N)</li>
+</ul>
+<h4 id="支持的属性-3">支持的属性</h4>
+<p>下面的表格列出了所有可用的 <code>&lt;property&gt;</code> 子元素:</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性名</th>
+<th style="text-align: left;">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">enableSubPackages</td>
+<td style="text-align: left;">这个属性用来选择MGB是否根据基于目录和内省表来生成不同的Java包。例如，假设某个表MYTABLE在MYSCHMA的schema中，也假设targetPackage属性的值设置为"com.mycompany"。 如果此属性为true，为这个表生成的DAO接口和类将被放置在包"com.mycompany.myschema"中。 如果此属性是false，生成的SQL映射将被放在"com.mycompany" schema中。<em>默认值是 false</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例-3">示例</h4>
+<p>此元素指定我们总希望生成的SQL映射文件在"text.model'包中，并且我们希望使用基于schema和catalog的子包。 它还指定了我们想使用为MyBatis3的XML配置文件的mapper接口。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;test.model&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">targetProject</span>=<span class="string">&quot;\MyProject\src&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="table-元素"><code>&lt;table&gt;</code> 元素</h3>
+<table>
+<p>元素用来从内省数据库中选择一个表。选定的表会生成如下的这些对象：</p>
+<ul>
+<li>一个 MyBatis/iBATIS 格式的SQL映射文件</li>
+<li>一组根据表生成的"model"类:
+<ul>
+<li>一个和表的主键匹配的类(如果表有主键)。</li>
+<li>一个包含了非主键字段和BLOB字段的类，如果存在主键类，这个类就会继承主键类。</li>
+<li>如果表中包含BLOB字段，就会有一个包含了BLOB字段的类。这个类会根据表的配置继承上面的一个或两个类。</li>
+<li>一个用于不同的"by example"方法(selectByExample, deleteByExample)生成动态查询条件的类。</li>
+</ul></li>
+<li>(可选) 一个DAO接口或者类</li>
+</ul>
+<p>这个元素是 <code>&lt;context&gt;</code> 元素的一个至少存在一个的必选子元素。 您可以指定不限制数量的table元素。</p>
+<h4 id="数据库标识符">数据库标识符</h4>
+<p>MyBatis Generator (MBG) 试图自动处理数据库标识符的大小写敏感性。 在大多数情况下，无论您是否设置<code>catalog</code>, <code>schema</code> 和 <code>tableName</code> 属性，MBG都能找到表。 MBG的处理过程遵循以下步骤：</p>
+<ol type="1">
+<li>如果 <code>catalog</code>, <code>schema</code> 或 <code>tableName</code> 属性包含空格，MBG将会根据指定的精确的情况查找。 在这种（包含空格）情况下，MBG将会自动分割生成SQL中表的标识符。</li>
+<li>如果数据库记录是以大写形式存储的标识符，MGB会自动将任何表的标识符转换为大写。</li>
+<li>如果数据库记录是以小写形式存储的标识符，MGB会自动将任何表的标识符转换为小写。</li>
+<li>其他情况，MBG根据指定的精确的情况查找。</li>
+</ol>
+<p>在大多数情况下，这种处理很完美。然而，在某些情况下它会失败。 例如，假设您创建了这样的一个表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> &quot;myTable&quot; (</span><br><span class="line">   ...<span class="keyword">some</span> columns</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>因为表名可以用分隔符，即使数据库把标识符存储为大写，大部分的数据库会根据精确指定的表名来生成表。 在（上面）这种情况下，您需要在表的配置中指定<code>delimitIdentifiers="true"</code>。</p>
+<h4 id="必选属性-14">必选属性</h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">tableName</td>
+<td style="text-align: left;">数据库表的名称(不包括schema或catalog)。如果需要，指定的值可以包含SQL通配符。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="可选属性-14">可选属性</h4>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">schema</td>
+<td style="text-align: left;">数据库 schema - 如果您的数据库不使用 schema ，或者有一个默认的 schema 您不需要设置 schema。 如果需要，指定的值可以包含SQL通配符。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">catalog</td>
+<td style="text-align: left;">数据库 catalog - 如果您的数据库不使用 catalog，或者有一个默认的 catalog，您就不需要设置 catalog。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">alias</td>
+<td style="text-align: left;">如果指定，这个值会用在生成的select查询SQL的表的别名和列名上。 列名会被别名为 alias_actualColumnName(别名_实际列名) 这种模式。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">domainObjectName</td>
+<td style="text-align: left;">生成对象的基本名称。如果没有指定，MBG会自动根据表名来生成名称。 这个（指定或者自动生成的）名字将用于计算实体类的名称和DAO类的名称。您可以在实体对象的名字上指定包名分割。 例如，您可以指定<code>foo.Bar</code>，然后实体对象的名字会是 <code>Bar</code>，包名<code>foo</code>会添加到生成器配置中指定的目标包后面。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">enableInsert</td>
+<td style="text-align: left;">指定是否生成Insert语句。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">enableSelectByPrimaryKey</td>
+<td style="text-align: left;">指定是否生成通过主键查询的语句。 无论这个怎么设置，当表不存在主键的时候，不会生成这个语句。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">enableSelectByExample</td>
+<td style="text-align: left;">指定是否生成通过Example查询的语句。 这个语句支持运行时生成多种不同条件的动态查询。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">enableUpdateByPrimaryKey</td>
+<td style="text-align: left;">指定是否生成通过主键更新的语句。 无论这个怎么设置，当表不存在主键的时候，不会生成这个语句。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">enableDeleteByPrimaryKey</td>
+<td style="text-align: left;">指定是否生成通过主键删除的语句。 无论这个怎么设置，当表不存在主键的时候，不会生成这个语句。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">enableDeleteByExample</td>
+<td style="text-align: left;">指定是否生成通过Example删除的语句。 这个语句支持运行时生成多种不同的条件动态删除。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">enableCountByExample</td>
+<td style="text-align: left;">指定是否生成通过Example查询总数的语句。 这个语句将返回满足Example条件的数据总数。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">enableUpdateByExample</td>
+<td style="text-align: left;">指定是否生成通过Example更新的语句。 这个语句将更新满足Example条件的数据。 如果设置为True,UpdateByExampleSelective语句也会生成。 这个语句只会更新那些参数中值不为null的的列。默认值是 <em>true</em>。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">selectByPrimaryKeyQueryId</td>
+<td style="text-align: left;">这个值会以"'<code>&lt;value&gt;</code>' as QUERYID"这种形式被添加到通过主键查询的语句的select列中。 这可能对在运行时的DBA跟踪工具中标记查询有用。 如果您使用这个值，您需要为MBG生成的每一个查询指定一个唯一的id。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">selectByExampleQueryId</td>
+<td style="text-align: left;">这个值会以"'<code>&lt;value&gt;</code>' as QUERYID"这种形式被添加到通过Example查询的语句的select列中。 这可能对在运行时的DBA跟踪工具中标记查询有用。 如果您使用这个值，您需要为MBG生成的每一个查询指定一个唯一的id。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">modelType</td>
+<td style="text-align: left;">如果您需要，这个值可以用来重写默认的模型类型。 如果没有指定，MBG将会生成基于上下文默认模型类型的实体对象。 模型类型定义了MBG如何生成实体类。 有一些模型类型MGB会为每个表生成一个单独的实体类。 另外一些模型，MGB会根据表结构生成不同的一些类。 这个属性有以下可选值：</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">conditional 这个模型和hierarchical类似，除了如果那个单独的类将只包含一个字段，将不会生成一个单独的类。 因此,如果一个表的主键只有一个字段,那么不会为该字段生成单独的实体类,会将该字段合并到基本实体类中。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">flat 该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">hierarchical 如果表有主键,那么该模型会产生一个单独的主键实体类,如果表还有BLOB字段， 则会为表生成一个包含所有BLOB字段的单独的实体类,然后为所有其他的字段生成一个单独的实体类。 MBG会在所有生成的实体类之间维护一个继承关系（注：BLOB类 继承 其他字段类 继承 主键类）。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">escapeWildcards</td>
+<td style="text-align: left;">这个属性表示当查询列，是否对schema和表名中的SQL通配符 ('_' and '%') 进行转义。 对于某些驱动当schema或表名中包含SQL通配符时（例如，一个表名是MY_TABLE，有一些驱动需要将下划线进行转义）是必须的。默认值是 <em>false</em>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">delimitIdentifiers</td>
+<td style="text-align: left;">这个属性表示当查询表并且在生成的SQL中分隔标识符时，是否使用指定的确切的值。 有关更多详细信息，请参见上面的详述。分隔符在 <code>&lt;context&gt;</code> 元素上指定。默认值是 <em>false</em>。除非 <code>catalog</code>, <code>schema</code> 或 <code>tableName</code> 属性值包含空白时，是 <em>true</em>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">delimitAllColumns</td>
+<td style="text-align: left;">指示是否给生成SQL中所有的列名添加分隔符。 这是一种给每个列添加<code>&lt;columnOverride&gt;</code>来指定列需要被分隔的替代方式。 这对类似PostgreSQL这种使用小写标识符的数据库很有用。分隔符在 <code>&lt;context&gt;</code> 元素上指定。默认值是 <em>false</em>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="子元素-14">子元素</h4>
+<ul>
+<li><code>&lt;property&gt;</code> (0..N)</li>
+<li><code>&lt;generatedKey&gt;</code> (0 or 1)</li>
+<li><code>&lt;columnRenamingRule&gt;</code> (0 or 1)</li>
+<li><code>&lt;columnOverride&gt;</code> (0..N)</li>
+<li><code>&lt;ignoreColumn&gt;</code> (0..N)</li>
+</ul>
+<h4 id="支持的属性-4">支持的属性</h4>
+<p>下面的表格列出了所有可用的 <code>&lt;property&gt;</code> 子元素:</p>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">属性名</th>
+<th style="text-align: left;">属性值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">constructorBased</td>
+<td style="text-align: left;">此属性用于选择代码生成器是否生成接受类中的每个字段的值的类的构造函数。 此外，SQL结果映射也会为每个字段生成使用构造方法而不是"setter"的方式。此属性仅适用于MyBatis3，iBATIS2将会被忽略。如果"immutable"属性设置为"true"，这个属性将会被忽略。<em>默认值是 false</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ignoreQualifiersAtRuntime</td>
+<td style="text-align: left;">如果设置为true，MBG不会讲schema或catalog添加到生成SQL中的表名上。 如果您有几个schemas中的表具有相同的名称，这是非常有用的。 您可以使用MBG生成基于在一个schema上的表，但是运行时不包含schema。<em>默认值是 false</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">immutable</td>
+<td style="text-align: left;">此属性用于选择MBG是否会生成不可变的模型类。 这意味着这些类不会包含"setter"方法，而且通过构造参数接收类中所有字段的值。如果设置为true,将会忽略"constructorBased"属性， 强制生成通过参数化构造方法的模型类。此属性仅适用于MyBatis3，iBATIS2将会被忽略。<em>默认值是 false</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">modelOnly</td>
+<td style="text-align: left;">此属性用于选择MBG是否只会为表生成模型类。如果设置为true，那么就不会生成Java客户端类。 如果 <code>&lt;sqlMapGenerator&gt;</code> 配置了，并且属性设置为true，那么MGB将会在该表的SQL映射XML中只生成结果映射元素。如果设置为true，这个值会覆盖<code>&lt;table&gt;</code>元素上所有的"enable<em>"属性，将不会生成任何CRUD方法。</em>默认值是 false*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rootClass</td>
+<td style="text-align: left;">这个属性可以用来指定所有生成的Java模型类的基类。 如果表包含主键，MBG会将该值指定为主键对象的超类。 或者其他记录对象的超类。 这个值将会覆盖Java模型生成配置中配置的<code>rootClass</code><strong>重要:</strong> 如果MBG可以加载基类，通常生成的属性不会覆盖和基类中完全匹配的属性。 完全匹配属性的定义如下</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">属性名称完全相同</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">属性的类型相同</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">属性有一个"getter"方法</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">属性有一个"setter"方法</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">如果指定这个值，这个属性值应该是一个完全限定的类名(例如：com.mycompany.MyRootClass).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rootInterface</td>
+<td style="text-align: left;">这个属性可以用来指定所有生成的DAO接口对象的父接口。 这个属性值会覆盖DAO生成器配置中配置的<code>rootInterface</code>属性。<strong>重要:</strong> MBG 不会校验接口是否存在或者合法。如果指定这个值，这个属性值应该是一个完全限定的接口名 (例如：com.mycompany.MyRootInterface).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">runtimeCatalog</td>
+<td style="text-align: left;">如果您指定了这个属性值，MBG会在生成的SQL中使用这个catalog，而不是前面配置的<code>catalog</code> 属性值。 当您生成代码的catalog和运行时的catalog不一样时，这会非常有用。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">runtimeSchema</td>
+<td style="text-align: left;">如果您指定了这个属性值，MBG会在生成的SQL中使用这个schema，而不是前面配置的<code>schema</code> 属性值。 当您生成代码的schema和运行时的schema不一样时，这会非常有用。</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">runtimeTableName</td>
+<td style="text-align: left;">如果您指定了这个属性值，MBG会在生成的SQL中使用这个表名，而不是前面配置的<code>tableName</code> 属性值。 当您想在Oracle中使用公共同义词生成对象时，这会非常有用。 在这种情况下，您将需要生成对象的同义词的指向您实际表。那就在此属性中指定同义词名称。 在使用公共同义词的大多数情况下，您还需要设置 <code>ignoreQualifiersAtRuntime</code>属性。</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">selectAllOrderByClause</td>
+<td style="text-align: left;">这个属性可以用于指定将会加到 <code>selectAll</code> 方法中的order by语句。 这仅适用于您使用<code>MyBatis3Simple</code>目标运行环境时。 MBG会将您在这儿指定的任何属性值前面追加<code>order by</code>， 因此该属性赢仅包含列表中的列(例如 <code>ID1, ID2</code> 或 <code>ID1 desc, ID2 asc</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">useActualColumnNames</td>
+<td style="text-align: left;">如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式。 在这两种情况下，可以通过 <code>&lt;columnOverride&gt;</code> 元素显示指定，在这种情况下将会忽略这个（useActualColumnNames）属性。例如，假设一个表包含START_DATE列，如果这个属性是"true", 那么MBG生成的属性名是<code>START_DATE</code> - 这意味着这个值的getter和setter方法将会是 <code>getSTART_DATE()</code> 和 <code>setSTART_DATE()</code>. 如果这个属性值是fasle,MBG将会生成的属性名是 <code>startDate</code> - 这意味着这个值的getter和setter方法将会是 <code>getStartDate()</code> 和 <code>setStartDate()</code>.<em>默认值是 false</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">useColumnIndexes</td>
+<td style="text-align: left;">如果是true,MBG生成resultMaps的时候会使用列的索引,而不是结果中列名的顺序. 当表中的列名的区别只是大小写的时候,这会非常有用. 这个支持还会有一个轻微的性能优势.<em>默认值是 false</em><strong>重要提示:</strong> 当目标运行环境是Mybatis版本3时不支持这个属性.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">useCompoundPropertyNames</td>
+<td style="text-align: left;">如果是true,那么MBG生成属性名的时候会将列名和列备注接起来. 这对于那些通过第四代语言自动生成列(例如:FLD22237),但是备注包含有用信息(例如:"customer id")的数据库来说很有用. 在这种情况下,MBG会生成属性名FLD2237_CustomerId.<em>默认值是 false</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例-4">示例</h4>
+<p>这个元素指定我们总是想为一个在MYSCHEMA schema上的叫做 MYTABLE 的表生成代码. 我们还想忽略表中一个叫"fred"的列,而且我想还想重写"BEG_DATA"列,以便生成的属性名是"startDate".</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;MYTABLE&quot;</span> <span class="attr">schema</span>=<span class="string">&quot;MYSCHEMA&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ignoreColumn</span> <span class="attr">column</span>=<span class="string">&quot;fred&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">columnOverride</span> <span class="attr">column</span>=<span class="string">&quot;BEG_DATE&quot;</span> <span class="attr">property</span>=<span class="string">&quot;startDate&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用生成的对象">使用生成的对象</h2>
+<ul>
+<li>Java模型对象</li>
+<li>SQL映射文件</li>
+<li>Java客户端对象</li>
+<li>Example类使用说明</li>
+<li>扩展Example类</li>
+</ul>
+<h3 id="java实体对象">JAVA实体对象</h3>
+<p>MyBatis Generator (MBG)根据数据库表字段生成Java类. MBG生成的是简单实体对象而非带业务逻辑的实体对象(详见<a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/philosophy.html">设计理念</a>介绍).MBG根据表特性和配置生成不同类型的实体对象.</p>
+<p>MBG生成字段和方法时包含JavaDoc标签 <code>@mbggenerated</code>.运行Eclipse插件时,MBG会将每个Java对象中的JavaDoc标签删除或替换.其他地方不会发生变化. 在这种情况下,您在Java类中添加的字段和方法就不用担心丢失--不包括包含了JavaDoc<code>@mbggenerated</code>标签部分内容.</p>
+<p>离开Eclipse插件，您需要手动合并Java文件,但是使用JavaDoc的<code>@mbggenerated</code>标签用来了解删除以前版本的文件是否安全.</p>
+<p>以下描述生成不同的实体对象.MBG根据<code>&lt;context&gt;</code>的<code>defaultModelType</code>属性(支持conditional、flat、hierarchical三个值)和<code>&lt;table&gt;</code>的<code>modelType</code>(此属性用于覆盖默认的defaultModelType)属性配置生成不同的实体对象.</p>
+<p>任何字段配置了<code>&lt;ignoreColumn&gt;</code>,自动生成时不会添加到Java对象中.</p>
+<p>注意: 下面描述中"BLOB"指任何列的BLOB数据类型包括BLOB, CLOB, LONGVARCHAR, 和 LONGVARBINARY.</p>
+<h4 id="主键类">主键类</h4>
+<p>主键类在表中包含一个主键的字段属性. (MBG)根据表列明自动生成属性名称.自动生成的属性名称可以配置<code>&lt;columnOverride&gt;</code>属性覆盖.</p>
+<p>类名默认情况是<code>?TableName?Key</code>,如果<code>&lt;table&gt;</code>配置了<code>domainObjectName</code>属性那么类名是<code>?domainObjectName?Key</code>.</p>
+<p>如果表中存在一个字段的主键将会生成hierarchical类型实体对象. 如果表中存在多列组合主键将会生成conditional类型实体对象.主键类是不会生成flat类型实体对象 model.</p>
+<h4 id="记录类">记录类</h4>
+<p>主键类在表中不包含主键、BLOB的字段属性. 如果只有一个主键记录类将继承主键类. (MBG)根据表列明自动生成属性名称.自动生成的属性名称可以配置<code>&lt;columnOverride&gt;</code>属性覆盖.</p>
+<p>类名默认情况是<code>?TableName?</code>,如果<code>&lt;table&gt;</code>配置了<code>domainObjectName</code>属性那么类名是<code>?domainObjectName?</code>配置的值.</p>
+<p>如果表中不存在组合主键、BLOB列将生成hierarchical类型实体对象.如果表中不存一个字段的主键、BLOB列或只有一个主键或者一个BLOB列将生成conditional类型实体对象.记录类常常生成flat类型实体对象.</p>
+<h4 id="blob记录类">BLOB记录类</h4>
+<p>BLOB记录类在表中包含BLOB字段属性. 如果表中只存在一个字段该类将继承基础类, 或将继承主键类(注意:MBG不支持表中只包含BLBO列). (MBG)根据表列明自动生成属性名称.自动生成的属性名称可以配置<code>&lt;columnOverride&gt;</code>属性覆盖.</p>
+<p>BLOB记录类调用<code>selectByPrimaryKey</code>或<code>selectByExampleWithBLOBs</code>方法返回BLOB字段值.</p>
+<p>类名默认情况是<code>?TableName?WithBLOBs</code>,如果<code>&lt;table&gt;</code>配置了<code>domainObjectName</code>属性那么类名是<code>?domainObjectName?WithBLOBs</code>.</p>
+<p>如果表中存在一个BLOB列将生成hierarchical类型实体对象. 如果表中存在多个BLOB列将生成conditional类型实体对象.BLOB记录类是不会生成flat类型实体对象.</p>
+<h4 id="example类">Example类</h4>
+<p>Example类用来处理MBG动态查询功能. Example类设置条件用于动态WHERE子句下列方法中:</p>
+<ul>
+<li><code>selectByExample</code></li>
+<li><code>selectByExampleWithBLOBs</code></li>
+<li><code>deleteByExample</code></li>
+<li><code>countByExample</code></li>
+<li><code>updateByExample</code></li>
+</ul>
+<p>Example类不继承任何实体对象.</p>
+<p>类名默认情况是<code>?TableName?Example</code>,如果<code>&lt;table&gt;</code>配置了<code>domainObjectName</code>属性那么类名是<code>?domainObjectName?Example</code>.</p>
+<p>如果方法被启动Example类将生成任何<code>*ByExample</code>方法.注意:如果表中有非常多的字段该类可能很大,但 DAO生成的XML是比较小的. 如果您不需要使用动态WHERE子句,您可以禁用生成这些方法.</p>
+<h3 id="sql映射文件">SQL映射文件</h3>
+<p>MyBatis Generator (MBG)生成SQL映射文件遵循MyBatis或iBATIS SQL Map DTD规范. 在表的基础上这些文件还包含了不同的标签和属性配置. MBG按照配置表生成SQL映射文件.表名就是SQL映射文件的命名空间(前提是数据库支持schema和catalog,主流数据库对schema和catalog都支持).MBG不会自动把 SQL映射文件到MyBatis/iBATIS配置文件中 - 您必须手动把<code>xxxMapper.xml</code>文件加入到配置文件中(或者您使用一个插件使MBG生成配置文件;Spring配置文件可以实现自动扫描<code>xxxMapper.xml</code>和接口).</p>
+<p>每个自动生成的XML方法标签下都包含<code>@mbggenerated</code>的注释块.在运行的时候<code>@mbggenerated</code>注释块将删除和替换.其他部分内容将保持不变. 考虑到这点,不用担心在运行时丢失您新增内容--不包括<code>@mbggenerated</code>块内容.</p>
+<p>以下部分描述了将要生成的元素.</p>
+<p>注意:下面描述中"BLOB"指任何列的BLOB数据类型包括BLOB, CLOB, LONGVARCHAR, 和 LONGVARBINARY.</p>
+<h4 id="结果集">结果集</h4>
+<p>结果集用于数据库表列映射Java对象的属性. 结果集(和相应的查询语句)不包括如下情况:</p>
+<ul>
+<li>任何列配置<code>&lt;ignoreColumn&gt;</code>属性将被会被忽略</li>
+<li>任何BLOB字段(详见有关BLOBs字段相关映射)</li>
+</ul>
+<p>对于列配置<code>&lt;columnOverride&gt;</code>属性将映射成配置的名称.没有配置使用的是默认的属性和JDBC类型.</p>
+<p>对于自定义连接查询结果集继承一个结果集是一种非常常见的用法. 对于其他连接查询也想使用该结果集在MBG自动生成的时候需要配置前缀.详见<code>&lt;table&gt;</code>属性alias配置前缀,这样做法可以区分表中相同字段.</p>
+<p>如果table配置enableSelectByExample、enableSelectByPrimaryKey属性为true,MBG会生成结果集,table默认这两个配置都是true,所以大部分情况下都会生成resultMap.</p>
+<h4 id="blob结果集">BLOB结果集</h4>
+<p>表中存在BLOB字段时MBG会自动生成一个BLOB结果集,BLOB结果集继承了除BLOB字段外的基础结果集. 我们提供不同的版本查询语句,来适应查询结果中是否需要BLOB字段.</p>
+<p>BLOB结果集(和相应的查询语句)不包括如下情况:</p>
+<ul>
+<li>任何列配置<code>&lt;ignoreColumn&gt;</code>属性将被会被忽略</li>
+</ul>
+<p>对于列配置<code>&lt;columnOverride&gt;</code>属性将映射成配置的名称.没有配置使用的是默认的属性和JDBC类型.</p>
+<p>对于自定义连接查询结果集继承一个结果集是一种非常常见的用法.对于其他连接查询也想使用该结果集,在MBG自动生成的时候需要配置前缀.详见 <code>&lt;table&gt;</code> 性alias配置前缀,这样做法可以区分表中相同字段.</p>
+<p>如果table存在BLOB字段且配置了enableSelectByExample、enableSelectByPrimaryKey属性,MBG会生成BLOB结果集,table默认这两个配置都是true所以大部分情况下都会生成resultMap.</p>
+<h4 id="where条件sql语句">Where条件SQL语句</h4>
+<p>"by example"方法重用Where条件.被重用的Where条件不包括BLOB字段.大部分表WHERE条件都不支持BLOB字段.</p>
+<p>"by example"语句被配置将动态生成Where条件语句.</p>
+<h4 id="根据主键查询">根据主键查询</h4>
+<p>select语句按照主键查询返回一行数据.如果表中存在BLOB字段,查询结果中会包含该字段.</p>
+<p>如果table配置了enableSelectByExample、enableSelectByPrimaryKey属性为true,MBG会生成结果集,table默认这两个配置都是true所以大部分情况下都会生成resultMap.</p>
+<h4 id="根据条件查询">根据条件查询</h4>
+<p>根据条件查询结果集和自动生成对象相匹配. 通过实现一个简单的"query by example"方法可以适用于不同的数据库查询.就算表中存在BLOB字段该查询结果集也不会返回该BLOB字段 (具体返回BLOB字段详见根据条件查询包含BLOB字段结果集部分描述).</p>
+<p><strong>重要:*<em>条件为空或者没有设置条件时,会将表中*</em>所有</strong>数据查询出来.</p>
+<p>如果table配置了enableSelectByExample属性为true,MBG会生成Example查询.</p>
+<h4 id="根据条件查询包含blob字段方法selectbyexamplewithblobs">根据条件查询包含BLOB字段(方法:selectByExampleWithBLOBs)</h4>
+<p>Example查询结果集和自动生成对象相匹配. 通过实现一个简单的"query by example"方法可以适用于不同的数据库查询.算表中存在BLOB字段该查询结果集将返回该BLOB字段.</p>
+<p><strong>重要:</strong> 查询条件为空或者没有设置查询条件时,会将表中<strong>所有</strong>数据查询出来.</p>
+<p>如果table配置了enableSelectByExample属性为true,MBG会生成包含BLOB字段的Example查询.</p>
+<h4 id="插入">插入</h4>
+<p>该方法可以插入表中所有字段(包括BLOB字段),但列配置了<code>&lt;ignoreColumn&gt;</code>属性将不会插入.</p>
+<p>如果表有主键自动增长(自动增长列或序列),table子元素配置<code>&lt;generatedKey&gt;</code>属性,MBG会生成<code>&lt;selectKey&gt;</code>块语句,一般情况下都不需要配置使用数据库自动增长即可,除非表字段需要使用序列.</p>
+<p><strong>重要提示:</strong>与iBATIS2和MyBatis3插入的差异.差异如下:</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">运行</th>
+<th style="text-align: left;">特性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">iBATIS2</td>
+<td style="text-align: left;">配置了<code>&lt;generatedKey&gt;</code>属性,插入的时候会返回新的自动增长值.没有配置<code>&lt;generatedKey&gt;</code>属性, 插入返回值为<code>void</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MyBatis3</td>
+<td style="text-align: left;">插入方法将返回插入受影响的行数(通常是0或者1). 配置了<code>&lt;generatedKey&gt;</code>属性,自动增长值会被设置在参数对象中返回.</td>
+</tr>
+</tbody>
+</table>
+<p>如果table配置了enableInsert属性为true,MBG会生成该方法.</p>
+<h4 id="选择性插入">选择性插入</h4>
+<p>该方法可以插入表中所有字段(包括BLOB字段),但列配置了<code>&lt;ignoreColumn&gt;</code>属性将不会插入.然而,参数对象<code>为空</code>的列将不会插入值.如果数据库列设置了默认值则取默认值,否则列值是空. 对于列不允许为<code>空</code>情况-则需要人为确保调用该方法时不为空列确保有值使插入不报错.<strong>重要:</strong>任何映射到java引用类型的字段都会被该方法插入.</p>
+<p>如果表有主键自动增长(自动增长列或序列),table子元素配置<code>&lt;generatedKey&gt;</code>属性,MBG会生成<code>&lt;selectKey&gt;</code>块语句,一般情况下都不需要配置使用数据库自动增长即可,除非表字段需要使用序列.</p>
+<p><strong>重要提示:</strong>与iBATIS2和MyBatis3插入的差异.差异如下:</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">运行</th>
+<th style="text-align: left;">特性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">iBATIS2</td>
+<td style="text-align: left;">配置了<code>&lt;generatedKey&gt;</code>属性,插入的时候会返回新的自动增长值.没有配置.没有配置<code>&lt;generatedKey&gt;</code> 属性, 插入返回值为<code>void</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MyBatis3</td>
+<td style="text-align: left;">插入方法将返回插入受影响的行数(通常是0或者1). I配置了<code>&lt;generatedKey&gt;</code>属性,自动增长值会被设置在参数对象中返回.</td>
+</tr>
+</tbody>
+</table>
+<p>如果table配置了enableInsert属性为true,MBG会生成该方法.</p>
+<h4 id="根据主键更新">根据主键更新</h4>
+<p>该方法按照主键修改一行数据.该方法会修改表中所有字段,除非:</p>
+<ul>
+<li>列配置了<code>&lt;ignoreColumn&gt;</code>属性</li>
+<li>BLOB字段(详见根据主键更新包含BLOB字段)</li>
+</ul>
+<p>数据库表中存在主键且table配置了enableUpdateByPrimaryKey属性为true,MBG会生成该方法.</p>
+<h4 id="根据主键更新包含blob字段">根据主键更新包含BLOB字段</h4>
+<p>该方法按照主键修改一行数据.该方法会修改表中所有字段(包括BLOB字段),除非:</p>
+<ul>
+<li>列配置了<code>&lt;ignoreColumn&gt;</code>属性</li>
+</ul>
+<p>数据库表中存在主键包含BLOB列且table配置了enableUpdateByPrimaryKey属性为true,MBG会生成该方法.</p>
+<h4 id="根据主键选择性更新">根据主键选择性更新</h4>
+<p>该方法按照主键修改一行数据.该方法会更新表中参数对象属性不为空的列.该方法可以被使用更新某些特定的列而不影响所有列数据. <strong>重要:</strong> 任何映射到java引用类型的字段都会被该方法更新.</p>
+<p>数据库表中存在主键且table配置了enableUpdateByPrimaryKey属性为true,MBG会生成该方法.</p>
+<h4 id="根据主键删除记录">根据主键删除记录</h4>
+<p>该方法按照主键删除一行数据.</p>
+<p>数据库表中存在主键且table配置了enableDeleteByPrimaryKey属性为true,MBG会生成该方法.</p>
+<h4 id="根据条件删除记录">根据条件删除记录</h4>
+<p>该方法按照条件将删除一行或者多行数据.</p>
+<p><strong>重要:*<em>条件为空或者没有设置条件时, 会将表中*</em>所有</strong>记录删除.</p>
+<p>如果table配置了enableDeleteByExample属性为true,MBG会生成该方法.</p>
+<h4 id="根据条件查询记录总数">根据条件查询记录总数</h4>
+<p>该方法按照条件查询表中符合条件记录的记录总数.</p>
+<p><strong>重要:</strong>条件为空或者没有设置条件时,返回表中所有记录总数.</p>
+<p>如果table配置了enableCountByExample属性为true,MBG会生成该方法.</p>
+<h4 id="根据条件更新记录">根据条件更新记录</h4>
+<p>该方法按照条件更新表中符合条件记录.该方法会修改表中所有字段,除非:</p>
+<ul>
+<li>列配置了<code>&lt;ignoreColumn&gt;</code>属性</li>
+<li>BLOB字段(详见根据条件修改记录包含BLOB字段)</li>
+</ul>
+<p><strong>重要:*<em>条件为空或者没有设置条件时, 会将表中*</em>所有</strong>记录更新.</p>
+<p>如果table配置了enableUpdateByExample属性为true,MBG会生成该方法.</p>
+<h4 id="根据条件修改记录包含blob字段">根据条件修改记录包含BLOB字段</h4>
+<p>该方法按照条件更新表中符合条件记录.该方法会修改表中所有字段(包括BLOB字段),除非:</p>
+<ul>
+<li>列配置了<code>&lt;ignoreColumn&gt;</code>属性</li>
+</ul>
+<p><strong>重要:*<em>条件为空或者没有设置条件时, 会将表中*</em>所有</strong>记录更新.</p>
+<p>如果表存在BLOB字段且table配置了enableUpdateByExample属性为true,MBG会生成该方法.</p>
+<h4 id="根据条件选择性更新记录">根据条件选择性更新记录</h4>
+<p>该方法按照条件更新表中符合条件记录.该方法会更新表中参数对象属性不为空的列.该方法可以被使用更新某些特定的列而不影响所有列数据.<strong>重要:</strong> 任何映射到java引用类型的字段都会被该方法更新.</p>
+<p><strong>重要:*<em>条件为空或者没有设置条件时, 会将表中*</em>所有</strong>记录更新.</p>
+<p>如果table配置了enableUpdateByExample属性为true,MBG会生成该方法.</p>
+<h3 id="java客户端对象">Java客户端对象</h3>
+<p>MyBatis Generator (MBG)生成几种类型的Java客户端对象.用Java的客户端对象与所产生的XML交互容易得多. 对于配置中的每个表，MBG生成一个或多个Java客户端对象.如MyBatis的3, 这些都接口映射.对于iBATIS的2.x中，这些都是DAO接口和实现类. 生成Java客户对象是可选的,由<code>&lt;javaClientGenerator&gt;</code>配置. MBGr可以产生以下的Java客户短对象类型:</p>
+<ul>
+<li>如MyBatis 3.x:
+<ul>
+<li>XMLMAPPER - 用与支持MyBatis 3.x映射</li>
+</ul></li>
+<li>如iBATIS 2.x:
+<ul>
+<li>IBATIS - 使用iBATIS DAO框架</li>
+<li>SPRING - 与Spring框架联合使用</li>
+<li>GENERIC-CI - 使用不依赖iBATIS数据映射</li>
+<li>GENERIC-SI - 使用不依赖iBATIS数据映射</li>
+</ul></li>
+</ul>
+<p>每个字段和方法产生包括JavaDoc标签<code>@mbggenerated</code>.Eclipse插件运行时, 运行中每个字段和方法包括此Javadoc标记将被删除并替换.在类中的其他任何字段或方法将保持不变. 考虑到这一点,您可以不用担心加入的字段和方法丢失 -不包括在Javadoc标签<code>@mbggenerated</code>中内容.</p>
+<p>离开Eclipse插件,您需要手动合并Java文件,但是使用JavaDoc的 <code>@mbggenerated</code>标签用来了解删除以前版本的文件是否安全.</p>
+<p>注意: 下面描述中"BLOB"指任何列的BLOB数据类型包括BLOB, CLOB, LONGVARCHAR, 和 LONGVARBINARY.</p>
+<h4 id="通用dao方法">通用DAO方法</h4>
+<p>根据表的特性,以及配置选项,Java客户端自动生成如下方法:</p>
+<ul>
+<li>countByExample</li>
+<li>deleteByPrimaryKey</li>
+<li>deleteByExample</li>
+<li>insert</li>
+<li>insertSelective</li>
+<li>selectByPrimaryKey</li>
+<li>selectByExample</li>
+<li>selectByExampleWithBLOBs</li>
+<li>updateByPrimaryKey (否更新BLOB字段需要重写方法)</li>
+<li>updateByPrimaryKeySelective (只更新参数类非空字段)</li>
+<li>updateByExample (否更新BLOB字段需要重写方法)</li>
+<li>updateByExampleSelective (只更新参数类非空字段)</li>
+</ul>
+<p>对于包含BLOB的表,MBG通过生成不同的对象和方法使您更容易使用BLOB字段,是否忽略它们,这取决于具体情况.</p>
+<p>详见 <a target="_blank" rel="noopener" href="https://www.kancloud.cn/wizardforcel/java-opensource-doc/exampleClassUsage.html">Example类使用说明</a> 中<code>selectByExample</code>方法使用.</p>
+<h4 id="xmlmapper-客户端-mybatis-3.x">XMLMAPPER 客户端 (MyBatis 3.x)</h4>
+<p>XMLMAPPER客户端是将接口方法映射到生成的XML映射文件中.例如,MBG自动生成的接口名为<code>MyTableMapper</code>.您可以如下使用该接口:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  MyTableMapper mapper = sqlSession.getMapper(MyTableMapper.class);</span><br><span class="line">  List&lt;MyTable&gt; allRecords = mapper.selectByExample(<span class="keyword">null</span>);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  sqlSession.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有关如何创建实例的详细信息,请参阅MyBatis文档怎么创建<code>sqlSessionFactory</code>实例.</p>
+<h3 id="example类使用说明">Example类使用说明</h3>
+<p>Example类指定如何构建一个动态的where子句. 表中的每个non-BLOB列可以被包括在where子句中. 例子是展示此类用法的最好方式.</p>
+<p>Example类可以用来生成一个几乎无限的where子句.</p>
+<p>Example类包含一个内部静态类 <code>Criteria</code> 包含一个用 <code>anded</code> 组合在where子句中的条件列表. Example类包含一个 <code>List&lt;Criteria&gt;</code> 属性,所有内部类Criteria中的子句会用 <code>ored</code>组合在一起. 使用不同属性的 <code>Criteria</code> 类允许您生成无限类型的where子句.</p>
+<p>创建 <code>Criteria</code> 对象 可以使用Example类中的 <code>createCriteria()</code> 或者 <code>or()</code> . 如果 <code>Criteria</code> 对象是用 <code>createCriteria()</code> 创建的，它会自动为 <code>List&lt;Criteria&gt;</code> 属性添加一个 <code>Criteria</code> 对象 - 这使得它更容易写一个简单的where子句， 如果您不需要 <code>or</code> 或者其他几个子句组合的话. 用 <code>or(Criteria criteria)</code> 方法创建 <code>Criteria</code> 对象, 方法里的 <code>criteria</code> 对象会被添加进 <code>Criteria</code> 对象的列表中.</p>
+<p><strong>重要</strong> 我们推荐您只使用 <code>or()</code> 方法创建 <code>Criteria</code> 对象. 我们相信这种方法使代码更有可读性.</p>
+<h4 id="简单查询">简单查询</h4>
+<p>这个例子展示了如何用生成后的Example类去生成一个简单的where子句:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestTableExample example = <span class="keyword">new</span> TestTableExample();</span><br><span class="line"></span><br><span class="line">example.createCriteria().andField1EqualTo(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>作为另一种选择, 下面的方式也是可以的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TestTableExample example = <span class="keyword">new</span> TestTableExample();</span><br><span class="line"></span><br><span class="line">example.or().andField1EqualTo(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中, 动态生成的where子句是:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> field1 <span class="operator">=</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h4 id="复杂查询">复杂查询</h4>
+<p>下面的例子展示了如何用生成后的Example类去生成一个复杂的where子句 (用到了 JSE 5.0 的泛型):</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">TestTableExample example = <span class="keyword">new</span> TestTableExample();</span><br><span class="line"></span><br><span class="line">example.or()</span><br><span class="line">  .andField1EqualTo(<span class="number">5</span>)</span><br><span class="line">  .andField2IsNull();</span><br><span class="line"></span><br><span class="line">example.or()</span><br><span class="line">  .andField3NotEqualTo(<span class="number">9</span>)</span><br><span class="line">  .andField4IsNotNull();</span><br><span class="line"></span><br><span class="line">List&lt;Integer&gt; field5Values = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">field5Values.add(<span class="number">8</span>);</span><br><span class="line">field5Values.add(<span class="number">11</span>);</span><br><span class="line">field5Values.add(<span class="number">14</span>);</span><br><span class="line">field5Values.add(<span class="number">22</span>);</span><br><span class="line"></span><br><span class="line">example.or()</span><br><span class="line">  .andField5In(field5Values);</span><br><span class="line"></span><br><span class="line">example.or()</span><br><span class="line">  .andField6Between(<span class="number">3</span>, <span class="number">7</span>);</span><br></pre></td></tr></table></figure>
+<p>在上面的例子中, 动态生成的where子句是:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">where</span> (field1 <span class="operator">=</span> <span class="number">5</span> <span class="keyword">and</span> field2 <span class="keyword">is</span> <span class="keyword">null</span>)</span><br><span class="line">   <span class="keyword">or</span> (field3 <span class="operator">&lt;&gt;</span> <span class="number">9</span> <span class="keyword">and</span> field4 <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>)</span><br><span class="line">   <span class="keyword">or</span> (field5 <span class="keyword">in</span> (<span class="number">8</span>, <span class="number">11</span>, <span class="number">14</span>, <span class="number">22</span>))</span><br><span class="line">   <span class="keyword">or</span> (field6 <span class="keyword">between</span> <span class="number">3</span> <span class="keyword">and</span> <span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<p>将会返回满足这些条件的记录结果.</p>
+<h4 id="去重复查询">去重复查询</h4>
+<p>您可以在所有的Example类中调用 <code>setDistinct(true)</code> 方法进行强制去重复查询.</p>
+<h4 id="criteria类">Criteria类</h4>
+<p><code>Criteria</code> 内部类的每个属性都包含 <code>andXXX</code> 方法，以及如下的标准的SQL查询方法:</p>
+<ul>
+<li>IS NULL - 指相关的列必须为NULL</li>
+<li>IS NOT NULL - 指相关的列必须不为NULL</li>
+<li>= (equal) - 指相关的列必须等于方法参数中的值</li>
+<li>&lt;&gt; (not equal) - 指相关的列必须不等于方法参数中的值</li>
+<li>&gt; (greater than) - 指相关的列必须大于方法参数中的值</li>
+<li>&gt;= (greater than or equal) - 指相关的列必须大于等于方法参数中的值</li>
+<li>&lt; (less than) - 指相关的列必须小于于方法参数中的值</li>
+<li>&lt;= (less than or equal) - 指相关的列必须小于等于方法参数中的值</li>
+<li>LIKE - 指相关的列必须 "like" 方法参数中的值. 这个方法不用必须加入 '%', 您必须设置方法参数中的值.</li>
+<li>NOT LIKE - 指相关的列必须 "not like" 方法参数中的值. 这个方法不用必须加入 '%', 您必须设置方法参数中的值.</li>
+<li>BETWEEN - 指相关的列必须在 "between" 方法参数中的两个值之间.</li>
+<li>NOT BETWEEN - 指相关的列必须不在 "not between" 方法参数中的两个值之间.</li>
+<li>IN - 指相关的列必须在传入的方法参数的list中.</li>
+<li>NOT IN - 指相关的列必须不在传入的方法参数的list中.</li>
+</ul>
+<h3 id="扩展example类">扩展Example类</h3>
+<p>在某些情况下可能需要扩展自动生成的example。您可能希望添加特定数据库查询条件(如Oracle ROWNUM支持),或添加除自动生成外的查询条件(如不区分大小写查询)。在这种情况下，您需要扩展自动生成example类来添加这些额外的查询条件。</p>
+<h4 id="一般原则">一般原则</h4>
+<p>MyBatis Generator (MBG)一般情况下一个表名对应一个自动生成"example"类,除非您特殊配置。"example"类动态生成where条件被用于<code>xxxByExample</code>方法。</p>
+<p>标准的"example"类包含只是标准SQL条件查询功能。在这种情况下,程序特定需要您添加额外条件查询功能。这可能需要添加非标准条件查询或在where条件中使用数据库特定功能。</p>
+<p>自动生成"example"类中包含一个内部类实现where条件查询功能。内部类命名为<code>GeneratedCriteria</code>。 MBG同时也生成了内部类<code>Criteria</code>继承了<code>GeneratedCriteria</code>,您可以使用它在example类中添加您想要的功能。Eclipse插件不会删除<code>Criteria</code>类新增代码(注：只有Eclipse插件,并且有注释和时间戳等要求才能自动合并),因此您无需担心新增代码丢失。</p>
+<p>例如,有一个表叫CUSTOMER。通常,MBG生成一个名为 <code>CustomerExample</code>的类。在<code>CustomerExample</code>类中添加额外功能,需要在<code>CustomerExample.Criteria</code>类中新增方法。</p>
+<h4 id="扩展vs插件">扩展vs插件</h4>
+<p>如果您经常扩展自动生成类,写一个插件来实现该功能比手工编写扩展类代码更方便。下面(标题"单条件参数")的插件类能够完成单参数查询 <code>org.mybatis.generator.plugins.CaseInsensitiveLikePlugin</code>。</p>
+<h4 id="添加条件语句">添加条件语句</h4>
+<p>MBG自动生成SQL在运行允许创建无限制where条件。为了完成这个,自动生成SQL支持四大类型条件语句。对应每种类型的SQL语句,<code>GeneratedCriteria</code> 内部有一个对应的方法用于添加一个动态的where条件。</p>
+<h4 id="简单字符串替换">1. 简单字符串替换</h4>
+<p>在使用这种类型的条件查询时不需要参数对象替换where条件中。例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FIRST_NAME <span class="keyword">is</span> <span class="keyword">null</span>`</span><br><span class="line">`LAST_NAME <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+<p>此条件语句<code>GeneratedCriteria</code>类方法是:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addCriterion(String anyString)</span><br></pre></td></tr></table></figure>
+<p>其中"anyString"是字符串替换where子句。该方法适合任何类型。</p>
+<p>例如,您想使用SOUNDEX函数完成"类似"搜索功能。在MySQL中,条件语句应该是:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SOUNDEX(FIRST_NAME) <span class="operator">=</span> SOUNDEX(<span class="string">&#x27;frod&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>此种查询太复杂，可以考虑使用另外一个方法,这种简单字符串替换必须插入到where条件中。在内部类<code>Criteria</code>中添加如下方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Criteria <span class="title">andFirstNameSoundsLike</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">  StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">&quot;SOUNDEX(FIRST_NAME) = SOUNDEX(&#x27;&quot;</span>);</span><br><span class="line">  sb.append(value);</span><br><span class="line">  sb.append(<span class="string">&quot;&#x27;)&quot;</span>);</span><br><span class="line"></span><br><span class="line">  addCriterion(sb.toString());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面代码是在<code>selectByExample</code>方法中使用了刚才新增的方法:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CustomerExample example = <span class="keyword">new</span> CustomerExample();</span><br><span class="line">Criteria criteria = example.createCriteria();</span><br><span class="line">criteria.andFirstNameSoundsLike(<span class="string">&quot;frod&quot;</span>);</span><br><span class="line">List results = selectByExample(example);</span><br></pre></td></tr></table></figure>
+<p>这种方法可以添加任何条件语句到where子句中。然而,由于需要保证不同数据类型的正确(最明显的日期、时间和时间戳),所以最好使用参数替换。同时, 这样操作暴露过多的方法会导致SQL注入问题。如果可能,我们建议使用下面列出的方法之一。</p>
+<h4 id="单条件参数">2. 单条件参数</h4>
+<p>使用这种类型作为条件语句,一个参数替换where条件。例如</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FIRST_NAME <span class="operator">=</span> ?`</span><br><span class="line">`LAST_NAME <span class="operator">&lt;&gt;</span> ?</span><br></pre></td></tr></table></figure>
+<p>自动生成<code>Criteria</code>类条件方法如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addCriterion(String anyString,Object anyObject,String propertyName)</span><br></pre></td></tr></table></figure>
+<p>Where:</p>
+<p><strong>anyString</strong></p>
+<p>替换where条件参数子句,如:upper(FIRST_NAME) like</p>
+<p><strong>anyObject</strong></p>
+<p>条件值</p>
+<p><strong>propertyName</strong></p>
+<p>条件列名,用于排除潜在错误。</p>
+<p>该方法用于单一参数where条件。</p>
+<p>例如,假设您想特定列不区分大小写查询,在MySQL中查询条件如下:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">upper</span>(FIRST_NAME) <span class="keyword">like</span> ?</span><br></pre></td></tr></table></figure>
+<p>此方法适合单个参数功能-一个参数一个参数值。将下面方法添加到<code>ExtendedCriteria</code>中:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ExtendedCriteria <span class="title">andFirstNameLikeInsensitive</span><span class="params">(String value)</span> </span>&#123;</span><br><span class="line">  addCriterion(<span class="string">&quot;upper(FIRST_NAME) like&quot;</span>,</span><br><span class="line">    value.toUpperCase(),<span class="string">&quot;firstName&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面代码是在<code>selectByExample</code>方法中使用了刚才新增的功能:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ExtendedExample example = <span class="keyword">new</span> ExtendedExample();</span><br><span class="line">ExtendedCriteria criteria = (ExtendedCriteria) example.createCriteria();</span><br><span class="line">criteria.andFirstNameLikeInsensitive(<span class="string">&quot;fred%&quot;</span>);</span><br><span class="line">List results = selectByExample(example);</span><br></pre></td></tr></table></figure>
+<h4 id="列表条件">3. 列表条件</h4>
+<p>列表条件适用于where条件中多个值的情况。例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FIRST_NAME <span class="keyword">IN</span> (?,?,?)`</span><br><span class="line">`LAST_NAME <span class="keyword">NOT</span> <span class="keyword">IN</span> (?,?,?,?)</span><br></pre></td></tr></table></figure>
+<p>由于包含了"in" and "not in"这样的标准查询条件,因此使用起来不太灵活。然而在<code>Criteria</code>类中您会发现有相应的方法,如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addCriterion(String anyString,List listOfObjects,String propertyName)</span><br></pre></td></tr></table></figure>
+<p>Where:</p>
+<p><strong>anyString</strong></p>
+<p>替换where条件参数,如:FIRST_NAME IN</p>
+<p><strong>listOfObjects</strong></p>
+<p>list对象值替换条件值(在list前有一个开始的括号，一个结束括号在list后)。</p>
+<p><strong>propertyName</strong></p>
+<p>条件列名,用户排除潜在错误。</p>
+<h4 id="between条件">4. Between条件</h4>
+<p>Between条件参数适用于where条件特定的格式。例如:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FIRST_NAME <span class="keyword">BETWEEN</span> ? <span class="keyword">AND</span> ?`</span><br><span class="line">`LAST_NAME <span class="keyword">NOT</span> <span class="keyword">BETWEEN</span> ? <span class="keyword">AND</span> ?</span><br></pre></td></tr></table></figure>
+<p>由于包含了"between" and "not between"这样的标准查询条件,因此使用起来不太灵活。然而在<code>Criteria</code>类中您会发现有相应的方法,如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">addCriterion(String anyString,Object object1,Object object2,String propertyName)</span><br></pre></td></tr></table></figure>
+<p>Where:</p>
+<p><strong>anyString</strong></p>
+<p>替换where条件参数,如:FIRST_NAME BETWEEN</p>
+<p><strong>object1</strong></p>
+<p>替换where条件第一个参数值(object1后会自带一个"and"连接词)。</p>
+<p><strong>object2</strong></p>
+<p>替换where条件第二个参数值(object2前会自带一个"and"连接词)。</p>
+<p><strong>propertyName</strong></p>
+<p>条件列名,用户排除潜在错误。</p>
+<h2 id="mysql-使用注意事项">MySql 使用注意事项</h2>
+<h3 id="无符号类型">无符号类型</h3>
+<p>MySql支持有符号，无符号，数字类型字段。这些不是JDBC类型，因此MyBatis 生成器不能自动转换这种类型的字段。JAVA数据类型都是有符号的， 当使用无符号类型时这就会导致缺失精度。可以使用 <code>&lt;columnOverride&gt;</code> 解决MySql无符号数值类型的字段。下面是一个如何处理无符号bigint字段类型例子:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;ALLTYPES&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">columnOverride</span> <span class="attr">column</span>=<span class="string">&quot;UNSIGNED_BIGINT_FIELD&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;java.lang.Object&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;LONG&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>您还必须自己强制将返回值转换为适当的类型(在上面这种情况下，需要转换为 <code>java.math.BigInteger</code>)。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/wechatpay.jpg" alt="whlll 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/alipay.jpg" alt="whlll 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 代码生成器</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/04/Hibernate/" rel="prev" title="Hibernate">
+                  <i class="fa fa-chevron-left"></i> Hibernate
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NDU4My8zMTA1NA=="></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whlll</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">288k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:22</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+<script class="next-config" data-name="chatra" type="application/json">{"enable":true,"async":true,"id":"cHCGeJJx2x2CH2DDt"}</script>
+<script src="/js/third-party/chat/chatra.js"></script>
+<script async src="https://call.chatra.io/chatra.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script src="/js/third-party/comments/livere.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":"opacity:0.7","log":false,"tagMode":false});</script></body>
+</html>
