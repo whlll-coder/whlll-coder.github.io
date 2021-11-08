@@ -22,33 +22,25 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="实验室有一个项目用到了Kmeans算法的思想 但是靠的是纯纯的人力 能不能用机器学习中的Kmeans来彻底实现呢？">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Kmeans算法初探">
-<meta property="og:url" content="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/index.html">
+<meta name="description" content="whlll的小破站❥">
+<meta property="og:type" content="website">
+<meta property="og:title" content="whlll-blog">
+<meta property="og:url" content="http://example.com/categories/%E5%89%8D%E7%AB%AF/index.html">
 <meta property="og:site_name" content="whlll-blog">
-<meta property="og:description" content="实验室有一个项目用到了Kmeans算法的思想 但是靠的是纯纯的人力 能不能用机器学习中的Kmeans来彻底实现呢？">
+<meta property="og:description" content="whlll的小破站❥">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301608007.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301616821.gif">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301706552.png">
-<meta property="article:published_time" content="2021-10-30T07:42:52.000Z">
-<meta property="article:modified_time" content="2021-10-31T06:06:10.273Z">
 <meta property="article:author" content="whlll">
-<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif">
 
 
-<link rel="canonical" href="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/">
+<link rel="canonical" href="http://example.com/categories/%E5%89%8D%E7%AB%AF/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/","path":"2021/10/30/Kmeans算法初探/","title":"Kmeans算法初探"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/前端/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Kmeans算法初探 | whlll-blog</title>
+<title>分类: 前端 | whlll-blog</title>
   
 
 
@@ -139,7 +131,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -152,7 +144,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans-info"><span class="nav-text">KMEANS INFO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans-details"><span class="nav-text">KMEANS DETAILS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shortcoming"><span class="nav-text">SHORTCOMING</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#optimization-of-kmeans"><span class="nav-text">OPTIMIZATION OF KMEANS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#monte-carlo-method"><span class="nav-text">MONTE CARLO METHOD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kmeans---kmeans---kmeans-ii"><span class="nav-text">Kmeans -&gt; Kmeans++ -&gt; Kmeans II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#kmeans"><span class="nav-text">Kmeans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kmeans-1"><span class="nav-text">Kmeans++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kmeans-ii"><span class="nav-text">Kmeans II</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pretreatment"><span class="nav-text">PRETREATMENT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#isodata"><span class="nav-text">ISODATA</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -250,250 +241,51 @@
 </noscript>
 
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner category posts-collapse">
 
 
   
-
-
-<div class="post-block">
   
   
+  <div class="post-block">
+    <div class="post-content">
+      <div class="collection-title">
+        <h2 class="collection-header">前端
+          <small>分类</small>
+        </h2>
+      </div>
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/30/Kmeans%E7%AE%97%E6%B3%95%E5%88%9D%E6%8E%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="whlll">
-      <meta itemprop="description" content="whlll的小破站❥">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whlll-blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Kmeans算法初探
-        </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-10-30 15:42:52" itemprop="dateCreated datePublished" datetime="2021-10-30T15:42:52+08:00">2021-10-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-31 14:06:10" itemprop="dateModified" datetime="2021-10-31T14:06:10+08:00">2021-10-31</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-        <p>实验室有一个项目用到了Kmeans算法的思想 但是靠的是纯纯的人力 能不能用机器学习中的Kmeans来彻底实现呢？</p>
-<span id="more"></span>
-<h2 id="kmeans-info">KMEANS INFO</h2>
-<blockquote>
-<p>有<strong>四个牧师</strong>去郊区布道，一开始牧师们随意选了几个布道点，并且把这几个布道点的情况公告给了郊区所有的<strong>村民</strong>，于是每个村民到离自己家最近的布道点去听课。听课之后，大家觉得距离太远了，于是<strong>每个牧师统计了一下自己的课上所有的村民的地址，搬到了所有地址的中心地带</strong>，并且在海报上更新了自己的布道点的位置。牧师每一次移动不可能离所有人都更近，有的人发现A牧师移动以后自己还不如去B牧师处听课更近，于是每个村民又去了离自己最近的布道点……就这样，牧师每个礼拜更新自己的位置，<strong>村民根据自己的情况选择布道点</strong>，最终稳定了下来。</p>
-</blockquote>
-<ul>
-<li>村民牧师解释
-<ul>
-<li>四个牧师: <font color=red>K(种类 ML中叫类聚中心)</font></li>
-<li>村民: K种样本集合</li>
-<li>牧师更改布道点: <font color=red>更改类聚中心位置</font></li>
-<li>村民根据自己情况选择布道点: 迭代已达到稳定</li>
-</ul></li>
-</ul>
-<h2 id="kmeans-details">KMEANS DETAILS</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301559400.gif" /></p>
-<ul>
-<li><p>1.初始化K个样本作为初试类聚中心a = a1、a2、a3、a4、a5</p></li>
-<li><p>2.针对每个样本中的xi计算到每个样本类聚中心的距离(欧氏距离)最小值<span class="math inline">\(d=\sqrt{\sum_{i=0}^N(x_{1i}-x_{2i})^2}\)</span>，分到对应的类聚中心的类中</p></li>
-<li><p>3.针对每个类别ai,重新计算它的类聚中心</p></li>
-</ul>
-<p><span class="math display">\[
-a_j=\frac1{|C_i|}\sum{x}(x\epsilon{C_i})
-\]</span></p>
-<ul>
-<li>4.重复上面 2 3 两步操作，直到达到某个中止条件（<strong>迭代次数</strong>、<strong>最小误差变化</strong>等）</li>
-</ul>
-<h2 id="shortcoming">SHORTCOMING</h2>
-<ul>
-<li>K 值需要人为设定，不同 K 值得到的结果不一样 (<strong>Gap statistic</strong>)</li>
-<li>对初始的簇中心敏感，不同选取方式会得到不同结果 (<strong>Kmeans++ | Kmeans II</strong>)</li>
-<li>对异常值敏感 (<strong>Pretreatment</strong>)</li>
-<li>不适合太离散的分类、样本类别不平衡的分类、非凸形状的分类 (<strong>核函数</strong>)</li>
-<li>样本只能归为一类，不适合多分类任务 (<strong>ISODATA细分样本</strong>)</li>
-</ul>
-<h2 id="optimization-of-kmeans">OPTIMIZATION OF KMEANS</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301608007.png" /></p>
-<ul>
-<li>手肘法(人工确定K)</li>
-</ul>
-<blockquote>
-<p>当 K &lt; 2 时，曲线急速下降；当 K &gt; 2 时，曲线趋于平稳，通过手肘法我们认为拐点 2 为 K 的最佳值</p>
-</blockquote>
-<ul>
-<li><strong>Gap statistic</strong></li>
-</ul>
-<p><span class="math display">\[
-𝑑_{𝑖𝑖^′}=\Sigma(𝑥_{𝑖𝑗}−𝑥_{𝑖^′ 𝑗})^2 (𝑖=1,2…𝑛;𝑗=1,2,…𝑝)\to 描述与中心的距离
-\]</span></p>
-<p><span class="math display">\[
-n_r=|C_r| \to 样本空间
-\]</span></p>
-<p><span class="math display">\[
-W_k=\Sigma(\frac{1}{2n_r}D_r) \to 损失函数
-\]</span></p>
-<p><span class="math display">\[
-最终公式\to Gap_n(k)=E^*\{log(W_k)\}-log(W_k)
-\]</span></p>
-<p><span class="math display">\[
-E^*\{log(W_k)\}\to how\ to\ get?
-\]</span></p>
-<blockquote>
-<p>参考论文: <a target="_blank" rel="noopener" href="https://statweb.stanford.edu/~gwalther/gap">Estimating the number of clusters in a data set via the gap statistic</a></p>
-<p>Robert Tibshirani , Guenther Walther and Trevor Hastie</p>
-<p>Stanford University</p>
-</blockquote>
-<h2 id="monte-carlo-method">MONTE CARLO METHOD</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301616821.gif" /></p>
-<ul>
-<li>解决两类问题</li>
-</ul>
-<blockquote>
-<p>一类是所求解的问题<strong>本身</strong>具有内在的随机性，借助计算机的运算能力可以直接模拟这种随机的过程</p>
-<p>另一种类型是所求解问题可以<strong>转化</strong>为某种随机分布的特征数，比如随机事件出现的概率，或者随机变量的期望值</p>
-</blockquote>
-<ul>
-<li>理解</li>
-</ul>
-<blockquote>
-<p>假设你有一袋豆子，把豆子均匀地朝这个图形上撒，然后数这个图形之中有多少颗豆子，这个豆子的数目就是图形的面积。当你的豆子越小，撒的越多的时候，结果就越精确。借助计算机程序可以生成大量均匀分布坐标点，然后统计出图形内的点数，通过它们占总点数的比例和坐标点生成范围的面积就可以求出图形面积。</p>
-</blockquote>
-<h2 id="kmeans---kmeans---kmeans-ii">Kmeans -&gt; Kmeans++ -&gt; Kmeans II</h2>
-<h3 id="kmeans">Kmeans</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取数据 n 个 m维 的数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机生成 K 个 m维 的点(where)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(t)</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i &lt; n;i++)</span><br><span class="line">           <span class="keyword">for</span>(<span class="built_in">int</span> j=<span class="number">0</span>;j &lt; k;j++)</span><br><span class="line">	  		   计算 i 到类 j 的距离</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;I &lt; k;i++)</span><br><span class="line">           <span class="number">1.</span>  找出所有属于自己这一类的所有数据点</span><br><span class="line">           <span class="number">2.</span>  把自己的坐标修改为这些数据中心点坐标</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h3 id="kmeans-1">Kmeans++</h3>
-<ul>
-<li><p>1.随机选取<span class="math inline">\(a_i\)</span></p></li>
-<li><p>2.计算数据到之前 n 个聚类中心最远的距离 , 并以一定的概率 <span class="math inline">\(\frac{D(x)^2}{∑D(x)^2}\)</span>,选择新的中心点<span class="math inline">\(a_i\)</span></p></li>
-<li><p>3.重复步骤2</p></li>
-</ul>
-<h3 id="kmeans-ii">Kmeans II</h3>
-<ul>
-<li>在Kmeans++基础上 每次遍历取样k个，重复该取样过程klog(n)次，得到一个集合，然后随机选取 K个点作为类聚中心</li>
-</ul>
-<h2 id="pretreatment">PRETREATMENT</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/202110301706552.png" /></p>
-<blockquote>
-<p>当样本点过于离散时的效果</p>
-</blockquote>
-<ul>
-<li>1.预处理提前过滤掉异常值</li>
-<li>2.通过一个<font color=red>非线性映射</font>，将输入空间中的数据点映射到高位的特征空间中，并在新的特征空间中进行聚类。<font color=red>非线性映射增加了数据点线性可分的概率</font>，从而在经典的聚类算法失效的情况下，通过引入核函数可以达到更为<strong>准确</strong>的聚类结果。</li>
-</ul>
-<h2 id="isodata">ISODATA</h2>
-<blockquote>
-<p>ISODATA (迭代自组织数据分析法)。它解决了 K 的值需要预先人为的确定这一缺点。而当遇到高维度、海量的数据集时，人们往往很难准确地估计出 K 的大小</p>
-</blockquote>
-<ul>
-<li>当属于某个类别的样本数过少时把这个类别去除，当属于某个类别的样本数过多、分散程度较大时把这个类别分为两个子类别</li>
-</ul>
-
+      
+    <div class="collection-year">
+      <span class="collection-header">2021</span>
     </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-          <div class="reward-container">
-  <div>Buy me a coffee</div>
-  <button>
-    赞赏
-  </button>
-  <div class="post-reward">
-      <div>
-        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/wechatpay.jpg" alt="whlll 微信">
-        <span>微信</span>
-      </div>
-      <div>
-        <img src="https://cdn.jsdelivr.net/gh/whlll-coder/images/alipay.jpg" alt="whlll 支付宝">
-        <span>支付宝</span>
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+      <div class="post-meta-container">
+        <time itemprop="dateCreated"
+              datetime="2021-11-07T20:46:36+08:00"
+              content="2021-11-07">
+          11-07
+        </time>
       </div>
 
-  </div>
-</div>
+      <div class="post-title">
+          <a class="post-title-link" href="/2021/11/07/Vue/" itemprop="url">
+            <span itemprop="name">Vue</span>
+          </a>
+      </div>
 
-          <div class="post-tags">
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 机器学习</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/10/26/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0Pytorch%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="prev" title="深度学习Pytorch环境配置">
-                  <i class="fa fa-chevron-left"></i> 深度学习Pytorch环境配置
-                </a>
-            </div>
-            <div class="post-nav-item">
-                <a href="/2021/10/31/Markdown%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E8%AF%AD%E6%B3%95/" rel="next" title="Markdown数学公式语法">
-                  Markdown数学公式语法 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
-    </footer>
+      
+    </header>
   </article>
-</div>
 
+    </div>
+  </div>
+  
+  
+  
 
-
-
-
-
-    <div class="comments" id="lv-container" data-id="city" data-uid="MTAyMC81NDU4My8zMTA1NA=="></div>
 </div>
   </main>
 
@@ -557,7 +349,7 @@ E^*\{log(W_k)\}\to how\ to\ get?
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
